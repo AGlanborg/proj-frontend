@@ -1,0 +1,228 @@
+<template>
+  <main class="container" :class="category ? '' : 'expandAll'">
+    <div class="titleContainer">
+      <h2 class="title" @click="toggleTitle">
+        Search<span class="material-icons" :class="title ? 'open' : ''"
+          >keyboard_arrow_up</span
+        >
+      </h2>
+    </div>
+    <div class="explain" :class="title ? 'expand' : ''">
+      <p class="explainText" :class="title ? 'visible' : 'hidden'">
+        Under denna rubrik kan du se all data som är sparad i databasen. Använd
+        valalternativen under <strong>Categories</strong> rubriken och sökfältet
+        nedan för att sortera innehållet av resultatfältet.
+      </p>
+    </div>
+    <div class="searchContainer">
+      <abbr title="Search by text">
+        <div class="searchButtonContainer">
+          <span class="material-icons check">search</span>
+        </div>
+      </abbr>
+      <input type="text" class="search" />
+    </div>
+    <div class="resultContainer" :class="category ? '' : 'maxResult'">
+      <div class="result" :class="title ? 'maxTitle' : 'minTitle'">
+        <Results
+          :category="category"
+          :instances="instances"
+          @handleRemove="handleRemove"
+        />
+      </div>
+    </div>
+  </main>
+</template>
+
+<script>
+import Results from "./sections/Results.vue";
+
+export default {
+  name: "Read-search",
+  components: {
+    Results,
+  },
+  props: {
+    category: Boolean,
+    instances: Array,
+  },
+  data() {
+    return {
+      title: false,
+    };
+  },
+  methods: {
+    toggleTitle() {
+      this.title ? (this.title = false) : (this.title = true);
+    },
+    handleRemove(id) {
+      this.$emit("handleRemove", id);
+    },
+  },
+};
+</script>
+
+<style scoped>
+@import "material-icons/iconfont/material-icons.css";
+
+abbr {
+  text-decoration: none;
+}
+
+.container {
+  position: absolute;
+  box-shadow: inset -10px 0 15px rgba(0, 0, 0, 0.5);
+  width: 96vw;
+  height: 100vh;
+  transition: 0.5s;
+  left: 25vw;
+}
+
+.expandAll {
+  left: 4vw;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 10vh;
+  width: 100%;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  height: 60px;
+  width: 285px;
+  padding-left: 40px;
+  font-size: 40px;
+  margin: 0;
+  line-height: 0;
+}
+
+.material-icons {
+  user-select: none;
+  margin: 0;
+  margin-left: 5px;
+  font-size: 40px;
+  line-height: 0;
+  transition: 0.5s;
+}
+
+.open {
+  transform: rotate(180deg);
+}
+
+.explain {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: center;
+  overflow: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 45vw;
+  margin: 0 10%;
+  padding: 0 1vw;
+  border-radius: 10px;
+  height: 0;
+  transition: 0.5s;
+}
+
+.explain::-webkit-scrollbar {
+  display: none;
+}
+
+.expand {
+  height: 10vh;
+}
+
+.explainText {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.hidden {
+  visibility: hidden;
+  transition: visibility 0s 0.1s, opacity 0.1s linear;
+  opacity: 0;
+}
+
+.visible {
+  visibility: visible;
+  transition: opacity 0.5s 0.3s linear;
+  opacity: 1;
+}
+
+.searchContainer {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(44, 44, 64);
+  height: 5vh;
+  margin: 2vh 6.5vw;
+  width: 30vw;
+  border-radius: 20px;
+}
+
+.searchButtonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-right: 5px solid rgb(55, 55, 80);
+  width: 5vh;
+  height: 5vh;
+}
+
+.search {
+  border: none;
+  outline: none;
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 2vh;
+  padding: 0 1vh;
+  flex-grow: 1;
+}
+
+.resultContainer {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid rgb(44, 44, 64);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  width: 65vw;
+  margin: 2vh 5vw;
+  border-radius: 20px;
+  transition: 0.5s;
+}
+
+.maxResult {
+  width: 85vw;
+}
+
+.result {
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  height: 65vh;
+  transition: 0.5s;
+}
+
+.result::-webkit-scrollbar {
+  display: none;
+}
+
+.minTitle {
+  height: 75vh;
+}
+
+.check {
+  user-select: none;
+  font-size: 3vh;
+}
+</style>

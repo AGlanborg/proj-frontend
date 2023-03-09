@@ -1,26 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Read />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Read from './components/Read.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Read
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import url("https://fonts.googleapis.com/css2?family=Tienne&display=swap");
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(55, 55, 80);
+  color: rgb(255, 255, 255);
+  font-family: "Tienne", "serif";
+}
+
+select,
+input {
+  color: rgb(255, 255, 255);
 }
 </style>

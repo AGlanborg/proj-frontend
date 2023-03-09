@@ -1,4 +1,4 @@
-# hello-world
+# dbms-frontend
 
 ## Project setup
 ```

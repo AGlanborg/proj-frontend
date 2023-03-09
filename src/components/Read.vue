@@ -25,7 +25,9 @@
       :category="category"
       :instances="instances"
       :remove="remove"
+      :create="create"
       @handleRemove="handleRemove"
+      @toggleCreate="$emit('toggleCreate')"
     />
   </div>
 </template>
@@ -41,6 +43,9 @@ export default {
     Categories,
     Search,
     Remove,
+  },
+  props: {
+    create: Boolean
   },
   data() {
     return {

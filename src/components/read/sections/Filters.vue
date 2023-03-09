@@ -55,7 +55,7 @@
 
 <script>
 export default {
-  name: "Read-filter",
+  name: "Categories-filter",
   props: {
     sellers: Array,
     selectedSeller: Number,

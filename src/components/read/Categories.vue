@@ -77,7 +77,7 @@ export default {
 .container {
   position: relative;
   box-shadow: inset -10px 0 15px rgba(0, 0, 0, 0.5);
-  width: 25%;
+  width: 25vw;
   height: 100vh;
   transition: 0.5s;
   left: 0;
@@ -98,7 +98,7 @@ export default {
   height: 40px;
   width: 40px;
   top: 95vh;
-  right: 20px;
+  right: 1.25vw;
 }
 
 .hideIcon {

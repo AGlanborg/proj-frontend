@@ -1,5 +1,12 @@
 <template>
-  <main class="container" :class="category ? '' : 'expandAll'">
+  <main class="mainContainer" :class="category ? '' : 'expandAll'">
+    <div class="createArrowContainer">
+      <div class="createArrow" :class="category ? 'createArrowLeft' : ''">
+      <span class="material-icons createArrowIcon" :class="create ? '' : 'invis'" @click="$emit('toggleCreate')">
+        keyboard_arrow_left
+      </span>
+      </div>
+    </div>
     <div class="titleContainer">
       <h2 class="title" @click="toggleTitle">
         Search<span class="material-icons" :class="title ? 'open' : ''"
@@ -20,7 +27,7 @@
           <span class="material-icons check">search</span>
         </div>
       </abbr>
-      <input type="text" class="search" />
+      <input type="text" class="search" v-bind="search" />
     </div>
     <div class="resultContainer" :class="category ? '' : 'maxResult'">
       <div class="result" :class="title ? 'maxTitle' : 'minTitle'">
@@ -28,6 +35,7 @@
           :category="category"
           :instances="instances"
           @handleRemove="handleRemove"
+          @toggleCreate="$emit('toggleCreate')"
         />
       </div>
     </div>
@@ -45,10 +53,12 @@ export default {
   props: {
     category: Boolean,
     instances: Array,
+    create: Boolean,
   },
   data() {
     return {
       title: false,
+      search: "",
     };
   },
   methods: {
@@ -63,19 +73,48 @@ export default {
 </script>
 
 <style scoped>
-@import "material-icons/iconfont/material-icons.css";
-
 abbr {
   text-decoration: none;
 }
 
-.container {
+.mainContainer {
   position: absolute;
   box-shadow: inset -10px 0 15px rgba(0, 0, 0, 0.5);
-  width: 96vw;
+  width: 97vw;
   height: 100vh;
   transition: 0.5s;
   left: 25vw;
+}
+
+.createArrowContainer {
+  position: realtive;
+  width: 100vw;
+}
+
+.createArrow {
+  position: absolute;
+  cursor: pointer;
+  top: 95vh;
+  left: 93vw;
+  height: 40px;
+  width: 40px;
+}
+
+.createArrowLeft {
+  left: 72vw;
+}
+
+.createArrowIcon {
+  position: relative;
+  top: 20px;
+  left: -5px;
+  margin: 0;
+  transition: opacity 0.5s ease-in;
+}
+
+.invis {
+  cursor: default;
+  opacity: 0;
 }
 
 .expandAll {

@@ -38,7 +38,7 @@
           </div>
         </abbr>
         <abbr title="Create a new row">
-          <div class="button">
+          <div class="button" @click="$emit('toggleCreate')">
             <span class="material-icons check">add</span>
           </div>
         </abbr>
@@ -109,7 +109,7 @@
 
 <script>
 export default {
-  name: "Read-results",
+  name: "Search-results",
   props: {
     category: Boolean,
     instances: Array,
@@ -159,8 +159,6 @@ export default {
 </script>
 
 <style scoped>
-@import "material-icons/iconfont/material-icons.css";
-
 abbr {
   text-decoration: none;
 }

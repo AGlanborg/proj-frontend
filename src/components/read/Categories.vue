@@ -149,7 +149,7 @@ export default {
   text-align: center;
   box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
   background-color: rgba(0, 0, 0, 0.2);
-  width: 75%;
+  width: 67.5%;
   margin: 0 10%;
   padding: 0 5%;
   border-radius: 10px;

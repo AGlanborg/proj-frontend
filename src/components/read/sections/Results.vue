@@ -9,7 +9,7 @@
         </abbr>
       </div>
       <div class="valueContainer">
-        <p>Säljare</p>
+        <p>Leverantör</p>
       </div>
       <div class="valueContainer">
         <p>Köpare</p>

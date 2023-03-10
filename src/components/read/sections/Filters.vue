@@ -73,7 +73,8 @@ export default {
 
 <style scoped>
 label {
-  font-size: 22px;
+  font-size: 20px;
+  margin: 0 8px;
 }
 
 select {
@@ -82,10 +83,11 @@ select {
   appearance: none;
   border: none;
   cursor: pointer;
-  padding: 10px;
-  margin: 10px 50px 35px 5px;
+  height: 4vh;
+  padding: 0 0.5vw;
+  margin: 10px 50px 35px 0;
   border-radius: 10px;
-  font-size: 17px;
+  font-size: 20px;
 }
 
 select,

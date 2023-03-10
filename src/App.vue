@@ -34,12 +34,13 @@ body {
   margin: 0;
   padding: 0;
   background-color: rgb(55, 55, 80);
-  color: rgb(255, 255, 255);
-  font-family: "Tienne", "serif";
 }
 
+body,
 select,
-input {
+input,
+textarea {
+  font-family: "Tienne", "serif";
   color: rgb(255, 255, 255);
 }
 

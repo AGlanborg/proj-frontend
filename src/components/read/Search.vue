@@ -15,7 +15,7 @@
       </h2>
     </div>
     <div class="explain" :class="title ? 'expand' : ''">
-      <p class="explainText" :class="title ? 'visible' : 'hidden'">
+      <p class="explainText">
         Under denna rubrik kan du se all data som är sparad i databasen. Använd
         valalternativen under <strong>Categories</strong> rubriken och sökfältet
         nedan för att sortera innehållet av resultatfältet.
@@ -186,18 +186,6 @@ abbr {
   margin: 0;
   font-size: 14px;
   line-height: 20px;
-}
-
-.hidden {
-  visibility: hidden;
-  transition: visibility 0s 0.1s, opacity 0.1s linear;
-  opacity: 0;
-}
-
-.visible {
-  visibility: visible;
-  transition: opacity 0.5s 0.3s linear;
-  opacity: 1;
 }
 
 .searchContainer {

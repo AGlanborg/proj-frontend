@@ -1,0 +1,72 @@
+.new {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 100%;
+}
+
+.new h2 {
+    text-align: center;
+}
+
+.new div {
+    display: flex;
+    justify-content: center;
+}
+
+.new input[type="text"] {
+    display: inline-block;
+    background-color: rgb(55, 55, 80);
+    margin: 0;
+    padding: 0 5%;
+    width: 90%;
+    flex-shrink: 3;
+}
+
+.new::-webkit-scrollbar {
+    display: none;
+}
+
+.newText {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.newButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.newSelect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.selectButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: rgb(55, 55, 80);
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    margin-left: 1vw;
+}
+
+span.check {
+    user-select: none;
+    font-size: 2vh;
+}
+
+.disabeled {
+    cursor: default;
+    color: rgb(100, 100, 100);
+}

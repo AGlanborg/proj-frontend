@@ -15,7 +15,7 @@
       </h2>
     </div>
     <div class="explain" :class="title ? 'expand' : ''">
-      <p class="explainText" :class="title ? 'visible' : 'hidden'">
+      <p class="explainText">
         För att filtrera det innehåll som visas i resultatfältet under rubriken
         <strong>Search</strong>, kan följande fält fyllas i.
       </p>
@@ -146,6 +146,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  overflow: hidden;
   text-align: center;
   box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
   background-color: rgba(0, 0, 0, 0.2);
@@ -165,17 +166,5 @@ export default {
   margin: 0;
   font-size: 14px;
   line-height: 20px;
-}
-
-.hidden {
-  visibility: hidden;
-  transition: visibility 0s 0.1s, opacity 0.1s linear;
-  opacity: 0;
-}
-
-.visible {
-  visibility: visible;
-  transition: opacity 0.5s 0.3s linear;
-  opacity: 1;
 }
 </style>

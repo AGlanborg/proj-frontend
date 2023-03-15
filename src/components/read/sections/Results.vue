@@ -21,7 +21,7 @@
         <p>Antal</p>
       </div>
       <div class="valueContainer">
-        <p>Konstnad</p>
+        <p>Kostnad</p>
       </div>
       <div class="headerTextContainer">
         <p>Text</p>

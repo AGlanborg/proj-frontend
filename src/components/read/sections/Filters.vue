@@ -84,6 +84,8 @@ select {
   border: none;
   cursor: pointer;
   height: 4vh;
+  width: 90%;
+  min-width: 200px;
   padding: 0 0.5vw;
   margin: 10px 50px 35px 0;
   border-radius: 10px;

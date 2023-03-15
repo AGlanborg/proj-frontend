@@ -27,7 +27,9 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Tienne&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora");
+@import url("https://fonts.googleapis.com/css2?family=Roboto%20Serif");
+@import url("https://fonts.googleapis.com/css2?family=Tienne");
 @import "material-icons/iconfont/material-icons.css";
 
 body {
@@ -40,7 +42,7 @@ body,
 select,
 input,
 textarea {
-  font-family: "Tienne", "serif";
+  font-family: "Lora", "Roboto Serif", "Roboto", "Tienne", "serif";
   color: rgb(255, 255, 255);
 }
 

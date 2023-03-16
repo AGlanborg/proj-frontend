@@ -3,9 +3,9 @@
     <div class="instance header">
       <div class="checkboxContainer">
         <abbr title="Select all">
-          <div class="checkbox" @click="toggleAll">
+          <button class="checkbox" @click="toggleAll">
             <span class="material-icons check" v-if="all"> check </span>
-          </div>
+          </button>
         </abbr>
       </div>
       <div class="valueContainer">
@@ -28,80 +28,88 @@
       </div>
       <div class="buttonContainer">
         <abbr title="Download seleced items">
-          <div class="button">
+          <button class="button">
             <span class="material-icons check">download</span>
-          </div>
+          </button>
         </abbr>
         <abbr title="Upload a new row">
-          <div class="button">
+          <button class="button">
             <span class="material-icons check">upload</span>
-          </div>
+          </button>
         </abbr>
         <abbr title="Create a new row">
-          <div class="button" @click="$emit('toggleCreate')">
+          <button class="button" @click="$emit('toggleCreate')">
             <span class="material-icons check">add</span>
-          </div>
+          </button>
         </abbr>
       </div>
     </div>
-    <div class="instance" v-for="inst in instances" v-bind:key="inst.id">
-      <div class="checkboxContainer">
-        <abbr title="Select row">
-          <div class="checkbox" @click="toggleCheckbox(inst.id)">
-            <span class="material-icons check" v-if="checked.includes(inst.id)">
-              check
-            </span>
-          </div>
-        </abbr>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.seller }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.buyer }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.workType }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.amount }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.cost }}
-        </p>
-      </div>
-      <div class="textContainer">
-        <div class="text">
+    <div
+      class="resultContent"
+      :class="title ? 'maxTitleContainer' : 'minTitleContainer'"
+    >
+      <div class="instance" v-for="inst in instances" v-bind:key="inst.id">
+        <div class="checkboxContainer">
+          <abbr title="Select row">
+            <button class="checkbox" @click="toggleCheckbox(inst.id)">
+              <span
+                class="material-icons check"
+                v-if="checked.includes(inst.id)"
+              >
+                check
+              </span>
+            </button>
+          </abbr>
+        </div>
+        <div class="valueContainer">
           <p>
-            {{ inst.text }}
+            {{ inst.seller }}
           </p>
         </div>
-      </div>
-      <div class="buttonContainer">
-        <abbr title="Create copy of row">
-          <div class="button">
-            <span class="material-icons check">content_copy</span>
+        <div class="valueContainer">
+          <p>
+            {{ inst.buyer }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.workType }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.amount }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.cost }}
+          </p>
+        </div>
+        <div class="textContainer">
+          <div class="text">
+            <p>
+              {{ inst.text }}
+            </p>
           </div>
-        </abbr>
-        <abbr title="Edit row">
-          <div class="button">
-            <span class="material-icons check">edit</span>
-          </div>
-        </abbr>
-        <abbr title="Delete row">
-          <div class="button" @click="handleRemove(inst.id)">
-            <span class="material-icons check">delete</span>
-          </div>
-        </abbr>
+        </div>
+        <div class="buttonContainer">
+          <abbr title="Create copy of row">
+            <button class="button">
+              <span class="material-icons check">content_copy</span>
+            </button>
+          </abbr>
+          <abbr title="Edit row">
+            <button class="button">
+              <span class="material-icons check">edit</span>
+            </button>
+          </abbr>
+          <abbr title="Delete row">
+            <button class="button" @click="handleRemove(inst.id)">
+              <span class="material-icons check">delete</span>
+            </button>
+          </abbr>
+        </div>
       </div>
     </div>
   </div>
@@ -113,11 +121,12 @@ export default {
   props: {
     category: Boolean,
     instances: Array,
+    title: Boolean,
   },
   data() {
     return {
       checked: [],
-      all: false
+      all: false,
     };
   },
   methods: {
@@ -128,27 +137,27 @@ export default {
         this.checked.push(id);
       }
 
-      this.checkAll()
+      this.checkAll();
     },
     checkAll() {
-      const list = this.instances.map(inst => inst.id)
+      const list = this.instances.map((inst) => inst.id);
 
-      if (list.every(inst => this.checked.includes(inst))) {
-        this.all = true
+      if (list.every((inst) => this.checked.includes(inst))) {
+        this.all = true;
       } else {
-        this.all = false
+        this.all = false;
       }
 
-      return this.all
+      return this.all;
     },
     toggleAll() {
       if (this.checkAll()) {
-        this.checked = []
-        this.all = false
+        this.checked = [];
+        this.all = false;
       } else {
-        const list = this.instances.map(inst => inst.id)
-        this.checked = list
-        this.all = true
+        const list = this.instances.map((inst) => inst.id);
+        this.checked = list;
+        this.all = true;
       }
     },
     handleRemove(id) {
@@ -166,6 +175,23 @@ abbr {
 .inctanceContainer {
   display: flex;
   flex-direction: column;
+}
+
+.maxResultContainer {
+  width: 85vw;
+}
+
+.resultContent {
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  height: 70vh;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.resultContent::-webkit-scrollbar {
+  display: none;
 }
 
 .instance {

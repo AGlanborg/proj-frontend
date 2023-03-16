@@ -1,18 +1,24 @@
 <template>
   <main class="mainContainer" :class="category ? '' : 'expandAll'">
     <div class="createArrowContainer">
-      <div class="createArrow" :class="category ? 'createArrowLeft' : ''">
-      <span class="material-icons createArrowIcon" :class="create ? '' : 'invis'" @click="$emit('toggleCreate')">
-        keyboard_arrow_left
-      </span>
-      </div>
+      <button class="createArrow" :class="category ? 'createArrowLeft' : ''">
+        <span
+          class="material-icons createArrowIcon"
+          :class="create ? '' : 'invis'"
+          @click="$emit('toggleCreate')"
+        >
+          keyboard_arrow_left
+        </span>
+      </button>
     </div>
     <div class="titleContainer">
-      <h2 class="title" @click="toggleTitle">
-        Search<span class="material-icons" :class="title ? 'open' : ''"
-          >keyboard_arrow_up</span
-        >
-      </h2>
+      <button class="title" @click="toggleTitle">
+        <h2>
+          Search<span class="material-icons" :class="title ? 'open' : ''"
+            >keyboard_arrow_up</span
+          >
+        </h2>
+      </button>
     </div>
     <div class="explain" :class="title ? 'expand' : ''">
       <p class="explainText">
@@ -23,9 +29,9 @@
     </div>
     <div class="searchContainer">
       <abbr title="Search by text">
-        <div class="searchButtonContainer">
+        <button class="searchButtonContainer">
           <span class="material-icons check">search</span>
-        </div>
+        </button>
       </abbr>
       <input type="text" class="search" v-bind="search" />
     </div>
@@ -34,6 +40,7 @@
         <Results
           :category="category"
           :instances="instances"
+          :title="title"
           @handleRemove="handleRemove"
           @toggleCreate="$emit('toggleCreate')"
         />
@@ -63,7 +70,7 @@ export default {
   },
   methods: {
     toggleTitle() {
-      this.title ? (this.title = false) : (this.title = true);
+      this.title = !this.title;
     },
     handleRemove(id) {
       this.$emit("handleRemove", id);
@@ -138,9 +145,17 @@ abbr {
   height: 60px;
   width: 285px;
   padding-left: 40px;
+  line-height: 0;
+}
+
+.title > h2 {
   font-size: 40px;
   margin: 0;
-  line-height: 0;
+}
+
+.title > h2 > span {
+  position: relative;
+  top: 6px;
 }
 
 .material-icons {
@@ -233,15 +248,7 @@ abbr {
 }
 
 .result {
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
   height: 65vh;
-  transition: 0.5s;
-}
-
-.result::-webkit-scrollbar {
-  display: none;
 }
 
 .minTitle {

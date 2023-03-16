@@ -1,14 +1,13 @@
 <template>
   <div class="createContainer">
     <div class="titleContainer">
-      <h2
-        class="title"
-        @click="this.title ? (this.title = false) : (this.title = true)"
-      >
-        Create<span class="material-icons" :class="title ? 'open' : ''"
-          >keyboard_arrow_up</span
-        >
-      </h2>
+      <button class="title" @click="this.title = !this.title">
+        <h2>
+          Create<span class="material-icons" :class="title ? 'open' : ''"
+            >keyboard_arrow_up</span
+          >
+        </h2>
+      </button>
     </div>
     <div class="explain" :class="title ? 'expand' : ''">
       <p class="explainText">
@@ -64,15 +63,14 @@
         :upfront="upfront"
         :rest="rest"
         :now="now"
+        :check="check"
         @onStart="onStart"
         @onSlut="onSlut"
         @onUpfront="onUpfront"
         @onRest="onRest"
       />
       <div class="createButtonContainer">
-        <div class="createButton">
-          <p>Create</p>
-        </div>
+        <button class="createButton">Create</button>
       </div>
     </div>
   </div>
@@ -125,7 +123,7 @@ export default {
       this.oh = this.inprisin * (this.procent / 100);
       this.total = parseInt(this.mangd) * (this.inprisin + this.oh);
 
-      this.updInfakt();
+      this.updPerioder();
     },
     updPerioder() {
       const start = this.slut.split("-");
@@ -139,7 +137,7 @@ export default {
     },
     updInfakt() {
       if (this.perioder == 0) {
-        this.infakt = 0
+        this.infakt = 0;
       } else {
         this.infakt = this.total / this.perioder;
       }
@@ -201,7 +199,7 @@ export default {
     },
     onMangd(event) {
       this.mangd = event.target.value;
-      this.updContent()
+      this.updContent();
     },
     onInprisex(event) {
       this.inprisex = event.target.value;
@@ -268,9 +266,17 @@ export default {
   height: 60px;
   width: 285px;
   padding-left: 40px;
+  line-height: 0;
+}
+
+.title > h2 {
   font-size: 40px;
   margin: 0;
-  line-height: 0;
+}
+
+.title > h2 > span {
+  position: relative;
+  top: 6px;
 }
 
 .material-icons {
@@ -355,10 +361,6 @@ export default {
   height: 75px;
   width: 200px;
   border-radius: 20px;
-}
-
-.createButton p {
-  margin: 0;
   font-size: 30px;
 }
 </style>

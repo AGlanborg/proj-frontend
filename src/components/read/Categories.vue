@@ -1,18 +1,20 @@
 <template>
   <div class="container" :class="category ? '' : 'hideAll'">
     <div class="hideContainer">
-      <div class="hide" @click="toggleCategory">
+      <button class="hide" @click="toggleCategory">
         <span class="material-icons hideIcon" :class="category ? 'open' : ''">
           keyboard_arrow_left
         </span>
-      </div>
+      </button>
     </div>
     <div class="titleContainer">
-      <h2 class="title" @click="toggleTitle">
-        Categories<span class="material-icons" :class="title ? 'open' : ''">
-          keyboard_arrow_up
-        </span>
-      </h2>
+      <button class="title" @click="toggleTitle">
+        <h2>
+          Categories<span class="material-icons" :class="title ? 'open' : ''">
+            keyboard_arrow_up
+          </span>
+        </h2>
+      </button>
     </div>
     <div class="explain" :class="title ? 'expand' : ''">
       <p class="explainText">
@@ -63,7 +65,7 @@ export default {
   },
   methods: {
     toggleTitle() {
-      this.title ? (this.title = false) : (this.title = true);
+      this.title = !this.title;
     },
     toggleCategory() {
       this.title = false
@@ -124,9 +126,18 @@ export default {
   user-select: none;
   height: 60px;
   width: 285px;
+  padding-left: 40px;
+  line-height: 0;
+}
+
+.title > h2 {
   font-size: 40px;
   margin: 0;
-  line-height: 0;
+}
+
+.title > h2 > span {
+  position: relative;
+  top: 6px;
 }
 
 .material-icons {

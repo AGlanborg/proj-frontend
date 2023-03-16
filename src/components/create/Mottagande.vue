@@ -214,7 +214,7 @@ export default {
       this.salKontakt = val;
     },
     updSalChosen() {
-      this.salChosen ? (this.salChosen = false) : (this.salChosen = true);
+      this.salChosen = !this.salChosen;
     },
     updKopRST(val) {
       this.kopRST = val;
@@ -226,7 +226,7 @@ export default {
       this.kopKontakt = val;
     },
     updKopChosen() {
-      this.kopChosen ? (this.kopChosen = false) : (this.kopChosen = true);
+      this.kopChosen = !this.kopChosen;
     },
   },
 };

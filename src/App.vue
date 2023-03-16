@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     toggleCreate() {
-      this.create ? (this.create = false) : (this.create = true);
+      this.create = !this.create;
     },
   },
 };
@@ -44,6 +44,10 @@ input,
 textarea {
   font-family: "Lora", "Roboto Serif", "Roboto", "Tienne", "serif";
   color: rgb(255, 255, 255);
+}
+
+button {
+  all: unset;
 }
 
 .read {

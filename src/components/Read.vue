@@ -333,7 +333,7 @@ export default {
   },
   methods: {
     toggleCategory() {
-      this.category ? (this.category = false) : (this.category = true);
+      this.category = !this.category;
     },
     handleRemove(id) {
       this.remove ? (this.remove = false) : (this.remove = true);

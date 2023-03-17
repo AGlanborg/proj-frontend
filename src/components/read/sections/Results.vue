@@ -18,7 +18,7 @@
         <p>Arbetstyp</p>
       </div>
       <div class="valueContainer">
-        <p>Antal</p>
+        <p>Antal Poster</p>
       </div>
       <div class="valueContainer">
         <p>Kostnad</p>

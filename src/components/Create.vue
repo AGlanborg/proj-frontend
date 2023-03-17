@@ -29,7 +29,6 @@
         @onSaljare="onSaljare"
         @onKopare="onKopare"
         @onArb="onArb"
-        @onAntal="onAntal"
         @onTyp="onTyp"
         @onLeve="onLeve"
         @onText="onText"
@@ -42,7 +41,7 @@
         :inprisin="inprisin"
         :procent="procent"
         :oh="oh"
-        :total="total"
+        :totalt="totalt"
         :fakturanum="fakturanum"
         :kommentar="kommentar"
         @onValuta="onValuta"
@@ -53,21 +52,20 @@
         @onKommentar="onKommentar"
       />
       <Periodisering
-        :total="total"
+        :inpris="inpris"
         :fakturanum="fakturanum"
         :kommentar="kommentar"
         :start="start"
         :slut="slut"
         :perioder="perioder"
-        :infakt="infakt"
+        :internfakt="internfakt"
         :upfront="upfront"
         :rest="rest"
         :now="now"
+        :intakt="intakt"
         :check="check"
         @onStart="onStart"
         @onSlut="onSlut"
-        @onUpfront="onUpfront"
-        @onRest="onRest"
       />
       <div class="createButtonContainer">
         <button class="createButton">Create</button>
@@ -105,42 +103,72 @@ export default {
       inprisin: 1.25,
       procent: "5",
       oh: 0.0625,
-      total: 1.3125,
+      totalt: 1.3125,
       fakturanum: "",
       kommentar: "",
+      inpris: 0,
       start: "",
       slut: "",
       perioder: 0,
-      infakt: 0,
-      upfront: "0",
-      rest: "0",
+      internfakt: 0,
+      upfront: 0,
+      rest: 0,
+      intakt: 0,
+      check: 0,
       now: "",
     };
   },
   methods: {
     updContent() {
-      this.inprisin = this.inprisex * 1.25;
-      this.oh = this.inprisin * (this.procent / 100);
-      this.total = parseInt(this.mangd) * (this.inprisin + this.oh);
+      this.inprisin = parseFloat(
+        Math.round(this.inprisex * 1.25 * 100) / 100
+      ).toFixed(2);
+      this.oh = parseFloat(
+        Math.round(this.inprisin * (this.procent / 100) * 100) / 100
+      ).toFixed(2);
+      this.totalt = parseFloat(
+        Math.round(parseFloat(this.mangd) * (parseFloat(this.inprisin) + parseFloat(this.oh)) * 100) / 100
+      ).toFixed(2);
+      this.inpris = parseFloat(Math.round(this.totalt)).toFixed(2);
 
       this.updPerioder();
     },
     updPerioder() {
-      const start = this.slut.split("-");
-      const slut = this.start.split("-");
+      const start = this.start.split("-");
+      const slut = this.slut.split("-");
       this.perioder =
-        12 * (parseInt(start[0]) - parseInt(slut[0])) +
-        parseInt(start[1]) -
-        parseInt(slut[1]);
+        12 * (parseInt(slut[0]) - parseInt(start[0])) +
+        parseInt(slut[1]) -
+        parseInt(start[1]) +
+        1;
 
-      this.updInfakt();
+      this.updInternfakt();
     },
-    updInfakt() {
-      if (this.perioder == 0) {
-        this.infakt = 0;
-      } else {
-        this.infakt = this.total / this.perioder;
+    updInternfakt() {
+      this.internfakt = Math.round(this.totalt / this.perioder);
+      this.updUpfront();
+    },
+    updUpfront() {
+      const start = this.start.split("-");
+      const now = this.now.split("-");
+
+      this.upfront =
+        12 * (parseInt(now[0]) - parseInt(start[0])) +
+        parseInt(now[1]) -
+        parseInt(start[1]) +
+        1;
+
+      if (this.upfront < 0) {
+        this.upfront = 0;
       }
+
+      this.rest = this.perioder - this.upfront;
+      this.updCheck();
+    },
+    updCheck() {
+      this.intakt =
+        this.upfront * this.internfakt + this.rest * this.internfakt;
+      this.check = this.internfakt * this.perioder - this.inpris;
     },
     onSaljare(event) {
       this.saljare = event.target.value;
@@ -171,9 +199,6 @@ export default {
       if (this.kopare == "Ny") {
         this.kopare = "";
       }
-    },
-    onAntal(event) {
-      this.antal = event.target.value;
     },
     onTyp(event) {
       this.typ = event.target.value;
@@ -222,12 +247,6 @@ export default {
     onSlut(event) {
       this.slut = event.target.value;
       this.updPerioder();
-    },
-    onUpfront(event) {
-      this.upfront = event.target.value;
-    },
-    onRest(event) {
-      this.rest = event.target.value;
     },
   },
   mounted() {

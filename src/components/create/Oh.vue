@@ -14,6 +14,7 @@
       <input
         type="number"
         min="1"
+        lang="sv"
         id="mangd"
         :value="mangd"
         @input="$emit('onMangd', $event)"
@@ -22,27 +23,37 @@
       <input
         type="number"
         min="1"
+        lang="sv"
         id="inprisex"
         :value="inprisex"
         @input="$emit('onInprisex', $event)"
       />
       <label for="inprisin"> Inpris inkl. moms </label>
-      <input type="number" min="1" id="inprisin" disabled :value="inprisin" />
+      <input
+        type="number"
+        min="1"
+        lang="sv"
+        id="inprisin"
+        disabled
+        :value="inprisin"
+      />
       <label for="procent"> Procent (%) </label>
       <input
         type="number"
         min="1"
+        lang="sv"
         id="procent"
         :value="procent"
         @input="$emit('onProcent', $event)"
       />
       <label for="oh"> OH </label>
-      <input type="number" min="1" id="oh" disabled :value="oh" />
-      <label for="total"> Total, SEK, inkl. moms och OH </label>
-      <input type="number" min="1" id="total" disabled :value="total" />
+      <input type="number" min="1" lang="sv" id="oh" disabled :value="oh" />
+      <label for="totalt"> Totalt, SEK, inkl. moms och OH </label>
+      <input type="number" min="1" lang="sv" id="totalt" disabled :value="totalt" />
       <label for="fakturanum"> Fakturanummer </label>
       <input
         type="text"
+        lang="sv"
         id="fakturanum"
         placeholder="..."
         :value="fakturanum"
@@ -51,6 +62,7 @@
       <label for="kommentar"> Kommentar </label>
       <input
         type="text"
+        lang="sv"
         id="kommentar"
         placeholder="..."
         :value="kommentar"
@@ -71,7 +83,7 @@ export default {
     inprisin: Number,
     procent: String,
     oh: Number,
-    total: Number,
+    totalt: Number,
     fakturanum: String,
     kommentar: String,
   },

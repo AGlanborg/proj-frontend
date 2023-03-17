@@ -22,14 +22,8 @@
         <option disabled></option>
         <option>Ny</option>
       </select>
-      <label for="antal"> Antal </label>
-      <input
-        type="number"
-        min="1"
-        id="antal"
-        :value="antal"
-        @input="$emit('onAntal', $event)"
-      />
+      <label for="antal"> Antal Poster </label>
+      <input type="number" lang="sv" id="antal" disabled :value="antal" />
       <label for="typ"> Typ </label>
       <select id="typ" :value="typ" @change="$emit('onTyp', $event)">
         <option disabled></option>
@@ -40,6 +34,7 @@
       <label for="leverantor"> Leverantör </label>
       <input
         type="text"
+        lang="sv"
         id="leverantor"
         :value="leverantor"
         @input="$emit('onLeve', $event)"
@@ -88,6 +83,7 @@
               <div class="newSelect">
                 <input
                   type="text"
+                  lang="sv"
                   id="rst"
                   v-model="tillverkare"
                   @input="checkFilled"
@@ -101,6 +97,7 @@
               <div class="newSelect">
                 <input
                   type="text"
+                  lang="sv"
                   id="rst"
                   v-model="forkortning"
                   @input="checkFilled"

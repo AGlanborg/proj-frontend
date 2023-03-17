@@ -33,7 +33,7 @@
           <span class="material-icons check">search</span>
         </button>
       </abbr>
-      <input type="text" class="search" v-bind="search" />
+      <input type="text" class="search" lang="sv" v-bind="search" />
     </div>
     <div class="resultContainer" :class="category ? '' : 'maxResult'">
       <div class="result" :class="title ? 'maxTitle' : 'minTitle'">

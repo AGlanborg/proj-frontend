@@ -7,6 +7,7 @@
         <div class="newSelect">
           <input
             type="text"
+            lang="sv"
             id="rst"
             placeholder="..."
             :value="rst"
@@ -24,6 +25,7 @@
         <div class="newSelect">
           <input
             type="text"
+            lang="sv"
             id="copernicus"
             placeholder="..."
             :value="cop"
@@ -40,6 +42,7 @@
         <label for="kontaktperson"> Kontaktperson </label>
         <input
           type="text"
+          lang="sv"
           id="kontaktperson"
           placeholder="..."
           :value="kontakt"

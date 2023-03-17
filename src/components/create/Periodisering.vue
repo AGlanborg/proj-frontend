@@ -61,7 +61,7 @@
 export default {
   name: "Create-periodisering",
   props: {
-    inpris: Number,
+    inpris: String,
     start: String,
     slut: String,
     perioder: Number,

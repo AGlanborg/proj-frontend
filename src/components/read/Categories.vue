@@ -22,17 +22,7 @@
         <strong>Search</strong>, kan följande fält fyllas i.
       </p>
     </div>
-    <Filters
-      :sellers="sellers"
-      :selectedSeller="selectedSeller"
-      :buyers="buyers"
-      :selectedBuyer="selectedBuyer"
-      :workTypes="workTypes"
-      :selectedWorkType="selectedWorkType"
-      :amounts="amounts"
-      :selectedAmount="selectedAmount"
-      :formats="formats"
-    />
+    <Filters />
   </div>
 </template>
 
@@ -46,15 +36,6 @@ export default {
   },
   props: {
     category: Boolean,
-    sellers: Array,
-    selectedSeller: Number,
-    buyers: Array,
-    selectedBuyer: Number,
-    workTypes: Array,
-    selectedWorkType: Number,
-    amounts: Array,
-    selectedAmount: Number,
-    formats: Array,
   },
   data() {
     return {

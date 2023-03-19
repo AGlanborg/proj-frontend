@@ -10,27 +10,27 @@
         <div class="detailsContainer">
           <div class="detail">
             <p>
-              {{ instance.seller }}
+              {{ instance.saljare }}
             </p>
           </div>
           <div class="detail">
             <p>
-              {{ instance.buyer }}
+              {{ instance.kopare }}
             </p>
           </div>
           <div class="detail">
             <p>
-              {{ instance.workType }}
+              {{ instance.arbetstyp }}
             </p>
           </div>
           <div class="detail">
             <p>
-              {{ instance.amount }}
+              {{ instance.antal }}
             </p>
           </div>
           <div class="detail">
             <p>
-              {{ instance.cost }}
+              {{ instance.totalt }}
             </p>
           </div>
         </div>

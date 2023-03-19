@@ -8,24 +8,24 @@
     </div>
     <div class="createForm">
       <label for="saljare"> Säljare </label>
-      <select id="saljare" :value="saljare" @change="onSaljare($event)">
+      <select id="saljare" :value="shell.saljare" @change="onSaljare($event)">
         <option disabled></option>
         <option>Ny</option>
       </select>
       <label for="kopare"> Köpare </label>
-      <select id="kopare" :value="kopare" @change="onKopare($event)">
+      <select id="kopare" :value="shell.kopare" @change="onKopare($event)">
         <option disabled></option>
         <option>Ny</option>
       </select>
       <label for="arbetstyp"> Arbetstyp </label>
-      <select id="arbetstyp" :value="arbetstyp" @change="onArb($event)">
+      <select id="arbetstyp" :value="shell.arbetstyp" @change="onArb($event)">
         <option disabled></option>
         <option>Ny</option>
       </select>
       <label for="antal"> Antal Poster </label>
-      <input type="number" lang="sv" id="antal" disabled :value="antal" />
+      <input type="number" lang="sv" id="antal" disabled :value="shell.antal" />
       <label for="typ"> Typ </label>
-      <select id="typ" :value="typ" @change="$emit('onTyp', $event)">
+      <select id="typ" :value="shell.typ" @change="$emit('onTyp', $event)">
         <option disabled></option>
         <option>Licens</option>
         <option>Support</option>
@@ -36,14 +36,14 @@
         type="text"
         lang="sv"
         id="leverantor"
-        :value="leverantor"
+        :value="shell.leverantor"
         @input="$emit('onLeve', $event)"
       />
       <label for="text"> Text </label>
-      <textarea id="text" :value="text" @input="$emit('onText', $event)">
+      <textarea id="text" :value="shell.text" @input="$emit('onText', $event)">
       </textarea>
       <label for="info"> Kontaktinfo </label>
-      <textarea id="info" :value="info" @input="$emit('onInfo', $event)">
+      <textarea id="info" :value="shell.info" @input="$emit('onInfo', $event)">
       </textarea>
     </div>
     <div class="newForm">
@@ -127,14 +127,7 @@ export default {
     New,
   },
   props: {
-    saljare: String,
-    kopare: String,
-    arbetstyp: String,
-    antal: String,
-    typ: String,
-    leverantor: String,
-    text: String,
-    info: String,
+    shell: Object,
   },
   data() {
     return {

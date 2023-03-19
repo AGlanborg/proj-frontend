@@ -14,15 +14,15 @@
         lang="sv"
         id="inpris"
         disabled
-        :value="inpris"
+        :value="shell.inpris"
       />
       <label for="start"> Periodisering Start </label>
       <input
         type="month"
         lang="sv"
         id="start"
-        :min="now"
-        :value="start"
+        :min="shell.now"
+        :value="shell.start"
         @input="$emit('onStart', $event)"
       />
       <label for="slut"> Periodisering Slut </label>
@@ -30,28 +30,46 @@
         type="month"
         lang="sv"
         id="slut"
-        :min="now"
-        :value="slut"
+        :min="shell.now"
+        :value="shell.slut"
         @input="$emit('onSlut', $event)"
       />
       <label for="perioder"> Periodisering antal månader </label>
-      <input type="number" lang="sv" id="perioder" disabled :value="perioder" />
+      <input
+        type="number"
+        lang="sv"
+        id="perioder"
+        disabled
+        :value="shell.perioder"
+      />
       <label for="upfront"> Antal månader upfront </label>
-      <input type="Number" lang="sv" id="upfront" disabled :value="upfront" />
+      <input
+        type="Number"
+        lang="sv"
+        id="upfront"
+        disabled
+        :value="shell.upfront"
+      />
       <label for="rest"> Antal månader resterande </label>
-      <input type="Number" lang="sv" id="rest" disabled :value="rest" />
+      <input type="Number" lang="sv" id="rest" disabled :value="shell.rest" />
       <label for="internfakt"> Internfakt. per period, SEK </label>
       <input
         type="number"
         lang="sv"
         id="internfakt"
         disabled
-        :value="internfakt"
+        :value="shell.internfakt"
       />
       <label for="intakt"> Intäkt </label>
-      <input type="number" lang="sv" id="intakt" disabled :value="intakt" />
+      <input
+        type="number"
+        lang="sv"
+        id="intakt"
+        disabled
+        :value="shell.intakt"
+      />
       <label for="scan"> scan </label>
-      <input type="number" lang="sv" id="scan" disabled :value="scan" />
+      <input type="number" lang="sv" id="scan" disabled :value="shell.scan" />
     </div>
     <div class="newForm"></div>
   </div>
@@ -61,16 +79,7 @@
 export default {
   name: "Create-periodisering",
   props: {
-    inpris: String,
-    start: String,
-    slut: String,
-    perioder: Number,
-    internfakt: Number,
-    upfront: Number,
-    rest: Number,
-    intakt: Number,
-    scan: Number,
-    now: String,
+    shell: Object,
   },
 };
 </script>

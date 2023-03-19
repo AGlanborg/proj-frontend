@@ -7,7 +7,11 @@
     </div>
     <div class="createForm">
       <label for="valuta"> Valuta </label>
-      <select id="valuta" :value="valuta" @change="$emit('onValuta', $event)">
+      <select
+        id="valuta"
+        :value="shell.valuta"
+        @change="$emit('onValuta', $event)"
+      >
         <option>SEK</option>
       </select>
       <label for="mangd"> Antal licenser </label>
@@ -16,7 +20,7 @@
         min="1"
         lang="sv"
         id="mangd"
-        :value="mangd"
+        :value="shell.mangd"
         @input="$emit('onMangd', $event)"
       />
       <label for="inprisex"> Inpris ex. moms </label>
@@ -25,7 +29,7 @@
         min="1"
         lang="sv"
         id="inprisex"
-        :value="inprisex"
+        :value="shell.inprisex"
         @input="$emit('onInprisex', $event)"
       />
       <label for="inprisin"> Inpris inkl. moms </label>
@@ -35,7 +39,7 @@
         lang="sv"
         id="inprisin"
         disabled
-        :value="inprisin"
+        :value="shell.inprisin"
       />
       <label for="procent"> Procent (%) </label>
       <input
@@ -43,20 +47,34 @@
         min="1"
         lang="sv"
         id="procent"
-        :value="procent"
+        :value="shell.procent"
         @input="$emit('onProcent', $event)"
       />
       <label for="oh"> OH </label>
-      <input type="number" min="1" lang="sv" id="oh" disabled :value="oh" />
+      <input
+        type="number"
+        min="1"
+        lang="sv"
+        id="oh"
+        disabled
+        :value="shell.oh"
+      />
       <label for="totalt"> Totalt, SEK, inkl. moms och OH </label>
-      <input type="number" min="1" lang="sv" id="totalt" disabled :value="totalt" />
+      <input
+        type="number"
+        min="1"
+        lang="sv"
+        id="totalt"
+        disabled
+        :value="shell.totalt"
+      />
       <label for="fakturanum"> Fakturanummer </label>
       <input
         type="text"
         lang="sv"
         id="fakturanum"
         placeholder="..."
-        :value="fakturanum"
+        :value="shell.fakturanum"
         @input="$emit('onFakturanum', $event)"
       />
       <label for="kommentar"> Kommentar </label>
@@ -65,7 +83,7 @@
         lang="sv"
         id="kommentar"
         placeholder="..."
-        :value="kommentar"
+        :value="shell.kommentar"
         @input="$event('onKommentar', $event)"
       />
     </div>
@@ -77,15 +95,7 @@
 export default {
   name: "Create-oh",
   props: {
-    valuta: String,
-    mangd: String,
-    inprisex: String,
-    inprisin: String,
-    procent: String,
-    oh: String,
-    totalt: String,
-    fakturanum: String,
-    kommentar: String,
+    shell: Object,
   },
 };
 </script>

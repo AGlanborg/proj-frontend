@@ -18,14 +18,7 @@
     </div>
     <div class="createContentContainer" :class="title ? 'minimize' : ''">
       <Mottagande
-        :saljare="saljare"
-        :kopare="kopare"
-        :arbetstyp="arbetstyp"
-        :antal="antal"
-        :typ="typ"
-        :leverantor="leverantor"
-        :text="text"
-        :info="info"
+        :shell="shell"
         @onSaljare="onSaljare"
         @onKopare="onKopare"
         @onArb="onArb"
@@ -35,15 +28,7 @@
         @onInfo="onInfo"
       />
       <Oh
-        :valuta="valuta"
-        :mangd="mangd"
-        :inprisex="inprisex"
-        :inprisin="inprisin"
-        :procent="procent"
-        :oh="oh"
-        :totalt="totalt"
-        :fakturanum="fakturanum"
-        :kommentar="kommentar"
+        :shell="shell"
         @onValuta="onValuta"
         @onMangd="onMangd"
         @onInprisex="onInprisex"
@@ -51,22 +36,7 @@
         @onFakturanum="onFakturanum"
         @onKommentar="onKommentar"
       />
-      <Periodisering
-        :inpris="inpris"
-        :fakturanum="fakturanum"
-        :kommentar="kommentar"
-        :start="start"
-        :slut="slut"
-        :perioder="perioder"
-        :internfakt="internfakt"
-        :upfront="upfront"
-        :rest="rest"
-        :now="now"
-        :intakt="intakt"
-        :scan="scan"
-        @onStart="onStart"
-        @onSlut="onSlut"
-      />
+      <Periodisering :shell="shell" @onStart="onStart" @onSlut="onSlut" />
       <div class="createButtonContainer">
         <button class="createButton">Create</button>
       </div>
@@ -89,54 +59,60 @@ export default {
   data() {
     return {
       title: false,
-      saljare: "",
-      kopare: "",
-      arbetstyp: "",
-      antal: "1",
-      typ: "",
-      leverantor: "",
-      text: "",
-      info: "Vid frågor maila Licensdesken xxx@xxx.se",
-      valuta: "SEK",
-      mangd: "1",
-      inprisex: "1",
-      inprisin: "1.25",
-      procent: "5",
-      oh: "0.0625",
-      totalt: "1.3125",
-      fakturanum: "",
-      kommentar: "",
-      inpris: "0",
-      start: "",
-      slut: "",
-      perioder: 0,
-      internfakt: 0,
-      upfront: 0,
-      rest: 0,
-      intakt: 0,
-      scan: 0,
-      now: "",
+      shell: {
+        saljare: "",
+        kopare: "",
+        arbetstyp: "",
+        antal: "1",
+        typ: "",
+        leverantor: "",
+        text: "",
+        info: "Vid frågor maila Licensdesken xxx@xxx.se",
+        valuta: "SEK",
+        mangd: "1",
+        inprisex: "1",
+        inprisin: "1.25",
+        procent: "5",
+        oh: "0.0625",
+        totalt: "1.3125",
+        fakturanum: "",
+        kommentar: "",
+        inpris: "0",
+        start: "",
+        slut: "",
+        perioder: 0,
+        internfakt: 0,
+        upfront: 0,
+        rest: 0,
+        intakt: 0,
+        scan: 0,
+        now: "",
+      },
     };
   },
   methods: {
     updContent() {
-      this.inprisin = parseFloat(
-        Math.round(this.inprisex * 1.25 * 100) / 100
+      this.shell.inprisin = parseFloat(
+        Math.round(this.shell.inprisex * 1.25 * 100) / 100
       ).toFixed(2);
-      this.oh = parseFloat(
-        Math.round(this.inprisin * (this.procent / 100) * 100) / 100
+      this.shell.oh = parseFloat(
+        Math.round(this.shell.inprisin * (this.shell.procent / 100) * 100) / 100
       ).toFixed(2);
-      this.totalt = parseFloat(
-        Math.round(parseFloat(this.mangd) * (parseFloat(this.inprisin) + parseFloat(this.oh)) * 100) / 100
+      this.shell.totalt = parseFloat(
+        Math.round(
+          parseFloat(this.shell.mangd) *
+            (parseFloat(this.shell.inprisin) + parseFloat(this.shell.oh)) *
+            100
+        ) / 100
       ).toFixed(2);
-      this.inpris = parseFloat(Math.round(this.totalt)).toFixed(2);
+      this.shell.inpris = parseFloat(Math.round(this.shell.totalt)).toFixed(2);
 
       this.updPerioder();
     },
     updPerioder() {
-      const start = this.start.split("-");
-      const slut = this.slut.split("-");
-      this.perioder =
+      const start = this.shell.start.split("-");
+      const slut = this.shell.slut.split("-");
+      this.shell.perioder =
         12 * (parseInt(slut[0]) - parseInt(start[0])) +
         parseInt(slut[1]) -
         parseInt(start[1]) +
@@ -145,12 +121,12 @@ export default {
       this.updInternfakt();
     },
     updInternfakt() {
-      this.internfakt = Math.round(this.totalt / this.perioder);
+      this.shell.internfakt = Math.round(this.shell.totalt / this.shell.perioder);
       this.updUpfront();
     },
     updUpfront() {
-      const start = this.start.split("-");
-      const now = this.now.split("-");
+      const start = this.shell.start.split("-");
+      const now = this.shell.now.split("-");
 
       this.upfront =
         12 * (parseInt(now[0]) - parseInt(start[0])) +
@@ -158,94 +134,94 @@ export default {
         parseInt(start[1]) +
         1;
 
-      if (this.upfront < 0) {
-        this.upfront = 0;
+      if (this.shell.upfront < 0) {
+        this.shell.upfront = 0;
       }
 
-      this.rest = this.perioder - this.upfront;
+      this.shell.rest = this.shell.perioder - this.shell.upfront;
       this.updScan();
     },
     updScan() {
-      this.intakt =
-        this.upfront * this.internfakt + this.rest * this.internfakt;
-      this.scan = this.internfakt * this.perioder - this.inpris;
+      this.shell.intakt =
+        this.shell.upfront * this.shell.internfakt + this.shell.rest * this.shell.internfakt;
+      this.shell.scan = this.shell.internfakt * this.shell.perioder - this.shell.inpris;
     },
     onSaljare(event) {
-      this.saljare = event.target.value;
+      this.shell.saljare = event.target.value;
 
-      if (this.kopare == "Ny") {
-        this.kopare = "";
+      if (this.shell.kopare == "Ny") {
+        this.shell.kopare = "";
       }
-      if (this.arbetstyp == "Ny") {
-        this.arbetstyp = "";
+      if (this.shell.arbetstyp == "Ny") {
+        this.shell.arbetstyp = "";
       }
     },
     onKopare(event) {
-      this.kopare = event.target.value;
+      this.shell.kopare = event.target.value;
 
-      if (this.saljare == "Ny") {
-        this.saljare = "";
+      if (this.shell.saljare == "Ny") {
+        this.shell.saljare = "";
       }
-      if (this.arbetstyp == "Ny") {
-        this.arbetstyp = "";
+      if (this.shell.arbetstyp == "Ny") {
+        this.shell.arbetstyp = "";
       }
     },
     onArb(event) {
-      this.arbetstyp = event.target.value;
+      this.shell.arbetstyp = event.target.value;
 
-      if (this.saljare == "Ny") {
-        this.saljare = "";
+      if (this.shell.saljare == "Ny") {
+        this.shell.saljare = "";
       }
-      if (this.kopare == "Ny") {
-        this.kopare = "";
+      if (this.shell.kopare == "Ny") {
+        this.shell.kopare = "";
       }
     },
     onTyp(event) {
-      this.typ = event.target.value;
+      this.shell.typ = event.target.value;
 
-      if (this.text.split(" ")[0].includes("kostnad")) {
-        this.text =
-          this.typ + "kostnad " + this.text.split(" ").slice(1).join(" ");
+      if (this.shell.text.split(" ")[0].includes("kostnad")) {
+        this.shell.text =
+          this.shell.typ + "kostnad " + this.shell.text.split(" ").slice(1).join(" ");
       } else {
-        this.text = this.typ + "kostnad " + this.text;
+        this.shell.text = this.shell.typ + "kostnad " + this.shell.text;
       }
     },
     onLeve(event) {
-      this.leverantor = event.target.value;
+      this.shell.leverantor = event.target.value;
     },
     onText(event) {
-      this.text = event.target.value;
+      this.shell.text = event.target.value;
     },
     onInfo(event) {
-      this.info = event.target.value;
+      this.shell.info = event.target.value;
     },
     onValuta(event) {
-      this.valuta = event.target.value;
+      this.shell.valuta = event.target.value;
     },
     onMangd(event) {
-      this.mangd = event.target.value;
+      this.shell.mangd = event.target.value;
       this.updContent();
     },
     onInprisex(event) {
-      this.inprisex = event.target.value;
+      this.shell.inprisex = event.target.value;
       this.updContent();
     },
     onProcent(event) {
-      this.procent = event.target.value;
+      this.shell.procent = event.target.value;
       this.updContent();
     },
     onFakturanum(event) {
-      this.fakturanum = event.target.value;
+      this.shell.fakturanum = event.target.value;
     },
     onKommentar(event) {
-      this.kommentar = event.target.value;
+      this.shell.kommentar = event.target.value;
     },
     onStart(event) {
-      this.start = event.target.value;
+      this.shell.start = event.target.value;
       this.updPerioder();
     },
     onSlut(event) {
-      this.slut = event.target.value;
+      this.shell.slut = event.target.value;
       this.updPerioder();
     },
   },
@@ -257,9 +233,9 @@ export default {
       now = now.getFullYear() + "-" + now.getMonth();
     }
 
-    this.start = now;
-    this.slut = now;
-    this.now = now;
+    this.shell.start = now;
+    this.shell.slut = now;
+    this.shell.now = now;
 
     this.updContent();
     this.updPerioder();

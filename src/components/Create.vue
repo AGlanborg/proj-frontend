@@ -63,7 +63,7 @@
         :rest="rest"
         :now="now"
         :intakt="intakt"
-        :check="check"
+        :scan="scan"
         @onStart="onStart"
         @onSlut="onSlut"
       />
@@ -114,7 +114,7 @@ export default {
       upfront: 0,
       rest: 0,
       intakt: 0,
-      check: 0,
+      scan: 0,
       now: "",
     };
   },
@@ -163,12 +163,12 @@ export default {
       }
 
       this.rest = this.perioder - this.upfront;
-      this.updCheck();
+      this.updScan();
     },
-    updCheck() {
+    updScan() {
       this.intakt =
         this.upfront * this.internfakt + this.rest * this.internfakt;
-      this.check = this.internfakt * this.perioder - this.inpris;
+      this.scan = this.internfakt * this.perioder - this.inpris;
     },
     onSaljare(event) {
       this.saljare = event.target.value;

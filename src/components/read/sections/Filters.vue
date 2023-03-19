@@ -41,7 +41,7 @@
       </option>
     </select>
     <label for="format"> Format </label>
-    <select v-bind="selectedformat" id="format">
+    <select id="format">
       <option
         v-for="format in formats"
         v-bind:key="format.id"
@@ -66,7 +66,6 @@ export default {
     amounts: Array,
     selectedAmount: Number,
     formats: Array,
-    selectedFormat: Number,
   },
 };
 </script>

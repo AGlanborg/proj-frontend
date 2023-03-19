@@ -41,12 +41,12 @@
         </div>
       </div>
       <div class="buttonContainer">
-        <div class="button delete">
-          <p>DELETE</p>
-        </div>
-        <div class="button" @click="$emit('handleRemove')">
-          <p>BACK</p>
-        </div>
+        <button class="button delete">
+          DELETE
+        </button>
+        <button class="button" @click="$emit('handleRemove')">
+          BACK
+        </button>
       </div>
     </div>
   </div>

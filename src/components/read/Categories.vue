@@ -32,7 +32,6 @@
       :amounts="amounts"
       :selectedAmount="selectedAmount"
       :formats="formats"
-      :selectedFormat="selectedFormat"
     />
   </div>
 </template>
@@ -56,7 +55,6 @@ export default {
     amounts: Array,
     selectedAmount: Number,
     formats: Array,
-    selectedFormat: Number,
   },
   data() {
     return {

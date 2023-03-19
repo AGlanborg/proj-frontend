@@ -42,6 +42,7 @@
           :instances="instances"
           :title="title"
           @handleRemove="handleRemove"
+          @toggleUpload="$emit('toggleUpload')"
           @toggleCreate="$emit('toggleCreate')"
         />
       </div>

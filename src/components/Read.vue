@@ -6,6 +6,10 @@
       :selectedRemove="selectedRemove"
       @handleRemove="handleRemove"
     />
+    <Upload
+      v-if="upload"
+      @toggleUpload="toggleUpload"
+    />
     <Categories
       :remove="remove"
       :category="category"
@@ -18,7 +22,6 @@
       :amounts="amounts"
       :selectedAmount="selectedAmount"
       :formats="formats"
-      :selectedFormat="selectedFormat"
       @toggleCategory="toggleCategory"
     />
     <Search
@@ -27,6 +30,7 @@
       :remove="remove"
       :create="create"
       @handleRemove="handleRemove"
+      @toggleUpload="toggleUpload"
       @toggleCreate="$emit('toggleCreate')"
     />
   </div>
@@ -36,6 +40,9 @@
 import Categories from "./read/Categories.vue";
 import Search from "./read/Search.vue";
 import Remove from "./read/Remove.vue";
+import Upload from "./read/Upld.vue";
+
+import * as get from "@/assets/scripts/requests/get"
 
 export default {
   name: "Main-read",
@@ -43,6 +50,7 @@ export default {
     Categories,
     Search,
     Remove,
+    Upload,
   },
   props: {
     create: Boolean
@@ -51,6 +59,7 @@ export default {
     return {
       category: false,
       remove: false,
+      upload: false,
       selectedRemove: 0,
       sellers: [
         {
@@ -126,209 +135,7 @@ export default {
           text: "År-vis",
         },
       ],
-      selectedFormat: 2,
-      instances: [
-        {
-          checked: false,
-          seller: "Arla",
-          buyer: "ICA",
-          workType: "Ugnform",
-          amount: 1,
-          cost: 10000,
-          text: "Support, Adobe renewal 3 yrs commit\nAcrobat Pro DC - Americas\nPeriod 2019-06-30 - 2020-06-29, Payment 1 of 3 years",
-          id: 1,
-        },
-        {
-          checked: false,
-          seller: "Arla",
-          buyer: "Willys",
-          workType: "Smörgås",
-          amount: 10,
-          text: "Support, Adobe renewal 3 yrs commit\nAcrobat Pro DC - Americas\nPeriod 2019-06-30 - 2020-06-29, Payment 1 of 3 years",
-          cost: 100000,
-          id: 2,
-        },
-        {
-          checked: false,
-          seller: "Lätta",
-          buyer: "COOP",
-          workType: "Ugnform",
-          amount: 100,
-          cost: 1000000,
-          text: "Support, Adobe renewal 3 yrs commit\nAcrobat Pro DC - Americas\nPeriod 2019-06-30 - 2020-06-29, Payment 1 of 3 years",
-          id: 3,
-        },
-        {
-          checked: false,
-          seller: "Flora",
-          buyer: "COOP",
-          workType: "Stekpanna",
-          amount: 1000,
-          cost: 10000000,
-          text: "Support, Adobe renewal 3 yrs commit\nAcrobat Pro DC - Americas\nPeriod 2019-06-30 - 2020-06-29, Payment 1 of 3 years",
-          id: 4,
-        },
-        {
-          checked: false,
-          seller: "Arla",
-          buyer: "ICA",
-          workType: "Ugnform",
-          amount: 1,
-          cost: 10000,
-          text: "Support, Adobe renewal 3 yrs commit\nAcrobat Pro DC - Americas\nPeriod 2019-06-30 - 2020-06-29, Payment 1 of 3 years",
-          id: 5,
-        },
-        {
-          checked: false,
-          seller: "Arla",
-          buyer: "Willys",
-          workType: "Smörgås",
-          amount: 10,
-          text: "Support, Adobe renewal 3 yrs commit\nAcrobat Pro DC - Americas\nPeriod 2019-06-30 - 2020-06-29, Payment 1 of 3 years",
-          cost: 100000,
-          id: 6,
-        },
-        {
-          checked: false,
-          seller: "Lätta",
-          buyer: "COOP",
-          workType: "Ugnform",
-          amount: 100,
-          cost: 1000000,
-          text: "Support, Adobe renewal 3 yrs commit\nAcrobat Pro DC - Americas\nPeriod 2019-06-30 - 2020-06-29, Payment 1 of 3 years",
-          id: 7,
-        },
-        {
-          checked: false,
-          seller: "Flora",
-          buyer: "COOP",
-          workType: "Stekpanna",
-          amount: 1000,
-          cost: 10000000,
-          text: "Support, Adobe renewal 3 yrs commit\nAcrobat Pro DC - Americas\nPeriod 2019-06-30 - 2020-06-29, Payment 1 of 3 years",
-          id: 8,
-        },
-        {
-          checked: false,
-          seller: "Arla",
-          buyer: "ICA",
-          workType: "Ugnform",
-          amount: 1,
-          cost: 10000,
-          text: "Support, Adobe renewal 3 yrs commit\nAcrobat Pro DC - Americas\nPeriod 2019-06-30 - 2020-06-29, Payment 1 of 3 years",
-          id: 9,
-        },
-        {
-          checked: false,
-          seller: "Arla",
-          buyer: "Willys",
-          workType: "Smörgås",
-          amount: 10,
-          text: "Support, Adobe renewal 3 yrs commit\nAcrobat Pro DC - Americas\nPeriod 2019-06-30 - 2020-06-29, Payment 1 of 3 years",
-          cost: 100000,
-          id: 10,
-        },
-        {
-          checked: false,
-          seller: "Lätta",
-          buyer: "COOP",
-          workType: "Ugnform",
-          amount: 100,
-          cost: 1000000,
-          text: "Support, Adobe renewal 3 yrs commit\nAcrobat Pro DC - Americas\nPeriod 2019-06-30 - 2020-06-29, Payment 1 of 3 years",
-          id: 11,
-        },
-        {
-          checked: false,
-          seller: "Flora",
-          buyer: "COOP",
-          workType: "Stekpanna",
-          amount: 1000,
-          cost: 10000000,
-          text: "Support, Adobe renewal 3 yrs commit\nAcrobat Pro DC - Americas\nPeriod 2019-06-30 - 2020-06-29, Payment 1 of 3 years",
-          id: 12,
-        },
-        {
-          checked: false,
-          seller: "Arla",
-          buyer: "ICA",
-          workType: "Ugnform",
-          amount: 1,
-          cost: 10000,
-          text: "Support, Adobe renewal 3 yrs commit\nAcrobat Pro DC - Americas\nPeriod 2019-06-30 - 2020-06-29, Payment 1 of 3 years",
-          id: 13,
-        },
-        {
-          checked: false,
-          seller: "Arla",
-          buyer: "Willys",
-          workType: "Smörgås",
-          amount: 10,
-          text: "Support, Adobe renewal 3 yrs commit\nAcrobat Pro DC - Americas\nPeriod 2019-06-30 - 2020-06-29, Payment 1 of 3 years",
-          cost: 100000,
-          id: 14,
-        },
-        {
-          checked: false,
-          seller: "Lätta",
-          buyer: "COOP",
-          workType: "Ugnform",
-          amount: 100,
-          cost: 1000000,
-          text: "Support, Adobe renewal 3 yrs commit\nAcrobat Pro DC - Americas\nPeriod 2019-06-30 - 2020-06-29, Payment 1 of 3 years",
-          id: 15,
-        },
-        {
-          checked: false,
-          seller: "Flora",
-          buyer: "COOP",
-          workType: "Stekpanna",
-          amount: 1000,
-          cost: 10000000,
-          text: "Support, Adobe renewal 3 yrs commit\nAcrobat Pro DC - Americas\nPeriod 2019-06-30 - 2020-06-29, Payment 1 of 3 years",
-          id: 16,
-        },
-        {
-          checked: false,
-          seller: "Arla",
-          buyer: "ICA",
-          workType: "Ugnform",
-          amount: 1,
-          cost: 10000,
-          text: "Support, Adobe renewal 3 yrs commit\nAcrobat Pro DC - Americas\nPeriod 2019-06-30 - 2020-06-29, Payment 1 of 3 years",
-          id: 17,
-        },
-        {
-          checked: false,
-          seller: "Arla",
-          buyer: "Willys",
-          workType: "Smörgås",
-          amount: 10,
-          text: "Support, Adobe renewal 3 yrs commit\nAcrobat Pro DC - Americas\nPeriod 2019-06-30 - 2020-06-29, Payment 1 of 3 years",
-          cost: 100000,
-          id: 18,
-        },
-        {
-          checked: false,
-          seller: "Lätta",
-          buyer: "COOP",
-          workType: "Ugnform",
-          amount: 100,
-          cost: 1000000,
-          text: "Support, Adobe renewal 3 yrs commit\nAcrobat Pro DC - Americas\nPeriod 2019-06-30 - 2020-06-29, Payment 1 of 3 years",
-          id: 19,
-        },
-        {
-          checked: false,
-          seller: "Flora",
-          buyer: "COOP",
-          workType: "Stekpanna",
-          amount: 1000,
-          cost: 10000000,
-          text: "Support, Adobe renewal 3 yrs commit\nAcrobat Pro DC - Americas\nPeriod 2019-06-30 - 2020-06-29, Payment 1 of 3 years",
-          id: 20,
-        },
-      ],
+      instances: [],
     };
   },
   methods: {
@@ -341,7 +148,14 @@ export default {
         ? (this.selectedRemove = 0)
         : (this.selectedRemove = id);
     },
+    toggleUpload() {
+      this.upload = !this.upload
+    }
   },
+  async mounted() {
+    const content = await get.all()
+    this.instances = content
+  }
 };
 </script>
 

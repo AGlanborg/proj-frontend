@@ -17,7 +17,7 @@
       <div class="valueContainer">
         <p>Arbetstyp</p>
       </div>
-      <div class="valueContainer">
+      <div class="valueContainer noWrap">
         <p>Antal Poster</p>
       </div>
       <div class="valueContainer">
@@ -33,7 +33,7 @@
           </button>
         </abbr>
         <abbr title="Upload a new row">
-          <button class="button">
+          <button class="button" @click="$emit('toggleUpload')">
             <span class="material-icons check">upload</span>
           </button>
         </abbr>
@@ -63,27 +63,27 @@
         </div>
         <div class="valueContainer">
           <p>
-            {{ inst.seller }}
+            {{ inst.saljare }}
           </p>
         </div>
         <div class="valueContainer">
           <p>
-            {{ inst.buyer }}
+            {{ inst.kopare }}
           </p>
         </div>
         <div class="valueContainer">
           <p>
-            {{ inst.workType }}
+            {{ inst.arbetstyp }}
           </p>
         </div>
         <div class="valueContainer">
           <p>
-            {{ inst.amount }}
+            {{ inst.antal }}
           </p>
         </div>
         <div class="valueContainer">
           <p>
-            {{ inst.cost }}
+            {{ inst.totalt }}
           </p>
         </div>
         <div class="textContainer">
@@ -230,6 +230,8 @@ abbr {
   background-color: rgb(44, 44, 64);
   width: 2.5vh;
   height: 2.5vh;
+  min-width: 25px;
+  min-height: 25px;
   border-radius: 5px;
 }
 
@@ -242,14 +244,20 @@ abbr {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 5vh;
+  min-height: 5vh;
   width: 6vw;
+  min-width: 100px;
   font-size: 18px;
 }
 
+.noWrap {
+  white-space: nowrap;
+}
+
 .valueContainer p {
+  text-align: center;
   margin: 0;
-  line-height: 0;
+  line-height: 20px;
 }
 
 .textContainer {

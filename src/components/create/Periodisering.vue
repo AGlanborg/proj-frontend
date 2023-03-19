@@ -50,8 +50,8 @@
       />
       <label for="intakt"> Intäkt </label>
       <input type="number" lang="sv" id="intakt" disabled :value="intakt" />
-      <label for="check"> Check </label>
-      <input type="number" lang="sv" id="check" disabled :value="check" />
+      <label for="scan"> scan </label>
+      <input type="number" lang="sv" id="scan" disabled :value="scan" />
     </div>
     <div class="newForm"></div>
   </div>
@@ -69,7 +69,7 @@ export default {
     upfront: Number,
     rest: Number,
     intakt: Number,
-    check: Number,
+    scan: Number,
     now: String,
   },
 };

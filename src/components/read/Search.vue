@@ -119,7 +119,7 @@ abbr {
 .createArrow {
   position: absolute;
   cursor: pointer;
-  top: 95vh;
+  top: 92.5vh;
   left: 93vw;
   height: 40px;
   width: 40px;
@@ -257,10 +257,13 @@ abbr {
 
 .formatContainer > label {
   margin: 0;
+  font-size: 1.5vh;
+  line-height: 1.5vh;
 }
 
 .formatContainer > select {
   width: 350px;
+  height: 4vh;
   margin-bottom: 0;
 }
 

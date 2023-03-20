@@ -75,7 +75,7 @@ export default {
   cursor: pointer;
   height: 40px;
   width: 40px;
-  top: 95vh;
+  top: 92.5vh;
   right: 1.25vw;
 }
 

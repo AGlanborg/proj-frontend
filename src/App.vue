@@ -1,7 +1,7 @@
 <template>
   <Read
     class="read"
-    :class="create ? 'minRead' : ''"
+    :class="{minRead: create}"
     :create="create"
     :instances="instances"
     :shell="shell"
@@ -13,7 +13,7 @@
   />
   <Create
     class="create"
-    :class="create ? 'maxCreate' : ''"
+    :class="{maxCreate: create}"
     :create="create"
     :shell="shell"
     @handleClear="handleClear"
@@ -86,12 +86,18 @@ export default {
   },
   methods: {
     handleCopy(id) {
-      this.shell = this.instances.find((item) => item.main_id == id);
+      this.shell = Object.assign(
+        {},
+        this.instances.find((item) => item.main_id == id)
+      );
       this.shell.main_id = "";
       this.create = true;
     },
     handleEdit(id) {
-      this.shell = this.instances.find((item) => item.main_id == id);
+      this.shell = Object.assign(
+        {},
+        this.instances.find((item) => item.main_id == id)
+      );
       this.create = true;
     },
     handleClear() {

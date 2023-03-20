@@ -106,8 +106,7 @@ textarea {
   border-radius: 10px;
   height: 0;
   transition: 0.5s;
-  width: 20vw;
-  padding: 0 0.5vw;
+  width: 500px;
   top: 8vh;
   left: 0vw;
 }

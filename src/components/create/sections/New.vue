@@ -1,7 +1,7 @@
 <template>
   <div class="new">
     <h2>{{ title }}</h2>
-    <div>
+    <div class="container">
       <div class="newText">
         <label for="rst"> RST nummer </label>
         <div class="newSelect">
@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <div>
+    <div class="container">
       <div class="newText">
         <label for="copernicus"> Copernicus kod </label>
         <div class="newSelect">
@@ -37,7 +37,7 @@
         </div>
       </div>
     </div>
-    <div>
+    <div class="container">
       <div class="newText">
         <label for="kontaktperson"> Kontaktperson </label>
         <input

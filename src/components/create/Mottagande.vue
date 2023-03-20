@@ -157,42 +157,33 @@ export default {
     },
     onSaljare(event) {
       this.$emit("onSaljare", event);
+
       if (event.target.value == "Ny") {
         this.expandSal = true;
       }
 
-      if (this.kopare == "Ny") {
         this.expandKop = false;
-      }
-      if (this.arbetstyp == "Ny") {
         this.expandArb = false;
-      }
     },
     onKopare(event) {
       this.$emit("onKopare", event);
+
       if (event.target.value == "Ny") {
         this.expandKop = true;
       }
 
-      if (this.saljare == "Ny") {
         this.expandSal = false;
-      }
-      if (this.arbetstyp == "Ny") {
         this.expandArb = false;
-      }
     },
     onArb(event) {
       this.$emit("onArb", event);
+
       if (event.target.value == "Ny") {
         this.expandArb = true;
       }
 
-      if (this.saljare == "Ny") {
         this.expandSal = false;
-      }
-      if (this.kopare == "Ny") {
         this.expandKop = false;
-      }
     },
     updSalRST(val) {
       this.salRST = val;

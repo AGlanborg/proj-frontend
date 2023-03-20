@@ -9,6 +9,12 @@
         </abbr>
       </div>
       <div class="valueContainer">
+        <p>Id</p>
+      </div>
+      <div class="valueContainer">
+        <p>Fakturerings<wbr>period</p>
+      </div>
+      <div class="valueContainer">
         <p>Leverantör</p>
       </div>
       <div class="valueContainer">
@@ -60,6 +66,16 @@
               </span>
             </button>
           </abbr>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.main_id }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.now }}
+          </p>
         </div>
         <div class="valueContainer">
           <p>

@@ -7,6 +7,8 @@
       </p>
     </div>
     <div class="createForm">
+    <label for="now"> Verifikationer avser Internfaktureringsperiod: </label>
+      <input type="month" lang="sv" id="now" disabled :value="shell.now" />
       <label for="saljare"> Säljare </label>
       <select id="saljare" :value="shell.saljare" @change="onSaljare($event)">
         <option disabled></option>

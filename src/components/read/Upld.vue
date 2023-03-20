@@ -115,7 +115,7 @@ export default {
       const oh =
         '"Valuta", "Antal licenser", "Inpris ex. moms", "Inpris inkl. moms", "Procent (%)", "OH", "Totalt inkl. moms och OH", "Fakturanummer", "Kommentar", ';
       const periodisering =
-        '"Internpris", "Periodisering Start", "Periodisering Slut", "Periodisering antal månader", "Antal månader upfront", "Antal månader resterande", "Internfakt. per period", "Intakt", "Check", "Now"';
+        '"Internpris", "Periodisering Start", "Periodisering Slut", "Periodisering antal månader", "Antal månader upfront", "Antal månader resterande", "Internfakt. per period", "Intakt", "Check", "Faktureringsperiod"';
       let csvContent =
         "data:text/csv;charset=utf-8," + mottagande + oh + periodisering;
 

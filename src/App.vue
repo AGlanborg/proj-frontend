@@ -42,6 +42,7 @@ export default {
     return {
       create: false,
       shell: {
+        main_id: "",
         saljare: "",
         kopare: "",
         arbetstyp: "",

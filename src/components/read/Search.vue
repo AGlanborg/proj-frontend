@@ -27,27 +27,39 @@
         nedan för att sortera innehållet av resultatfältet.
       </p>
     </div>
-    <div class="searchContainer">
-      <abbr title="Search by text">
-        <button class="searchButtonContainer">
-          <span class="material-icons check">search</span>
-        </button>
-      </abbr>
-      <input type="text" class="search" lang="sv" v-bind="search" />
-    </div>
-    <div class="resultContainer" :class="category ? '' : 'maxResult'">
-      <div class="result" :class="title ? 'maxTitle' : 'minTitle'">
-        <Results
-          :category="category"
-          :instances="instances"
-          :title="title"
-          @handleCopy="handleCopy"
-          @handleEdit="handleEdit"
-          @handleRemove="handleRemove"
-          @toggleUpload="$emit('toggleUpload')"
-          @toggleCreate="$emit('toggleCreate')"
-        />
+    <div class="navContainer">
+      <div class="searchContainer">
+        <abbr title="Search by text">
+          <button class="searchButtonContainer">
+            <span class="material-icons check">search</span>
+          </button>
+        </abbr>
+        <input type="text" class="search" lang="sv" v-bind="search" />
       </div>
+      <div class="formatContainer">
+        <label for="format"> Välj Raport </label>
+        <select id="format">
+          <option>Summering verifikationer</option>
+          <option>Periodiserad leverantörsfakturor</option>
+          <option>Totala kostnaden per tillverkare</option>
+          <option>Totala kostnaden per tillverkare</option>
+        </select>
+      </div>
+    </div>
+    <div
+      class="resultContainer"
+      :class="{ heightResult: title, widthResult: category }"
+    >
+      <Results
+        :category="category"
+        :instances="instances"
+        :title="title"
+        @handleCopy="handleCopy"
+        @handleEdit="handleEdit"
+        @handleRemove="handleRemove"
+        @toggleUpload="$emit('toggleUpload')"
+        @toggleCreate="$emit('toggleCreate')"
+      />
     </div>
   </main>
 </template>
@@ -204,12 +216,17 @@ abbr {
   line-height: 20px;
 }
 
+.navContainer {
+  display: flex;
+  flex-direction: row;
+}
+
 .searchContainer {
   display: flex;
   flex-direction: row;
   background-color: rgb(44, 44, 64);
   height: 5vh;
-  margin: 2vh 6.5vw;
+  margin: 2vh 2vw 1vh 6.5vw;
   width: 30vw;
   border-radius: 20px;
 }
@@ -233,27 +250,38 @@ abbr {
   flex-grow: 1;
 }
 
+.formatContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.formatContainer > label {
+  margin: 0;
+}
+
+.formatContainer > select {
+  width: 350px;
+  margin-bottom: 0;
+}
+
 .resultContainer {
   display: flex;
   flex-direction: column;
   border: 3px solid rgb(44, 44, 64);
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-  width: 65vw;
+  width: 85vw;
+  height: 75vh;
   margin: 2vh 5vw;
   border-radius: 20px;
   transition: 0.5s;
 }
 
-.maxResult {
-  width: 85vw;
+.widthResult {
+  width: 65vw;
 }
 
-.result {
+.heightResult {
   height: 65vh;
-}
-
-.minTitle {
-  height: 75vh;
 }
 
 .check {

@@ -6,7 +6,7 @@
       :selectedRemove="selectedRemove"
       @handleRemove="handleRemove"
     />
-    <Upld v-if="upload" @toggleUpload="upload = !upload" />
+    <Upld v-if="upload" @toggleUpload="upload = !upload" @reload="$emit('reload')" />
     <Sure v-if="copy" :title="'Copy'" @handleSure="commitCopy" @toggleSure="toggleSure" />
     <Sure v-if="edit" :title="'Edit'" @handleSure="commitEdit" @toggleSure="toggleSure" />
     <Categories :category="category" @toggleCategory="category = !category" />

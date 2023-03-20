@@ -9,6 +9,7 @@
     @toggleCreate="create = !create"
     @handleCopy="handleCopy"
     @handleEdit="handleEdit"
+    @reload="reload"
   />
   <Create
     class="create"
@@ -92,10 +93,13 @@ export default {
     handleEdit(id) {
       this.shell = this.instances.find((item) => item.main_id == id);
       this.create = true;
-      console.log(this.shell)
     },
     handleClear() {
       this.shell = this.empty;
+    },
+    async reload() {
+      const content = await get.all();
+      this.instances = content;
     },
     updContent() {
       this.shell.inprisin = parseFloat(

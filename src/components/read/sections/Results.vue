@@ -1,131 +1,126 @@
 <template>
-  <div class="instanceContainer">
-    <div class="instance header">
+  <div class="instance header">
+    <div class="checkboxContainer">
+      <abbr title="Select all">
+        <button class="checkbox" @click="toggleAll">
+          <span class="material-icons check" v-if="all"> check </span>
+        </button>
+      </abbr>
+    </div>
+    <div class="valueContainer">
+      <p>Id</p>
+    </div>
+    <div class="valueContainer">
+      <p>Fakturerings<wbr />period</p>
+    </div>
+    <div class="valueContainer">
+      <p>Leverantör</p>
+    </div>
+    <div class="valueContainer">
+      <p>Köpare</p>
+    </div>
+    <div class="valueContainer">
+      <p>Arbetstyp</p>
+    </div>
+    <div class="valueContainer noWrap">
+      <p>Antal Poster</p>
+    </div>
+    <div class="valueContainer">
+      <p>Kostnad</p>
+    </div>
+    <div class="headerTextContainer">
+      <p>Text</p>
+    </div>
+    <div class="buttonContainer">
+      <abbr title="Download seleced items">
+        <button class="button">
+          <span class="material-icons check">download</span>
+        </button>
+      </abbr>
+      <abbr title="Upload a new row">
+        <button class="button" @click="$emit('toggleUpload')">
+          <span class="material-icons check">upload</span>
+        </button>
+      </abbr>
+      <abbr title="Create a new row">
+        <button class="button" @click="$emit('toggleCreate')">
+          <span class="material-icons check">add</span>
+        </button>
+      </abbr>
+    </div>
+  </div>
+  <div
+    class="resultContent"
+    :class="title ? 'minResults' : ''"
+  >
+    <div class="instance" v-for="inst in instances" v-bind:key="inst.id">
       <div class="checkboxContainer">
-        <abbr title="Select all">
-          <button class="checkbox" @click="toggleAll">
-            <span class="material-icons check" v-if="all"> check </span>
+        <abbr title="Select row">
+          <button class="checkbox" @click="toggleCheckbox(inst.id)">
+            <span class="material-icons check" v-if="checked.includes(inst.id)">
+              check
+            </span>
           </button>
         </abbr>
       </div>
       <div class="valueContainer">
-        <p>Id</p>
+        <p>
+          {{ inst.main_id }}
+        </p>
       </div>
       <div class="valueContainer">
-        <p>Fakturerings<wbr>period</p>
+        <p>
+          {{ inst.now }}
+        </p>
       </div>
       <div class="valueContainer">
-        <p>Leverantör</p>
+        <p>
+          {{ inst.saljare }}
+        </p>
       </div>
       <div class="valueContainer">
-        <p>Köpare</p>
+        <p>
+          {{ inst.kopare }}
+        </p>
       </div>
       <div class="valueContainer">
-        <p>Arbetstyp</p>
-      </div>
-      <div class="valueContainer noWrap">
-        <p>Antal Poster</p>
+        <p>
+          {{ inst.arbetstyp }}
+        </p>
       </div>
       <div class="valueContainer">
-        <p>Kostnad</p>
+        <p>
+          {{ inst.antal }}
+        </p>
       </div>
-      <div class="headerTextContainer">
-        <p>Text</p>
+      <div class="valueContainer">
+        <p>
+          {{ inst.totalt }}
+        </p>
+      </div>
+      <div class="textContainer">
+        <div class="text">
+          <p>
+            {{ inst.text }}
+          </p>
+        </div>
       </div>
       <div class="buttonContainer">
-        <abbr title="Download seleced items">
-          <button class="button">
-            <span class="material-icons check">download</span>
+        <abbr title="Create copy of row">
+          <button class="button" @click="$emit('handleCopy', inst.main_id)">
+            <span class="material-icons check">content_copy</span>
           </button>
         </abbr>
-        <abbr title="Upload a new row">
-          <button class="button" @click="$emit('toggleUpload')">
-            <span class="material-icons check">upload</span>
+        <abbr title="Edit row">
+          <button class="button" @click="$emit('handleEdit', inst.main_id)">
+            <span class="material-icons check">edit</span>
           </button>
         </abbr>
-        <abbr title="Create a new row">
-          <button class="button" @click="$emit('toggleCreate')">
-            <span class="material-icons check">add</span>
+        <abbr title="Delete row">
+          <button class="button" @click="$emit('handleRemove', inst.main_id)">
+            <span class="material-icons check">delete</span>
           </button>
         </abbr>
-      </div>
-    </div>
-    <div
-      class="resultContent"
-      :class="title ? 'maxTitleContainer' : 'minTitleContainer'"
-    >
-      <div class="instance" v-for="inst in instances" v-bind:key="inst.id">
-        <div class="checkboxContainer">
-          <abbr title="Select row">
-            <button class="checkbox" @click="toggleCheckbox(inst.id)">
-              <span
-                class="material-icons check"
-                v-if="checked.includes(inst.id)"
-              >
-                check
-              </span>
-            </button>
-          </abbr>
-        </div>
-        <div class="valueContainer">
-          <p>
-            {{ inst.main_id }}
-          </p>
-        </div>
-        <div class="valueContainer">
-          <p>
-            {{ inst.now }}
-          </p>
-        </div>
-        <div class="valueContainer">
-          <p>
-            {{ inst.saljare }}
-          </p>
-        </div>
-        <div class="valueContainer">
-          <p>
-            {{ inst.kopare }}
-          </p>
-        </div>
-        <div class="valueContainer">
-          <p>
-            {{ inst.arbetstyp }}
-          </p>
-        </div>
-        <div class="valueContainer">
-          <p>
-            {{ inst.antal }}
-          </p>
-        </div>
-        <div class="valueContainer">
-          <p>
-            {{ inst.totalt }}
-          </p>
-        </div>
-        <div class="textContainer">
-          <div class="text">
-            <p>
-              {{ inst.text }}
-            </p>
-          </div>
-        </div>
-        <div class="buttonContainer">
-          <abbr title="Create copy of row">
-            <button class="button" @click="$emit('handleCopy', inst.main_id);">
-              <span class="material-icons check">content_copy</span>
-            </button>
-          </abbr>
-          <abbr title="Edit row">
-            <button class="button" @click="$emit('handleEdit', inst.main_id);">
-              <span class="material-icons check">edit</span>
-            </button>
-          </abbr>
-          <abbr title="Delete row">
-            <button class="button" @click="$emit('handleRemove', inst.main_id);">
-              <span class="material-icons check">delete</span>
-            </button>
-          </abbr>
-        </div>
       </div>
     </div>
   </div>
@@ -175,7 +170,7 @@ export default {
         this.checked = list;
         this.all = true;
       }
-    }
+    },
   },
 };
 </script>
@@ -201,16 +196,21 @@ abbr {
   height: 70vh;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  transition: 0.5s;
 }
 
 .resultContent::-webkit-scrollbar {
   display: none;
 }
 
+.minResults {
+  height: 60vh;
+}
+
 .instance {
   display: flex;
   flex-direction: row;
-  height: 5vh;
+  min-height: 5vh;
 }
 
 .instance:nth-child(even) {

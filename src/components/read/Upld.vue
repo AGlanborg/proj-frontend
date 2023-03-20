@@ -94,7 +94,6 @@ export default {
       if (this.text && !this.red) {
         try {
           const content = await upload(this.text);
-          console.log("#1")
           if (content.title.toUpperCase() == "INVALID CONTENT") {
             this.red = true;
           } else if (content.title.toUpperCase() == "ERROR") {
@@ -105,7 +104,6 @@ export default {
             this.idk = true;
           }
         } catch (e) {
-          console.log(e)
           this.idk = true;
         }
       }
@@ -129,6 +127,7 @@ export default {
       this.error = false;
       this.success = false;
 
+      this.$emit("reload")
       this.$emit("toggleUpload");
     },
   },

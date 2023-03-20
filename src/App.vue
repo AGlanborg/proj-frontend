@@ -6,7 +6,7 @@
     :instances="instances"
     :shell="shell"
     :empty="empty"
-    @toggleCreate="toggleCreate"
+    @toggleCreate="create = !create"
     @handleCopy="handleCopy"
     @handleEdit="handleEdit"
   />
@@ -84,9 +84,6 @@ export default {
     };
   },
   methods: {
-    toggleCreate() {
-      this.create = !this.create;
-    },
     handleCopy(id) {
       this.shell = this.instances.find((item) => item.main_id == id);
       this.shell.main_id = "";

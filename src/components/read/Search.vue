@@ -12,7 +12,7 @@
       </button>
     </div>
     <div class="titleContainer">
-      <button class="title" @click="toggleTitle">
+      <button class="title" @click="title = !title">
         <h2>
           Search<span class="material-icons" :class="title ? 'open' : ''"
             >keyboard_arrow_up</span
@@ -72,9 +72,6 @@ export default {
     };
   },
   methods: {
-    toggleTitle() {
-      this.title = !this.title;
-    },
     handleCopy(id) {
       this.$emit("handleCopy", id);
     },
@@ -125,7 +122,7 @@ abbr {
   top: 20px;
   left: -5px;
   margin: 0;
-  transition: opacity 0.5s ease-in;
+  transition: 0.5s;
 }
 
 .expandAll {

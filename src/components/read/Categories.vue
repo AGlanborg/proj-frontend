@@ -8,7 +8,7 @@
       </button>
     </div>
     <div class="titleContainer">
-      <button class="title" @click="toggleTitle">
+      <button class="title" @click="title = !title">
         <h2>
           Categories<span class="material-icons" :class="title ? 'open' : ''">
             keyboard_arrow_up
@@ -43,9 +43,6 @@ export default {
     };
   },
   methods: {
-    toggleTitle() {
-      this.title = !this.title;
-    },
     toggleCategory() {
       this.title = false
       this.$emit('toggleCategory')

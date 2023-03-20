@@ -7,9 +7,9 @@
       @handleRemove="handleRemove"
     />
     <Upld v-if="upload" @toggleUpload="upload = !upload" />
-    <Sure v-if="copy" :title="'Copy'" @handleSure="commitCopy" @toggleSure="sure = !sure" />
-    <Sure v-if="edit" :title="'Edit'" @handleSure="commitEdit" @toggleSure="sure = !sure" />
-    <Categories :category="category" @toggleCategory="toggleCategory" />
+    <Sure v-if="copy" :title="'Copy'" @handleSure="commitCopy" @toggleSure="toggleSure" />
+    <Sure v-if="edit" :title="'Edit'" @handleSure="commitEdit" @toggleSure="toggleSure" />
+    <Categories :category="category" @toggleCategory="category = !category" />
     <Search
       :category="category"
       :instances="instances"
@@ -57,9 +57,6 @@ export default {
     };
   },
   methods: {
-    toggleCategory() {
-      this.category = !this.category;
-    },
     handleCopy(id) {
       if (this.shell != this.empty) {
         this.id = id
@@ -91,6 +88,11 @@ export default {
       this.selectedRemove
         ? (this.selectedRemove = 0)
         : (this.selectedRemove = id);
+    },
+    toggleSure() {
+      this.id = ""
+      this.edit = false
+      this.copy = false
     }
   },
 };

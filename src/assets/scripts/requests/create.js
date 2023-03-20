@@ -1,6 +1,6 @@
 import config from "@/../config/config.json";
 
-export default async function csv(data) {
+export async function csv(data) {
     const response = await fetch(`${config.URL}/crud/create/csv`, {
         method: "POST",
         headers: {

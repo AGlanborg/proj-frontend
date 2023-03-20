@@ -4,7 +4,7 @@
       <button class="createArrow" :class="category ? 'createArrowLeft' : ''">
         <span
           class="material-icons createArrowIcon"
-          :class="create ? '' : 'invis'"
+          :class="create ? '' : 'open'"
           @click="$emit('toggleCreate')"
         >
           keyboard_arrow_left
@@ -41,6 +41,8 @@
           :category="category"
           :instances="instances"
           :title="title"
+          @handleCopy="handleCopy"
+          @handleEdit="handleEdit"
           @handleRemove="handleRemove"
           @toggleUpload="$emit('toggleUpload')"
           @toggleCreate="$emit('toggleCreate')"
@@ -72,6 +74,12 @@ export default {
   methods: {
     toggleTitle() {
       this.title = !this.title;
+    },
+    handleCopy(id) {
+      this.$emit("handleCopy", id);
+    },
+    handleEdit(id) {
+      this.$emit("handleEdit", id);
     },
     handleRemove(id) {
       this.$emit("handleRemove", id);
@@ -118,11 +126,6 @@ abbr {
   left: -5px;
   margin: 0;
   transition: opacity 0.5s ease-in;
-}
-
-.invis {
-  cursor: default;
-  opacity: 0;
 }
 
 .expandAll {

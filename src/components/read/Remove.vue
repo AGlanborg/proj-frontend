@@ -127,11 +127,6 @@ export default {
   cursor: pointer;
 }
 
-.button > p {
-  margin: 0;
-  font-size: 20px;
-}
-
 .delete {
   background-color: rgb(200, 50, 50);
 }

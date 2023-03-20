@@ -6,21 +6,19 @@
       :selectedRemove="selectedRemove"
       @handleRemove="handleRemove"
     />
-    <Upload
-      v-if="upload"
-      @toggleUpload="toggleUpload"
-    />
-    <Categories
-      :category="category"
-      @toggleCategory="toggleCategory"
-    />
+    <Upld v-if="upload" @toggleUpload="upload = !upload" />
+    <Sure v-if="copy" :title="'Copy'" @handleSure="commitCopy" @toggleSure="sure = !sure" />
+    <Sure v-if="edit" :title="'Edit'" @handleSure="commitEdit" @toggleSure="sure = !sure" />
+    <Categories :category="category" @toggleCategory="toggleCategory" />
     <Search
       :category="category"
       :instances="instances"
       :remove="remove"
       :create="create"
+      @handleCopy="handleCopy"
+      @handleEdit="handleEdit"
       @handleRemove="handleRemove"
-      @toggleUpload="toggleUpload"
+      @toggleUpload="upload = !upload"
       @toggleCreate="$emit('toggleCreate')"
     />
   </div>
@@ -30,9 +28,8 @@
 import Categories from "./read/Categories.vue";
 import Search from "./read/Search.vue";
 import Remove from "./read/Remove.vue";
-import Upload from "./read/Upld.vue";
-
-import * as get from "@/assets/scripts/requests/get"
+import Upld from "./read/Upld.vue";
+import Sure from "./read/Sure.vue"
 
 export default {
   name: "Main-read",
@@ -40,37 +37,62 @@ export default {
     Categories,
     Search,
     Remove,
-    Upload,
+    Upld,
+    Sure,
   },
   props: {
-    create: Boolean
+    create: Boolean,
+    instances: Array,
+    shell: Object,
+    empty: Object,
   },
   data() {
     return {
       category: false,
       remove: false,
       upload: false,
-      instances: [],
+      copy: false,
+      edit: false,
+      id: "",
     };
   },
   methods: {
     toggleCategory() {
       this.category = !this.category;
     },
+    handleCopy(id) {
+      if (this.shell != this.empty) {
+        this.id = id
+        this.copy = true
+      } else {
+        this.$emit("handleCopy", id);
+      }
+    },
+    commitCopy() {
+      this.copy = false
+      this.$emit("handleCopy", this.id)
+      this.id = ""
+    },
+    handleEdit(id) {
+      if (this.shell != this.empty) {
+        this.id = id
+        this.edit = true
+      } else {
+        this.$emit("handleEdit", id);
+      }
+    },
+    commitEdit() {
+      this.edit = false
+      this.$emit("handleEdit", this.id)
+      this.id = ""
+    },
     handleRemove(id) {
       this.remove ? (this.remove = false) : (this.remove = true);
       this.selectedRemove
         ? (this.selectedRemove = 0)
         : (this.selectedRemove = id);
-    },
-    toggleUpload() {
-      this.upload = !this.upload
     }
   },
-  async mounted() {
-    const content = await get.all()
-    this.instances = content
-  }
 };
 </script>
 

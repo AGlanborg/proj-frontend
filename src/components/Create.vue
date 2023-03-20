@@ -17,6 +17,16 @@
       </p>
     </div>
     <div class="createContentContainer" :class="title ? 'minimize' : ''">
+      <div class="idContainer" :class="{idInside: create && shell.main_id}">
+        <p>
+          För närvarande redigerar:
+        </p>
+        <div class="id">
+          <p>
+            ID : {{ shell.main_id }}
+          </p>
+        </div>
+      </div>
       <Mottagande
         :shell="shell"
         @onSaljare="onSaljare"
@@ -58,6 +68,7 @@ export default {
     Periodisering,
   },
   props: {
+    create: Boolean,
     shell: Object,
   },
   data() {
@@ -234,5 +245,35 @@ export default {
 
 .clear {
   outline: 2px solid rgb(200, 50, 50);
+}
+
+.idContainer {
+  position: fixed;
+  left: 176vw;
+  top: 15vh;
+  z-index: 5;
+  transition: 1s;
+}
+
+.idContainer > p {
+  margin: 0 0 8px 10px;
+}
+
+.id {
+  border: 3px solid rgb(100, 100, 200);
+  background-color: rgb(44, 44, 64);
+  width: 175px;
+  height: 50px;
+  border-radius: 20px;
+  padding: 0 25px;
+}
+
+.id > p {
+  font-size: 25px;
+  line-height: 0;
+}
+
+.idInside {
+  left: 80vw;
 }
 </style>

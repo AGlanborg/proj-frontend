@@ -3,11 +3,17 @@
     class="read"
     :class="create ? 'minRead' : ''"
     :create="create"
+    :instances="instances"
+    :shell="shell"
+    :empty="empty"
     @toggleCreate="toggleCreate"
+    @handleCopy="handleCopy"
+    @handleEdit="handleEdit"
   />
   <Create
     class="create"
     :class="create ? 'maxCreate' : ''"
+    :create="create"
     :shell="shell"
     @handleClear="handleClear"
     @onSaljare="onSaljare"
@@ -32,6 +38,8 @@
 import Read from "./components/Read.vue";
 import Create from "./components/Create.vue";
 
+import * as get from "@/assets/scripts/requests/get";
+
 export default {
   name: "App",
   components: {
@@ -41,6 +49,7 @@ export default {
   data() {
     return {
       create: false,
+      instances: [],
       shell: {
         main_id: "",
         saljare: "",
@@ -71,42 +80,25 @@ export default {
         scan: 0,
         now: "",
       },
+      empty: {},
     };
   },
   methods: {
     toggleCreate() {
       this.create = !this.create;
     },
+    handleCopy(id) {
+      this.shell = this.instances.find((item) => item.main_id == id);
+      this.shell.main_id = "";
+      this.create = true;
+    },
+    handleEdit(id) {
+      this.shell = this.instances.find((item) => item.main_id == id);
+      this.create = true;
+      console.log(this.shell)
+    },
     handleClear() {
-      this.shell = {
-        saljare: "",
-        kopare: "",
-        arbetstyp: "",
-        antal: "1",
-        typ: "",
-        leverantor: "",
-        text: "",
-        info: "Vid frågor maila Licensdesken xxx@xxx.se",
-        valuta: "SEK",
-        mangd: "1",
-        inprisex: "1",
-        inprisin: "1.25",
-        procent: "5",
-        oh: "0.0625",
-        totalt: "1.3125",
-        fakturanum: "",
-        kommentar: "",
-        inpris: "0",
-        start: "",
-        slut: "",
-        perioder: 0,
-        internfakt: 0,
-        upfront: 0,
-        rest: 0,
-        intakt: 0,
-        scan: 0,
-        now: "",
-      }
+      this.shell = this.empty;
     },
     updContent() {
       this.shell.inprisin = parseFloat(
@@ -248,7 +240,10 @@ export default {
       this.updPerioder();
     },
   },
-  mounted() {
+  async mounted() {
+    const content = await get.all();
+    this.instances = content;
+
     let now = new Date();
     if (now.getMonth().toString().length < 2) {
       now = now.getFullYear() + "-0" + (now.getMonth() + 1);
@@ -259,6 +254,7 @@ export default {
     this.shell.start = now;
     this.shell.slut = now;
     this.shell.now = now;
+    this.empty = this.shell;
 
     this.updContent();
     this.updPerioder();

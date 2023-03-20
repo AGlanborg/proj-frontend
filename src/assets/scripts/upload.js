@@ -1,4 +1,4 @@
-import csv from "./requests/create"
+import { csv } from "./requests/create"
 
 export default async function upload(text) {
     let data = {}
@@ -49,5 +49,5 @@ export default async function upload(text) {
         return csv(data)
     }
 
-    return {title: "Invalid content"}
+    return { title: "Invalid content" }
 }

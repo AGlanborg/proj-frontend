@@ -11,24 +11,24 @@
       <input type="month" lang="sv" id="now" disabled :value="shell.now" />
       <label for="saljare"> Säljare </label>
       <select id="saljare" :value="shell.saljare" @change="onSaljare($event)">
-        <option disabled></option>
+        <option> {{ shell.saljare }}</option>
         <option>Ny</option>
       </select>
       <label for="kopare"> Köpare </label>
       <select id="kopare" :value="shell.kopare" @change="onKopare($event)">
-        <option disabled></option>
+        <option> {{ shell.kopare }}</option>
         <option>Ny</option>
       </select>
       <label for="arbetstyp"> Arbetstyp </label>
       <select id="arbetstyp" :value="shell.arbetstyp" @change="onArb($event)">
-        <option disabled></option>
+        <option> {{ shell.arbetstyp }}</option>
         <option>Ny</option>
       </select>
       <label for="antal"> Antal Poster </label>
       <input type="number" lang="sv" id="antal" disabled :value="shell.antal" />
       <label for="typ"> Typ </label>
       <select id="typ" :value="shell.typ" @change="$emit('onTyp', $event)">
-        <option disabled></option>
+        <option> {{ shell.typ }}</option>
         <option>Licens</option>
         <option>Support</option>
         <option>Service</option>

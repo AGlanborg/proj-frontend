@@ -111,17 +111,17 @@
         </div>
         <div class="buttonContainer">
           <abbr title="Create copy of row">
-            <button class="button">
+            <button class="button" @click="$emit('handleCopy', inst.main_id);">
               <span class="material-icons check">content_copy</span>
             </button>
           </abbr>
           <abbr title="Edit row">
-            <button class="button">
+            <button class="button" @click="$emit('handleEdit', inst.main_id);">
               <span class="material-icons check">edit</span>
             </button>
           </abbr>
           <abbr title="Delete row">
-            <button class="button" @click="handleRemove(inst.id)">
+            <button class="button" @click="$emit('handleRemove', inst.main_id);">
               <span class="material-icons check">delete</span>
             </button>
           </abbr>
@@ -175,10 +175,7 @@ export default {
         this.checked = list;
         this.all = true;
       }
-    },
-    handleRemove(id) {
-      this.$emit("handleRemove", id);
-    },
+    }
   },
 };
 </script>

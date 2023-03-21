@@ -17,3 +17,21 @@ export async function csv(data) {
 
     return result.data;
 }
+
+export async function form(data, url) {
+    const response = await fetch(`${config.URL}/crud/read/form/${url}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+
+    const result = await response.json();
+
+    if (result.errors != undefined) {
+        return result.errors
+    }
+
+    return result.data;
+}

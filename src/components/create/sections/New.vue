@@ -10,10 +10,10 @@
             lang="sv"
             id="rst"
             placeholder="..."
-            :value="rst"
-            @input="(event) => handleRST(event)"
+            v-model="rst"
+            @input="check"
           />
-          <div class="selectButton" @click="handleChoose()">
+          <div class="selectButton" @click="chosen = true">
             <span class="material-icons check" v-if="chosen"> check </span>
           </div>
         </div>
@@ -28,10 +28,10 @@
             lang="sv"
             id="copernicus"
             placeholder="..."
-            :value="cop"
-            @input="(event) => handleCop(event)"
+            v-model="cop"
+            @input="check"
           />
-          <div class="selectButton" @click="handleChoose()">
+          <div class="selectButton" @click="chosen = false">
             <span class="material-icons check" v-if="!chosen"> check </span>
           </div>
         </div>
@@ -45,8 +45,8 @@
           lang="sv"
           id="kontaktperson"
           placeholder="..."
-          :value="kontakt"
-          @input="(event) => handleKontakt(event)"
+          v-model="kontakt"
+          @input="check"
         />
       </div>
     </div>
@@ -54,13 +54,13 @@
       <input
         type="button"
         :value="'Skapa ' + rst"
-        :class="newFilled ? '' : 'disabeled'"
+        :class="{disabeled: !filled}"
         v-if="chosen"
       />
       <input
         type="button"
         :value="'Skapa ' + cop"
-        :class="newFilled ? '' : 'disabeled'"
+        :class="{disabeled: !filled}"
         v-else
       />
     </div>
@@ -72,43 +72,26 @@ export default {
   name: "Create-new",
   props: {
     title: String,
-    rst: String,
-    cop: String,
-    kontakt: String,
-    chosen: Boolean,
+    rep: String
   },
   data() {
     return {
-      newFilled: false,
-    };
+      rst: "",
+      cop: "",
+      kontakt: "",
+      chosen: true,
+      filled: false,
+    }
   },
   methods: {
-    handleRST(event) {
-      this.$emit("updRST", event.target.value);
-      this.checkFilled();
-    },
-    handleCop(event) {
-      this.$emit("updCop", event.target.value);
-      this.checkFilled();
-    },
-    handleKontakt(event) {
-      this.$emit("updKontakt", event.target.value);
-      this.checkFilled();
-    },
-    checkFilled() {
-      if (this.rst != "" && this.cop != "" && this.kontakt != "") {
-        this.newFilled = true;
+    check() {
+      if ((this.chosen && this.rst) || (!this.chosen && this.cop)) {
+        this.filled = true;
       } else {
-        this.newFilled = false;
+        this.filled = false;
       }
     },
-    handleChoose() {
-      this.$emit("updChosen");
-    },
-  },
-  mounted() {
-    this.checkFilled();
-  },
+  }
 };
 </script>
 

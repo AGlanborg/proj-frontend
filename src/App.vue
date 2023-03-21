@@ -1,10 +1,13 @@
 <template>
   <Read
     class="read"
-    :class="{minRead: create}"
+    :class="{ minRead: create }"
     :create="create"
     :instances="instances"
     :shell="shell"
+    :saljare="saljare"
+    :kopare="kopare"
+    :arbetstyp="arbetstyp"
     :empty="empty"
     @toggleCreate="create = !create"
     @handleCopy="handleCopy"
@@ -13,7 +16,7 @@
   />
   <Create
     class="create"
-    :class="{maxCreate: create}"
+    :class="{ maxCreate: create }"
     :create="create"
     :shell="shell"
     @handleClear="handleClear"
@@ -39,7 +42,7 @@
 import Read from "./components/Read.vue";
 import Create from "./components/Create.vue";
 
-import * as get from "@/assets/scripts/requests/get";
+import get from "@/assets/scripts/requests/get";
 
 export default {
   name: "App",
@@ -51,6 +54,9 @@ export default {
     return {
       create: false,
       instances: [],
+      saljare: [],
+      kopare: [],
+      arbetstyp: [],
       shell: {
         main_id: "",
         saljare: "",
@@ -63,11 +69,11 @@ export default {
         info: "Vid frågor maila Licensdesken xxx@xxx.se",
         valuta: "SEK",
         mangd: "1",
-        inprisex: "1",
-        inprisin: "1.25",
+        inprisex: "0",
+        inprisin: "0",
         procent: "5",
-        oh: "0.0625",
-        totalt: "1.3125",
+        oh: "0",
+        totalt: "0",
         fakturanum: "",
         kommentar: "",
         inpris: "0",
@@ -248,8 +254,10 @@ export default {
     },
   },
   async mounted() {
-    const content = await get.all();
-    this.instances = content;
+    this.instances = (await get("main")) || [];
+    this.saljare = (await get("saljare")) || [];
+    this.kopare = (await get("kopare")) || [];
+    this.arbetstyp = (await get("arbetstyp")) || [];
 
     let now = new Date();
     if (now.getMonth().toString().length < 2) {

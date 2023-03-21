@@ -6,15 +6,32 @@
       :selectedRemove="selectedRemove"
       @handleRemove="handleRemove"
     />
-    <Upld v-if="upload" @toggleUpload="upload = !upload" @reload="$emit('reload')" />
-    <Sure v-if="copy" :title="'Copy'" @handleSure="commitCopy" @toggleSure="toggleSure" />
-    <Sure v-if="edit" :title="'Edit'" @handleSure="commitEdit" @toggleSure="toggleSure" />
+    <Upld
+      v-if="upload"
+      @toggleUpload="upload = !upload"
+      @reload="$emit('reload')"
+    />
+    <Sure
+      v-if="copy"
+      :title="'Copy'"
+      @handleSure="commitCopy"
+      @toggleSure="toggleSure"
+    />
+    <Sure
+      v-if="edit"
+      :title="'Edit'"
+      @handleSure="commitEdit"
+      @toggleSure="toggleSure"
+    />
     <Categories :category="category" @toggleCategory="category = !category" />
     <Search
       :category="category"
       :instances="instances"
       :remove="remove"
       :create="create"
+      :saljare="saljare"
+      :kopare="kopare"
+      :arbetstyp="arbetstyp"
       @handleCopy="handleCopy"
       @handleEdit="handleEdit"
       @handleRemove="handleRemove"
@@ -29,7 +46,7 @@ import Categories from "./read/Categories.vue";
 import Search from "./read/Search.vue";
 import Remove from "./read/Remove.vue";
 import Upld from "./read/Upld.vue";
-import Sure from "./read/Sure.vue"
+import Sure from "./read/Sure.vue";
 
 export default {
   name: "Main-read",
@@ -44,6 +61,9 @@ export default {
     create: Boolean,
     instances: Array,
     shell: Object,
+    saljare: Array,
+    kopare: Array,
+    arbetstyp: Array,
     empty: Object,
   },
   data() {
@@ -59,29 +79,29 @@ export default {
   methods: {
     handleCopy(id) {
       if (this.shell != this.empty) {
-        this.id = id
-        this.copy = true
+        this.id = id;
+        this.copy = true;
       } else {
         this.$emit("handleCopy", id);
       }
     },
     commitCopy() {
-      this.copy = false
-      this.$emit("handleCopy", this.id)
-      this.id = ""
+      this.copy = false;
+      this.$emit("handleCopy", this.id);
+      this.id = "";
     },
     handleEdit(id) {
       if (this.shell != this.empty) {
-        this.id = id
-        this.edit = true
+        this.id = id;
+        this.edit = true;
       } else {
         this.$emit("handleEdit", id);
       }
     },
     commitEdit() {
-      this.edit = false
-      this.$emit("handleEdit", this.id)
-      this.id = ""
+      this.edit = false;
+      this.$emit("handleEdit", this.id);
+      this.id = "";
     },
     handleRemove(id) {
       this.remove ? (this.remove = false) : (this.remove = true);
@@ -90,10 +110,10 @@ export default {
         : (this.selectedRemove = id);
     },
     toggleSure() {
-      this.id = ""
-      this.edit = false
-      this.copy = false
-    }
+      this.id = "";
+      this.edit = false;
+      this.copy = false;
+    },
   },
 };
 </script>

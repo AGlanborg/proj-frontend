@@ -48,7 +48,7 @@
       />
       <Periodisering :shell="shell" @onStart="onStart" @onSlut="onSlut" />
       <div class="createButtonContainer">
-        <button class="createButton">Create</button>
+        <button class="createButton" @click="handleCreate">Create</button>
         <button class="createButton clear" @click="$emit('handleClear')">Clear</button>
       </div>
     </div>
@@ -59,6 +59,8 @@
 import Mottagande from "./create/Mottagande.vue";
 import Oh from "./create/Oh.vue";
 import Periodisering from "./create/Periodisering.vue";
+
+import form from '@/assets/scripts/requests/post'
 
 export default {
   name: "Main-create",
@@ -77,6 +79,21 @@ export default {
     };
   },
   methods: {
+    handleCreate() {
+      const values = Object.values(this.shell)
+      let check = false
+
+      for(let i = 0; i < values.length; i += 1) {
+        if (!values[i]) {
+          check = true
+          break
+        }
+      }
+
+      if (!check) {
+        form(this.shell, "main")
+      }
+    },
     onSaljare(event) {
       this.$emit("onSaljare", event);
     },

@@ -53,6 +53,9 @@
         :category="category"
         :instances="instances"
         :title="title"
+        :saljare="saljare"
+        :kopare="kopare"
+        :arbetstyp="arbetstyp"
         @handleCopy="handleCopy"
         @handleEdit="handleEdit"
         @handleRemove="handleRemove"
@@ -75,6 +78,9 @@ export default {
     category: Boolean,
     instances: Array,
     create: Boolean,
+    saljare: Array,
+    kopare: Array,
+    arbetstyp: Array,
   },
   data() {
     return {

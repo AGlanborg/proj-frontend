@@ -1,4 +1,4 @@
-import { csv } from "./requests/create"
+import { csv } from "../requests/post"
 
 export default async function upload(text) {
     let data = {}

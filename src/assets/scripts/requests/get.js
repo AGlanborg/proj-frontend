@@ -1,7 +1,7 @@
 import config from "@/../config/config.json";
 
-export async function all() {
-    const response = await fetch(`${config.URL}/crud/read/all`, {
+export default async function one(tabel) {
+    const response = await fetch(`${config.URL}/crud/read/${tabel}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",

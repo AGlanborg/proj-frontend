@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import upload from "@/assets/scripts/upload";
+import upload from "@/assets/scripts/transform/csv";
 
 export default {
   name: "Read-upload",

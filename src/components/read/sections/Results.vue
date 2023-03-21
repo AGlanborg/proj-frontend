@@ -73,19 +73,34 @@
           {{ inst.now }}
         </p>
       </div>
-      <div class="valueContainer">
+      <div class="valueContainer" v-if="saljare.includes(inst.saljare)">
         <p>
           {{ inst.saljare }}
         </p>
       </div>
-      <div class="valueContainer">
+      <div class="valueContainer" v-else>
+        <p>
+          {{ inst.saljare }}?
+        </p>
+      </div>
+      <div class="valueContainer" v-if="kopare.includes(inst.kopare)">
         <p>
           {{ inst.kopare }}
         </p>
       </div>
-      <div class="valueContainer">
+      <div class="valueContainer" v-else>
+        <p>
+          {{ inst.kopare }}?
+        </p>
+      </div>
+      <div class="valueContainer" v-if="arbetstyp.includes(inst.arbetstyp)">
         <p>
           {{ inst.arbetstyp }}
+        </p>
+      </div>
+      <div class="valueContainer" v-else>
+        <p>
+          {{ inst.arbetstyp }}?
         </p>
       </div>
       <div class="valueContainer">
@@ -133,7 +148,17 @@ export default {
     category: Boolean,
     instances: Array,
     title: Boolean,
+    saljare: Array,
+    kopare: Array,
+    arbetstyp: Array,
   },
+  emits: [
+    "handleCopy",
+    "handleEdit",
+    "handleRemove",
+    "toggleUpload",
+    "toggleCreate"
+  ],
   data() {
     return {
       checked: [],

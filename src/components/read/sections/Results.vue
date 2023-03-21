@@ -53,11 +53,11 @@
     class="resultContent"
     :class="title ? 'minResults' : ''"
   >
-    <div class="instance" v-for="inst in instances" v-bind:key="inst.id">
+    <div class="instance" v-for="inst in instances" v-bind:key="inst.main_id">
       <div class="checkboxContainer">
         <abbr title="Select row">
-          <button class="checkbox" @click="toggleCheckbox(inst.id)">
-            <span class="material-icons check" v-if="checked.includes(inst.id)">
+          <button class="checkbox" @click="toggleCheckbox(inst.main_id)">
+            <span class="material-icons check" v-if="checked.includes(inst.main_id)">
               check
             </span>
           </button>
@@ -151,7 +151,7 @@ export default {
       this.checkAll();
     },
     checkAll() {
-      const list = this.instances.map((inst) => inst.id);
+      const list = this.instances.map((inst) => inst.main_id);
 
       if (list.every((inst) => this.checked.includes(inst))) {
         this.all = true;
@@ -166,7 +166,7 @@ export default {
         this.checked = [];
         this.all = false;
       } else {
-        const list = this.instances.map((inst) => inst.id);
+        const list = this.instances.map((inst) => inst.main_id);
         this.checked = list;
         this.all = true;
       }

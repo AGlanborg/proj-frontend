@@ -1,5 +1,5 @@
 <template>
-  <div class="container" :class="category ? '' : 'hideAll'">
+  <div class="categoryContainer" :class="category ? '' : 'hideAll'">
     <div class="hideContainer">
       <button class="hide" @click="toggleCategory">
         <span class="material-icons hideIcon" :class="category ? 'open' : ''">
@@ -52,7 +52,7 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.categoryContainer {
   position: relative;
   box-shadow: inset -10px 0 15px rgba(0, 0, 0, 0.5);
   width: 25vw;

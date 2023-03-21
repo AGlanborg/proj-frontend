@@ -67,7 +67,7 @@ export default {
   },
   mounted() {
     this.instance = this.instances.find(
-      (inst) => inst.id == this.selectedRemove
+      (inst) => inst.main_id == this.selectedRemove
     );
     this.text = this.instance.text.replaceAll("\n", ". ");
   },

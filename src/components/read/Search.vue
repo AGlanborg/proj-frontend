@@ -42,7 +42,6 @@
           <option>Summering verifikationer</option>
           <option>Periodiserad leverantörsfakturor</option>
           <option>Totala kostnaden per tillverkare</option>
-          <option>Totala kostnaden per tillverkare</option>
         </select>
       </div>
     </div>

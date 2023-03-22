@@ -109,14 +109,29 @@ export default {
       }
     },
     handleDownload() {
-      const mottagande =
-        '"Säljare", "Köpare", "Arbetstyp", "Antal Poster", "Typ", "Leverantör", "Text", "Kontaktinfo", ';
-      const oh =
-        '"Valuta", "Antal licenser", "Inpris ex. moms", "Inpris inkl. moms", "Procent (%)", "OH", "Totalt inkl. moms och OH", "Fakturanummer", "Kommentar", ';
-      const periodisering =
-        '"Internpris", "Periodisering Start", "Periodisering Slut", "Periodisering antal månader", "Antal månader upfront", "Antal månader resterande", "Internfakt. per period", "Intakt", "Check", "Faktureringsperiod"';
-      let csvContent =
-        "data:text/csv;charset=utf-8," + mottagande + oh + periodisering;
+      let text = '"RST nummer för säljare", '
+      text += '"Copernicus nummer för säljare", '
+      text += '"Kontakt person för säljare", '
+      text += '"Namn för säljare", '
+      text += '"RST nummer för köpare", '
+      text += '"Copernicus nummer för köpare", '
+      text += '"Kontakt person för köpare", '
+      text += '"Namn för köpare", '
+      text += '"Tillverkare", "Förkortning för arbetstyp", ';
+      text += '"Antal Poster", "Typ", "Leverantör", ';
+      text += '"Text", "Kontaktinfo", "Valuta", ';
+      text += '"Antal licenser", "Inpris ex. moms", ';
+      text += '"Inpris inkl. moms", "Procent (%)", "OH", ';
+      text += '"Totalt inkl. moms och OH", "Fakturanummer", ';
+      text += '"Kommentar", "Internpris", ';
+      text += '"Periodisering Start", "Periodisering Slut", ';
+      text += '"Periodisering antal månader", ';
+      text += '"Antal månader upfront", ';
+      text += '"Antal månader resterande", ';
+      text += '"Internfakt. per period", "Intakt", ';
+      text += '"Check", "Faktureringsperiod"';
+
+      let csvContent = "data:text/csv;charset=utf-8," + text;
 
       window.open(encodeURI(csvContent));
     },
@@ -127,7 +142,7 @@ export default {
       this.error = false;
       this.success = false;
 
-      this.$emit("reload")
+      this.$emit("reload");
       this.$emit("toggleUpload");
     },
   },

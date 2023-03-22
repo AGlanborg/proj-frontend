@@ -60,7 +60,7 @@ import Mottagande from "./create/Mottagande.vue";
 import Oh from "./create/Oh.vue";
 import Periodisering from "./create/Periodisering.vue";
 
-import form from '@/assets/scripts/requests/post'
+import { form } from '@/assets/scripts/requests/post'
 
 export default {
   name: "Main-create",

@@ -110,8 +110,10 @@ export default {
       this.shell = this.empty;
     },
     async reload() {
-      const content = await get.all();
-      this.instances = content;
+      this.instances = (await get("main")) || [];
+      this.saljare = (await get("saljare")) || [];
+      this.kopare = (await get("kopare")) || [];
+      this.arbetstyp = (await get("arbetstyp")) || [];
     },
     updContent() {
       this.shell.inprisin = parseFloat(

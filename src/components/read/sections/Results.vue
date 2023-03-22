@@ -14,7 +14,7 @@
       <p>Fakturerings<wbr />period</p>
     </div>
     <div class="valueContainer">
-      <p>Leverantör</p>
+      <p>Säljare</p>
     </div>
     <div class="valueContainer">
       <p>Köpare</p>
@@ -73,34 +73,19 @@
           {{ inst.now }}
         </p>
       </div>
-      <div class="valueContainer" v-if="saljare.includes(inst.saljare)">
+      <div class="valueContainer">
         <p>
           {{ inst.saljare }}
         </p>
       </div>
-      <div class="valueContainer" v-else>
-        <p>
-          {{ inst.saljare }}?
-        </p>
-      </div>
-      <div class="valueContainer" v-if="kopare.includes(inst.kopare)">
+      <div class="valueContainer">
         <p>
           {{ inst.kopare }}
         </p>
       </div>
-      <div class="valueContainer" v-else>
-        <p>
-          {{ inst.kopare }}?
-        </p>
-      </div>
-      <div class="valueContainer" v-if="arbetstyp.includes(inst.arbetstyp)">
+      <div class="valueContainer">
         <p>
           {{ inst.arbetstyp }}
-        </p>
-      </div>
-      <div class="valueContainer" v-else>
-        <p>
-          {{ inst.arbetstyp }}?
         </p>
       </div>
       <div class="valueContainer">

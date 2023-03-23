@@ -5,11 +5,11 @@ export default async function upload(text) {
 
     let txt = '"RST nummer för säljare", '
     txt += '"Copernicus nummer för säljare", '
-    txt += '"Kontakt person för säljare", '
+    txt += '"Kontaktperson för säljare", '
     txt += '"Namn för säljare", '
     txt += '"RST nummer för köpare", '
     txt += '"Copernicus nummer för köpare", '
-    txt += '"Kontakt person för köpare", '
+    txt += '"Kontaktperson för köpare", '
     txt += '"Namn för köpare", '
     txt += '"Tillverkare", "Förkortning för arbetstyp", ';
     txt += '"Antal Poster", "Typ", "Leverantör", ';
@@ -27,11 +27,11 @@ export default async function upload(text) {
     const arr = [
         "RST nummer för säljare",
         "Copernicus nummer för säljare",
-        "Kontakt person för säljare",
+        "Kontaktperson för säljare",
         "Namn för säljare",
         "RST nummer för köpare",
         "Copernicus nummer för köpare",
-        "Kontakt person för köpare",
+        "Kontaktperson för köpare",
         "Namn för köpare",
         "Tillverkare",
         "Förkortning för arbetstyp",

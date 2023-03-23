@@ -126,11 +126,22 @@ export default {
     handleClear() {
       this.shell = this.empty;
     },
+    handleForeign() {
+      this.instances.forEach((inst) => {
+        inst.saljare = this.saljare.find((x) => x.saljare_id == inst.saljare);
+        inst.kopare = this.kopare.find((x) => x.kopare_id == inst.kopare);
+        inst.arbetstyp = this.arbetstyp.find(
+          (x) => x.arbetstyp_id == inst.arbetstyp
+        );
+      });
+    },
     async reload() {
       this.instances = (await get("main")) || [];
       this.saljare = (await get("saljare")) || [];
       this.kopare = (await get("kopare")) || [];
       this.arbetstyp = (await get("arbetstyp")) || [];
+
+      this.handleForeign()
     },
     updContent() {
       this.shell.inprisin = parseFloat(
@@ -146,7 +157,7 @@ export default {
             100
         ) / 100
       ).toFixed(2);
-      this.shell.inpris = parseFloat(Math.round(this.shell.totalt)).toFixed(2);
+      this.shell.inpris = Math.round(this.shell.totalt);
 
       this.updPerioder();
     },
@@ -299,13 +310,7 @@ export default {
     this.kopare = (await get("kopare")) || [];
     this.arbetstyp = (await get("arbetstyp")) || [];
 
-    this.instances.forEach((inst) => {
-      inst.saljare = this.saljare.find((x) => x.saljare_id == inst.saljare);
-      inst.kopare = this.kopare.find((x) => x.kopare_id == inst.kopare);
-      inst.arbetstyp = this.arbetstyp.find(
-        (x) => x.arbetstyp_id == inst.arbetstyp
-      );
-    });
+    this.handleForeign();
 
     let now = new Date();
     if (now.getMonth().toString().length < 2) {
@@ -340,13 +345,18 @@ body {
 body,
 select,
 input,
-textarea {
+textarea,
+a {
   font-family: "Lora", "Roboto Serif", "Roboto", "Tienne", "serif";
   color: rgb(255, 255, 255);
 }
 
 button {
   all: unset;
+}
+
+a {
+  text-decoration: none;
 }
 
 .read {

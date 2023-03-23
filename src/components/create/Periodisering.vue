@@ -68,7 +68,7 @@
         disabled
         :value="shell.intakt"
       />
-      <label for="scan"> scan </label>
+      <label for="scan"> Check </label>
       <input type="number" lang="sv" id="scan" disabled :value="shell.scan" />
     </div>
     <div class="newForm"></div>

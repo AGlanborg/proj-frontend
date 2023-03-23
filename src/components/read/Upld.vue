@@ -43,11 +43,19 @@
           </textarea>
         </div>
       </div>
-      <div>
-        <p class="explainText">Ladda ner mall</p>
-        <button class="button" @click="handleDownload">Download</button>
-        <div class="redText">
-          <p v-if="red">Innehållet följer inte mallen</p>
+      <div class="downloadContainer">
+        <div>
+          <p class="explainText">Ladda ner Mall</p>
+          <button class="button" @click="handleMall">Download</button>
+          <div class="redText">
+            <p v-if="red">Innehållet följer inte mallen</p>
+          </div>
+        </div>
+        <div>
+          <p class="explainText">Öppna Instruktioner</p>
+          <a href="Instruktioner.pdf" target="_blank">
+            <button class="button">Open</button>
+          </a>
         </div>
       </div>
       <div class="instanceContainer">
@@ -71,6 +79,7 @@ import upload from "@/assets/scripts/transform/csv";
 
 export default {
   name: "Read-upload",
+  emits: ["toggleUpload", "reload"],
   data() {
     return {
       text: "",
@@ -89,6 +98,8 @@ export default {
 
       this.title =
         "Följande är innehållet av filen " + event.target.files.item(0).name;
+
+      this.red = false;
     },
     async handleUpload() {
       if (this.text && !this.red) {
@@ -108,15 +119,15 @@ export default {
         }
       }
     },
-    handleDownload() {
-      let text = '"RST nummer för säljare", '
-      text += '"Copernicus nummer för säljare", '
-      text += '"Kontakt person för säljare", '
-      text += '"Namn för säljare", '
-      text += '"RST nummer för köpare", '
-      text += '"Copernicus nummer för köpare", '
-      text += '"Kontakt person för köpare", '
-      text += '"Namn för köpare", '
+    handleMall() {
+      let text = '"RST nummer för säljare", ';
+      text += '"Copernicus nummer för säljare", ';
+      text += '"Kontaktperson för säljare", ';
+      text += '"Namn för säljare", ';
+      text += '"RST nummer för köpare", ';
+      text += '"Copernicus nummer för köpare", ';
+      text += '"Kontaktperson för köpare", ';
+      text += '"Namn för köpare", ';
       text += '"Tillverkare", "Förkortning för arbetstyp", ';
       text += '"Antal Poster", "Typ", "Leverantör", ';
       text += '"Text", "Kontaktinfo", "Valuta", ';
@@ -198,6 +209,7 @@ textarea {
   padding: 20px;
   border-radius: 5px;
   cursor: pointer;
+  user-select: none;
 }
 
 .upload {
@@ -229,8 +241,8 @@ textarea {
 }
 
 .explainText {
-  margin: 0 11.5vw 10px;
-  width: 57vw;
+  margin: 2vh 0vw 10px;
+  width: 12.5vw;
 }
 
 .disabled {
@@ -265,5 +277,11 @@ textarea {
   height: 30vh;
   width: 40vw;
   border-radius: 30px;
+}
+
+.downloadContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 </style>

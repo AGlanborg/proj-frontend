@@ -19,6 +19,7 @@
     :class="{ maxCreate: create }"
     :create="create"
     :shell="shell"
+    :empty="empty"
     @handleClear="handleClear"
     @onSaljare="onSaljare"
     @onKopare="onKopare"
@@ -59,9 +60,25 @@ export default {
       arbetstyp: [],
       shell: {
         main_id: "",
-        saljare: "",
-        kopare: "",
-        arbetstyp: "",
+        saljare: {
+          saljare_id: "",
+          rst: "",
+          copernicus: "",
+          kontakt: "",
+          name: "",
+        },
+        kopare: {
+          kopare_id: "",
+          rst: "",
+          copernicus: "",
+          kontakt: "",
+          name: "",
+        },
+        arbetstyp: {
+          arbetstyp_id: "",
+          arbetstyp: "",
+          tillverkare: "",
+        },
         antal: "1",
         typ: "",
         leverantor: "",
@@ -175,33 +192,54 @@ export default {
         this.shell.internfakt * this.shell.perioder - this.shell.inpris;
     },
     onSaljare(event) {
-      this.shell.saljare = event.target.value;
+      if (event.target.value == "Ny") {
+        this.shell.saljare = Object.assign({}, this.empty.saljare);
+        this.shell.saljare.saljare_id = "Ny";
 
-      if (this.shell.kopare == "Ny") {
-        this.shell.kopare = "";
-      }
-      if (this.shell.arbetstyp == "Ny") {
-        this.shell.arbetstyp = "";
+        if (this.shell.kopare.kopare_id == "Ny") {
+          this.shell.kopare = Object.assign({}, this.empty.kopare);
+        }
+        if (this.shell.arbetstyp.arbetstyp_id == "Ny") {
+          this.shell.arbetstyp = Object.assign({}, this.empty.arbetstyp);
+        }
+      } else {
+        this.shell.saljare = this.saljare.find(
+          (x) => x.saljare_id == event.target.value
+        );
       }
     },
     onKopare(event) {
-      this.shell.kopare = event.target.value;
+      if (event.target.value == "Ny") {
+        this.shell.kopare = Object.assign({}, this.empty.kopare);
+        this.shell.kopare.kopare_id = "Ny";
 
-      if (this.shell.saljare == "Ny") {
-        this.shell.saljare = "";
-      }
-      if (this.shell.arbetstyp == "Ny") {
-        this.shell.arbetstyp = "";
+        if (this.shell.saljare.saljare_id == "Ny") {
+          this.shell.saljare = Object.assign({}, this.empty.saljare);
+        }
+        if (this.shell.arbetstyp.arbetstyp_id == "Ny") {
+          this.shell.arbetstyp = Object.assign({}, this.empty.arbetstyp);
+        }
+      } else {
+        this.shell.kopare = this.kopare.find(
+          (x) => x.kopare_id == event.target.value
+        );
       }
     },
     onArb(event) {
-      this.shell.arbetstyp = event.target.value;
+      if (event.target.value == "Ny") {
+        this.shell.arbetstyp = Object.assign({}, this.empty.arbetstyp);
+        this.shell.arbetstyp.arbetstyp_id = "Ny";
 
-      if (this.shell.saljare == "Ny") {
-        this.shell.saljare = "";
-      }
-      if (this.shell.kopare == "Ny") {
-        this.shell.kopare = "";
+        if (this.shell.saljare.saljare_id == "Ny") {
+          this.shell.saljare = Object.assign({}, this.empty.saljare);
+        }
+        if (this.shell.kopare.kopare_id == "Ny") {
+          this.shell.kopare = Object.assign({}, this.empty.kopare);
+        }
+      } else {
+        this.shell.arbetstyp = this.arbetstyp.find(
+          (x) => x.arbetstyp_id == event.target.value
+        );
       }
     },
     onTyp(event) {
@@ -260,6 +298,14 @@ export default {
     this.saljare = (await get("saljare")) || [];
     this.kopare = (await get("kopare")) || [];
     this.arbetstyp = (await get("arbetstyp")) || [];
+
+    this.instances.forEach((inst) => {
+      inst.saljare = this.saljare.find((x) => x.saljare_id == inst.saljare);
+      inst.kopare = this.kopare.find((x) => x.kopare_id == inst.kopare);
+      inst.arbetstyp = this.arbetstyp.find(
+        (x) => x.arbetstyp_id == inst.arbetstyp
+      );
+    });
 
     let now = new Date();
     if (now.getMonth().toString().length < 2) {

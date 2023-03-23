@@ -74,18 +74,24 @@
         </p>
       </div>
       <div class="valueContainer">
-        <p>
-          {{ inst.saljare }}
+        <p v-if="inst.saljare.name">
+          {{ inst.saljare.rst }}
+        </p>
+        <p v-else>
+          {{ inst.saljare.copernicus }}
+        </p>
+      </div>
+      <div class="valueContainer">
+        <p v-if="inst.kopare.name">
+          {{ inst.kopare.rst }}
+        </p>
+        <p v-else>
+          {{ inst.kopare.copernicus }}
         </p>
       </div>
       <div class="valueContainer">
         <p>
-          {{ inst.kopare }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.arbetstyp }}
+          {{ inst.arbetstyp.arbetstyp }}
         </p>
       </div>
       <div class="valueContainer">

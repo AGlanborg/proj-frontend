@@ -29,6 +29,7 @@
       </div>
       <Mottagande
         :shell="shell"
+        :empty="empty"
         @onSaljare="onSaljare"
         @onKopare="onKopare"
         @onArb="onArb"
@@ -72,6 +73,7 @@ export default {
   props: {
     create: Boolean,
     shell: Object,
+    empty: Object,
   },
   data() {
     return {

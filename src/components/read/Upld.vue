@@ -52,8 +52,12 @@
           </div>
         </div>
         <div>
+          <p class="explainText">Ladda ner Exempel</p>
+          <button class="button" @click="handleExample">Download</button>
+        </div>
+        <div>
           <p class="explainText">Öppna Instruktioner</p>
-          <a href="Instruktioner.pdf" target="_blank">
+          <a href="./Instruktioner.pdf" target="_blank">
             <button class="button">Open</button>
           </a>
         </div>
@@ -76,6 +80,8 @@
 
 <script>
 import upload from "@/assets/scripts/transform/csv";
+import mall from "@/assets/scripts/csv/mall";
+import exmaple from "@/assets/scripts/csv/example";
 
 export default {
   name: "Read-upload",
@@ -120,29 +126,12 @@ export default {
       }
     },
     handleMall() {
-      let text = '"RST nummer för säljare", ';
-      text += '"Copernicus nummer för säljare", ';
-      text += '"Kontaktperson för säljare", ';
-      text += '"Namn för säljare", ';
-      text += '"RST nummer för köpare", ';
-      text += '"Copernicus nummer för köpare", ';
-      text += '"Kontaktperson för köpare", ';
-      text += '"Namn för köpare", ';
-      text += '"Tillverkare", "Förkortning för arbetstyp", ';
-      text += '"Antal Poster", "Typ", "Leverantör", ';
-      text += '"Text", "Kontaktinfo", "Valuta", ';
-      text += '"Antal licenser", "Inpris ex. moms", ';
-      text += '"Inpris inkl. moms", "Procent (%)", "OH", ';
-      text += '"Totalt inkl. moms och OH", "Fakturanummer", ';
-      text += '"Kommentar", "Internpris", ';
-      text += '"Periodisering Start", "Periodisering Slut", ';
-      text += '"Periodisering antal månader", ';
-      text += '"Antal månader upfront", ';
-      text += '"Antal månader resterande", ';
-      text += '"Internfakt. per period", "Intakt", ';
-      text += '"Check", "Faktureringsperiod"';
+      let csvContent = "data:text/csv;charset=utf-8," + mall();
 
-      let csvContent = "data:text/csv;charset=utf-8," + text;
+      window.open(encodeURI(csvContent));
+    },
+    handleExample() {
+      let csvContent = "data:text/csv;charset=utf-8," + exmaple();
 
       window.open(encodeURI(csvContent));
     },

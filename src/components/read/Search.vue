@@ -14,13 +14,13 @@
     <div class="titleContainer">
       <button class="title" @click="title = !title">
         <h2>
-          Search<span class="material-icons" :class="title ? 'open' : ''"
+          Search<span class="material-icons" :class="{open: title}"
             >keyboard_arrow_up</span
           >
         </h2>
       </button>
     </div>
-    <div class="explain" :class="title ? 'expand' : ''">
+    <div class="explain" :class="{expand: title}">
       <p class="explainText">
         Under denna rubrik kan du se all data som är sparad i databasen. Använd
         valalternativen under <strong>Categories</strong> rubriken och sökfältet

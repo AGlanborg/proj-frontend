@@ -29,7 +29,7 @@
       <p>Kostnad</p>
     </div>
     <div class="headerTextContainer">
-      <p>Text</p>
+      <p>Text På Internfaktura</p>
     </div>
     <div class="buttonContainer">
       <abbr title="Download seleced items">

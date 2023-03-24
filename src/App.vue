@@ -204,14 +204,14 @@ export default {
     },
     onSaljare(event) {
       if (event.target.value == "Ny") {
-        this.shell.saljare = Object.assign({}, this.empty.saljare);
+        this.shell.saljare = {...this.empty.saljare};
         this.shell.saljare.saljare_id = "Ny";
 
         if (this.shell.kopare.kopare_id == "Ny") {
-          this.shell.kopare = Object.assign({}, this.empty.kopare);
+          this.shell.kopare = {...this.empty.kopare};
         }
         if (this.shell.arbetstyp.arbetstyp_id == "Ny") {
-          this.shell.arbetstyp = Object.assign({}, this.empty.arbetstyp);
+          this.shell.arbetstyp = {...this.empty.arbetstyp};
         }
       } else {
         this.shell.saljare = this.saljare.find(
@@ -221,14 +221,14 @@ export default {
     },
     onKopare(event) {
       if (event.target.value == "Ny") {
-        this.shell.kopare = Object.assign({}, this.empty.kopare);
+        this.shell.kopare = {...this.empty.kopare};
         this.shell.kopare.kopare_id = "Ny";
 
         if (this.shell.saljare.saljare_id == "Ny") {
-          this.shell.saljare = Object.assign({}, this.empty.saljare);
+          this.shell.saljare = {...this.empty.salj1are};
         }
         if (this.shell.arbetstyp.arbetstyp_id == "Ny") {
-          this.shell.arbetstyp = Object.assign({}, this.empty.arbetstyp);
+          this.shell.arbetstyp = {...this.empty.arbetstyp};
         }
       } else {
         this.shell.kopare = this.kopare.find(
@@ -238,14 +238,14 @@ export default {
     },
     onArb(event) {
       if (event.target.value == "Ny") {
-        this.shell.arbetstyp = Object.assign({}, this.empty.arbetstyp);
+        this.shell.arbetstyp = {...this.empty.arbetstyp};
         this.shell.arbetstyp.arbetstyp_id = "Ny";
 
         if (this.shell.saljare.saljare_id == "Ny") {
-          this.shell.saljare = Object.assign({}, this.empty.saljare);
+          this.shell.saljare = {...this.empty.saljare};
         }
         if (this.shell.kopare.kopare_id == "Ny") {
-          this.shell.kopare = Object.assign({}, this.empty.kopare);
+          this.shell.kopare = {...this.empty.kopare};
         }
       } else {
         this.shell.arbetstyp = this.arbetstyp.find(
@@ -322,7 +322,7 @@ export default {
     this.shell.start = now;
     this.shell.slut = now;
     this.shell.now = now;
-    this.empty = this.shell;
+    this.empty = {...this.shell};
 
     this.updContent();
     this.updPerioder();

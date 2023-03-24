@@ -97,8 +97,11 @@
         </p>
       </div>
       <div class="valueContainer">
-        <p>
-          {{ inst.fakturanum }}
+        <p v-if="inst.kopare.name">
+          {{ inst.kopare.rst }}
+        </p>
+        <p v-else>
+          {{ inst.kopare.copernicus }}
         </p>
       </div>
       <div class="textContainer">

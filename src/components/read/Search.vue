@@ -14,13 +14,13 @@
     <div class="titleContainer">
       <button class="title" @click="title = !title">
         <h2>
-          Search<span class="material-icons" :class="{open: title}"
+          Search<span class="material-icons" :class="{ open: title }"
             >keyboard_arrow_up</span
           >
         </h2>
       </button>
     </div>
-    <div class="explain" :class="{expand: title}">
+    <div class="explain" :class="{ expand: title }">
       <p class="explainText">
         Under denna rubrik kan du se all data som är sparad i databasen. Använd
         valalternativen under <strong>Categories</strong> rubriken och sökfältet
@@ -38,18 +38,19 @@
       </div>
       <div class="formatContainer">
         <label for="format"> Välj Raport </label>
-        <select id="format">
-          <option>Summering verifikationer</option>
-          <option>Periodiserad leverantörsfakturor</option>
-          <option>Totala kostnaden per tillverkare</option>
+        <select id="format" v-model="rapport">
+          <option value="1">Summering verifikationer</option>
+          <option value="2">Periodiserad leverantörsfakturor</option>
+          <option value="3">Totala kostnaden per tillverkare</option>
         </select>
       </div>
     </div>
     <div
       class="resultContainer"
-      :class="{ heightResult: title, widthResult: category }"
+      :class="{ heightResult: title, widthResult: category, resultScroll: rapport == '2' }"
     >
-      <Results
+      <Verifikationer
+        v-if="rapport == '1'"
         :category="category"
         :instances="instances"
         :title="title"
@@ -62,17 +63,34 @@
         @toggleUpload="$emit('toggleUpload')"
         @toggleCreate="$emit('toggleCreate')"
       />
+      <Leverantorfakturor
+        v-if="rapport == '2'"
+        :category="category"
+        :instances="instances"
+        :title="title"
+        :saljare="saljare"
+        :kopare="kopare"
+        :arbetstyp="arbetstyp"
+        :now="now"
+        @handleCopy="handleCopy"
+        @handleEdit="handleEdit"
+        @handleRemove="handleRemove"
+        @toggleUpload="$emit('toggleUpload')"
+        @toggleCreate="$emit('toggleCreate')"
+      />
     </div>
   </main>
 </template>
 
 <script>
-import Results from "./sections/Results.vue";
+import Verifikationer from "./sections/rapporter/Verifikationer.vue";
+import Leverantorfakturor from './sections/rapporter/Leverantorfakturor.vue';
 
 export default {
   name: "Read-search",
   components: {
-    Results,
+    Verifikationer,
+    Leverantorfakturor,
   },
   props: {
     category: Boolean,
@@ -81,11 +99,13 @@ export default {
     saljare: Array,
     kopare: Array,
     arbetstyp: Array,
+    now: String,
   },
   data() {
     return {
       title: false,
       search: "",
+      rapport: "1",
     };
   },
   methods: {
@@ -295,5 +315,9 @@ abbr {
 .check {
   user-select: none;
   font-size: 3vh;
+}
+
+.resultScroll {
+  overflow: scroll;
 }
 </style>

@@ -32,6 +32,7 @@
       :saljare="saljare"
       :kopare="kopare"
       :arbetstyp="arbetstyp"
+      :now="now"
       @handleCopy="handleCopy"
       @handleEdit="handleEdit"
       @handleRemove="handleRemove"
@@ -44,9 +45,9 @@
 <script>
 import Categories from "./read/Categories.vue";
 import Search from "./read/Search.vue";
-import Remove from "./read/Remove.vue";
-import Upld from "./read/Upld.vue";
-import Sure from "./read/Sure.vue";
+import Remove from "./covers/Remove.vue";
+import Upld from "./covers/Upld.vue";
+import Sure from "./covers/Sure.vue";
 
 export default {
   name: "Main-read",
@@ -59,6 +60,7 @@ export default {
   },
   props: {
     create: Boolean,
+    now: String,
     instances: Array,
     shell: Object,
     saljare: Array,

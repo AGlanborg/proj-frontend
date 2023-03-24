@@ -9,6 +9,7 @@
     :kopare="kopare"
     :arbetstyp="arbetstyp"
     :empty="empty"
+    :now="now"
     @toggleCreate="create = !create"
     @handleCopy="handleCopy"
     @handleEdit="handleEdit"
@@ -54,6 +55,7 @@ export default {
   data() {
     return {
       create: false,
+      now: "",
       instances: [],
       saljare: [],
       kopare: [],
@@ -322,6 +324,7 @@ export default {
     this.shell.start = now;
     this.shell.slut = now;
     this.shell.now = now;
+    this.now = now;
     this.empty = {...this.shell};
 
     this.updContent();

@@ -52,7 +52,8 @@
       />
       <Periodisering :shell="shell" @onStart="onStart" @onSlut="onSlut" />
       <div class="createButtonContainer">
-        <button class="createButton" @click="handleCreate">Create</button>
+        <button class="createButton" @click="handleUpdate" v-if="shell.main_id">Update</button>
+        <button class="createButton" @click="handleCreate" v-else >Create</button>
         <button class="createButton clear" @click="$emit('handleClear')">Clear</button>
       </div>
     </div>
@@ -65,6 +66,7 @@ import Oh from "./create/Oh.vue";
 import Periodisering from "./create/Periodisering.vue";
 
 import { form } from '@/assets/scripts/requests/post'
+import put from '@/assets/scripts/requests/put'
 
 export default {
   name: "Main-create",
@@ -103,6 +105,19 @@ export default {
       text = text.substring(0, text.length - 1)
 
       await form({data: text}, "main")
+
+      this.$emit('handleClear')
+      this.$emit('reload')
+      this.$emit('toggleCreate')
+    },
+    async handleUpdate() {
+      let obj = {...this.shell}
+
+      obj.saljare = this.shell.saljare.saljare_id
+      obj.kopare = this.shell.kopare.kopare_id
+      obj.arbetstyp = this.shell.arbetstyp.arbetstyp_id
+
+      await put({data: obj}, "main")
 
       this.$emit('handleClear')
       this.$emit('reload')

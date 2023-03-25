@@ -148,7 +148,7 @@ export default {
       this.kopare = (await get("kopare")) || [];
       this.arbetstyp = (await get("arbetstyp")) || [];
 
-      this.handleForeign()
+      this.handleForeign();
     },
     updContent() {
       this.shell.inprisin = parseFloat(
@@ -211,48 +211,44 @@ export default {
     },
     onSaljare(value) {
       if (value == "Ny") {
-        this.shell.saljare = {...this.empty.saljare};
+        this.shell.saljare = { ...this.empty.saljare };
         this.shell.saljare.saljare_id = "Ny";
 
         if (this.shell.kopare.kopare_id == "Ny") {
-          this.shell.kopare = {...this.empty.kopare};
+          this.shell.kopare = { ...this.empty.kopare };
         }
         if (this.shell.arbetstyp.arbetstyp_id == "Ny") {
-          this.shell.arbetstyp = {...this.empty.arbetstyp};
+          this.shell.arbetstyp = { ...this.empty.arbetstyp };
         }
       } else {
-        this.shell.saljare = this.saljare.find(
-          (x) => x.saljare_id == value
-        );
+        this.shell.saljare = this.saljare.find((x) => x.saljare_id == value);
       }
     },
     onKopare(value) {
       if (value == "Ny") {
-        this.shell.kopare = {...this.empty.kopare};
+        this.shell.kopare = { ...this.empty.kopare };
         this.shell.kopare.kopare_id = "Ny";
 
         if (this.shell.saljare.saljare_id == "Ny") {
-          this.shell.saljare = {...this.empty.salj1are};
+          this.shell.saljare = { ...this.empty.salj1are };
         }
         if (this.shell.arbetstyp.arbetstyp_id == "Ny") {
-          this.shell.arbetstyp = {...this.empty.arbetstyp};
+          this.shell.arbetstyp = { ...this.empty.arbetstyp };
         }
       } else {
-        this.shell.kopare = this.kopare.find(
-          (x) => x.kopare_id == value
-        );
+        this.shell.kopare = this.kopare.find((x) => x.kopare_id == value);
       }
     },
     onArb(value) {
       if (value == "Ny") {
-        this.shell.arbetstyp = {...this.empty.arbetstyp};
+        this.shell.arbetstyp = { ...this.empty.arbetstyp };
         this.shell.arbetstyp.arbetstyp_id = "Ny";
 
         if (this.shell.saljare.saljare_id == "Ny") {
-          this.shell.saljare = {...this.empty.saljare};
+          this.shell.saljare = { ...this.empty.saljare };
         }
         if (this.shell.kopare.kopare_id == "Ny") {
-          this.shell.kopare = {...this.empty.kopare};
+          this.shell.kopare = { ...this.empty.kopare };
         }
       } else {
         this.shell.arbetstyp = this.arbetstyp.find(
@@ -330,7 +326,27 @@ export default {
     this.shell.slut = now;
     this.shell.now = now;
     this.now = now;
-    this.empty = {...this.shell};
+    this.empty = { ...this.shell };
+
+    this.empty.saljare = {
+      saljare_id: "",
+      rst: "",
+      copernicus: "",
+      kontakt: "",
+      name: "",
+    };
+    this.empty.kopare = {
+      kopare_id: "",
+      rst: "",
+      copernicus: "",
+      kontakt: "",
+      name: "",
+    };
+    this.empty.arbetstyp = {
+      arbetstyp_id: "",
+      arbetstyp: "",
+      tillverkare: "",
+    };
 
     this.updContent();
     this.updPerioder();

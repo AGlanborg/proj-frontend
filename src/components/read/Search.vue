@@ -42,6 +42,7 @@
           <option value="1">Summering verifikationer</option>
           <option value="2">Periodiserad leverantörsfakturor</option>
           <option value="3">Periodiserad OH intäkt</option>
+          <option value="0">Raw data</option>
         </select>
       </div>
     </div>
@@ -50,7 +51,7 @@
       :class="{
         heightResult: title,
         widthResult: category,
-        resultScroll: rapport != '1',
+        resultScroll: ['0', '2', '3'].includes(rapport),
       }"
     >
       <Verifikationer
@@ -97,6 +98,21 @@
         @toggleUpload="$emit('toggleUpload')"
         @toggleCreate="$emit('toggleCreate')"
       />
+      <Raw
+        v-if="rapport == '0'"
+        :category="category"
+        :instances="instances"
+        :title="title"
+        :saljare="saljare"
+        :kopare="kopare"
+        :arbetstyp="arbetstyp"
+        :now="now"
+        @handleCopy="handleCopy"
+        @handleEdit="handleEdit"
+        @handleRemove="handleRemove"
+        @toggleUpload="$emit('toggleUpload')"
+        @toggleCreate="$emit('toggleCreate')"
+      />
     </div>
   </main>
 </template>
@@ -105,6 +121,7 @@
 import Verifikationer from "./sections/rapporter/Verifikationer.vue";
 import Leverantorfakturor from "./sections/rapporter/Leverantorfakturor.vue";
 import OHintakt from "./sections/rapporter/OHintakt.vue";
+import Raw from "./sections/rapporter/Raw.vue";
 
 export default {
   name: "Read-search",
@@ -112,6 +129,7 @@ export default {
     Verifikationer,
     Leverantorfakturor,
     OHintakt,
+    Raw,
   },
   props: {
     category: Boolean,

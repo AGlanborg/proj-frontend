@@ -109,7 +109,7 @@
         :value="shell.leverantor"
         @input="$emit('onLeve', $event)"
       />
-      <label for="text"> Text </label>
+      <label for="text"> Text På Internfaktura </label>
       <textarea id="text" :value="shell.text" @input="$emit('onText', $event)">
       </textarea>
       <label for="info"> Kontaktinfo </label>

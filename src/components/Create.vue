@@ -40,7 +40,6 @@
         @onLeve="onLeve"
         @onText="onText"
         @onInfo="onInfo"
-        @reload="$emit('reload')"
       />
       <Oh
         :shell="shell"
@@ -88,20 +87,26 @@ export default {
     };
   },
   methods: {
-    handleCreate() {
+    async handleCreate() {
       const values = Object.values(this.shell)
-      let check = false
+
+      let text = `'${this.shell.saljare.saljare_id}',`
+      text += `'${this.shell.kopare.kopare_id}',`
+      text += `'${this.shell.arbetstyp.arbetstyp_id}',`
+
+      values.splice(0, 4)
 
       for(let i = 0; i < values.length; i += 1) {
-        if (!values[i]) {
-          check = true
-          break
-        }
+        text += `'${values[i]}',`
       }
 
-      if (!check) {
-        form(this.shell, "main")
-      }
+      text = text.substring(0, text.length - 1)
+
+      await form({data: text}, "main")
+
+      this.$emit('handleClear')
+      this.$emit('reload')
+      this.$emit('toggleCreate')
     },
     onSaljare(value) {
       this.$emit("onSaljare", value);

@@ -24,6 +24,7 @@
     :saljare="saljare"
     :kopare="kopare"
     :arbetstyp="arbetstyp"
+    @toggleCreate="create = !create"
     @handleClear="handleClear"
     @onSaljare="onSaljare"
     @onKopare="onKopare"

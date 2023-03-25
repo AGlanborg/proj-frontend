@@ -10,7 +10,7 @@
       <select
         id="valuta"
         :value="shell.valuta"
-        @change="$emit('onValuta', $event)"
+        @change="$emit('onValuta', $event.target.value)"
       >
         <option>SEK</option>
       </select>
@@ -21,7 +21,7 @@
         lang="sv"
         id="mangd"
         :value="shell.mangd"
-        @input="$emit('onMangd', $event)"
+        @input="$emit('onMangd', $event.target.value)"
       />
       <label for="inprisex"> Inpris ex. moms </label>
       <input
@@ -30,7 +30,7 @@
         lang="sv"
         id="inprisex"
         :value="shell.inprisex"
-        @input="$emit('onInprisex', $event)"
+        @input="$emit('onInprisex', $event.target.value)"
       />
       <label for="inprisin"> Inpris inkl. moms </label>
       <input
@@ -48,7 +48,7 @@
         lang="sv"
         id="procent"
         :value="shell.procent"
-        @input="$emit('onProcent', $event)"
+        @input="$emit('onProcent', $event.target.value)"
       />
       <label for="oh"> OH </label>
       <input
@@ -75,7 +75,7 @@
         id="fakturanum"
         placeholder="..."
         :value="shell.fakturanum"
-        @input="$emit('onFakturanum', $event)"
+        @input="$emit('onFakturanum', $event.target.value)"
       />
       <label for="kommentar"> Kommentar </label>
       <input
@@ -84,7 +84,7 @@
         id="kommentar"
         placeholder="..."
         :value="shell.kommentar"
-        @input="$event('onKommentar', $event)"
+        @input="$event.target.value('onKommentar', $event.target.value)"
       />
     </div>
     <div class="newForm"></div>

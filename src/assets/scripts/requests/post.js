@@ -19,7 +19,7 @@ export async function csv(data) {
 }
 
 export async function form(data, url) {
-    const response = await fetch(`${config.URL}/crud/read/form/${url}`, {
+    const response = await fetch(`${config.URL}/crud/create/form/${url}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

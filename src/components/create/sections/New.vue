@@ -55,12 +55,14 @@
         type="button"
         :value="'Skapa ' + rst"
         :class="{disabeled: !filled}"
+        @click="create"
         v-if="chosen"
       />
       <input
         type="button"
         :value="'Skapa ' + cop"
         :class="{disabeled: !filled}"
+        @click="create"
         v-else
       />
     </div>
@@ -68,6 +70,8 @@
 </template>
 
 <script>
+import { form } from "@/assets/scripts/requests/post"
+
 export default {
   name: "Create-new",
   props: {
@@ -91,6 +95,15 @@ export default {
         this.filled = false;
       }
     },
+    async create() {
+      if(this.filled) {
+        const data = {data: `'${this.rst}','${this.cop}','${this.kontakt}','${this.chosen ? 1 : 0}'`}
+
+        await form(data, this.rep)
+
+        this.$emit("createNew")
+      }
+    }
   }
 };
 </script>

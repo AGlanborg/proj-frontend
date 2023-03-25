@@ -29,13 +29,16 @@
       <input
         type="button"
         :value="'Skapa ' + forkortning"
-        :class="filled ? '' : 'disabeled'"
+        :class="{disabeled: !filled}"
+        @click="create"
       />
     </div>
   </div>
 </template>
 
 <script>
+import { form } from "@/assets/scripts/requests/post"
+
 export default {
   name: "Create-new",
   data() {
@@ -53,6 +56,15 @@ export default {
         this.filled = false;
       }
     },
+    async create() {
+      if(this.filled) {
+        const data = {data: `'${this.tillverkare}','${this.forkortning}'`}
+
+        await form(data, 'arbetstyp')
+
+        this.$emit("createArbetstyp")
+      }
+    }
   },
 };
 </script>

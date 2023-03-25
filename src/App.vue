@@ -21,6 +21,9 @@
     :create="create"
     :shell="shell"
     :empty="empty"
+    :saljare="saljare"
+    :kopare="kopare"
+    :arbetstyp="arbetstyp"
     @handleClear="handleClear"
     @onSaljare="onSaljare"
     @onKopare="onKopare"
@@ -37,6 +40,7 @@
     @onKommentar="onKommentar"
     @onStart="onStart"
     @onSlut="onSlut"
+    @reload="reload"
   />
 </template>
 
@@ -204,8 +208,8 @@ export default {
       this.shell.scan =
         this.shell.internfakt * this.shell.perioder - this.shell.inpris;
     },
-    onSaljare(event) {
-      if (event.target.value == "Ny") {
+    onSaljare(value) {
+      if (value == "Ny") {
         this.shell.saljare = {...this.empty.saljare};
         this.shell.saljare.saljare_id = "Ny";
 
@@ -217,12 +221,12 @@ export default {
         }
       } else {
         this.shell.saljare = this.saljare.find(
-          (x) => x.saljare_id == event.target.value
+          (x) => x.saljare_id == value
         );
       }
     },
-    onKopare(event) {
-      if (event.target.value == "Ny") {
+    onKopare(value) {
+      if (value == "Ny") {
         this.shell.kopare = {...this.empty.kopare};
         this.shell.kopare.kopare_id = "Ny";
 
@@ -234,12 +238,12 @@ export default {
         }
       } else {
         this.shell.kopare = this.kopare.find(
-          (x) => x.kopare_id == event.target.value
+          (x) => x.kopare_id == value
         );
       }
     },
-    onArb(event) {
-      if (event.target.value == "Ny") {
+    onArb(value) {
+      if (value == "Ny") {
         this.shell.arbetstyp = {...this.empty.arbetstyp};
         this.shell.arbetstyp.arbetstyp_id = "Ny";
 
@@ -251,12 +255,12 @@ export default {
         }
       } else {
         this.shell.arbetstyp = this.arbetstyp.find(
-          (x) => x.arbetstyp_id == event.target.value
+          (x) => x.arbetstyp_id == value
         );
       }
     },
-    onTyp(event) {
-      this.shell.typ = event.target.value;
+    onTyp(value) {
+      this.shell.typ = value;
 
       if (this.shell.text.split(" ")[0].includes("kostnad")) {
         this.shell.text =
@@ -267,42 +271,42 @@ export default {
         this.shell.text = this.shell.typ + "kostnad " + this.shell.text;
       }
     },
-    onLeve(event) {
-      this.shell.leverantor = event.target.value;
+    onLeve(value) {
+      this.shell.leverantor = value;
     },
-    onText(event) {
-      this.shell.text = event.target.value;
+    onText(value) {
+      this.shell.text = value;
     },
-    onInfo(event) {
-      this.shell.info = event.target.value;
+    onInfo(value) {
+      this.shell.info = value;
     },
-    onValuta(event) {
-      this.shell.valuta = event.target.value;
+    onValuta(value) {
+      this.shell.valuta = value;
     },
-    onMangd(event) {
-      this.shell.mangd = event.target.value;
+    onMangd(value) {
+      this.shell.mangd = value;
       this.updContent();
     },
-    onInprisex(event) {
-      this.shell.inprisex = event.target.value;
+    onInprisex(value) {
+      this.shell.inprisex = value;
       this.updContent();
     },
-    onProcent(event) {
-      this.shell.procent = event.target.value;
+    onProcent(value) {
+      this.shell.procent = value;
       this.updContent();
     },
-    onFakturanum(event) {
-      this.shell.fakturanum = event.target.value;
+    onFakturanum(value) {
+      this.shell.fakturanum = value;
     },
-    onKommentar(event) {
-      this.shell.kommentar = event.target.value;
+    onKommentar(value) {
+      this.shell.kommentar = value;
     },
-    onStart(event) {
-      this.shell.start = event.target.value;
+    onStart(value) {
+      this.shell.start = value;
       this.updPerioder();
     },
-    onSlut(event) {
-      this.shell.slut = event.target.value;
+    onSlut(value) {
+      this.shell.slut = value;
       this.updPerioder();
     },
   },

@@ -30,6 +30,9 @@
       <Mottagande
         :shell="shell"
         :empty="empty"
+        :saljare="saljare"
+        :kopare="kopare"
+        :arbetstyp="arbetstyp"
         @onSaljare="onSaljare"
         @onKopare="onKopare"
         @onArb="onArb"
@@ -37,6 +40,7 @@
         @onLeve="onLeve"
         @onText="onText"
         @onInfo="onInfo"
+        @reload="$emit('reload')"
       />
       <Oh
         :shell="shell"
@@ -74,6 +78,9 @@ export default {
     create: Boolean,
     shell: Object,
     empty: Object,
+    saljare: Array,
+    kopare: Array,
+    arbetstyp: Array,
   },
   data() {
     return {
@@ -96,50 +103,50 @@ export default {
         form(this.shell, "main")
       }
     },
-    onSaljare(event) {
-      this.$emit("onSaljare", event);
+    onSaljare(value) {
+      this.$emit("onSaljare", value);
     },
-    onKopare(event) {
-      this.$emit("onKopare", event);
+    onKopare(value) {
+      this.$emit("onKopare", value);
     },
-    onArb(event) {
-      this.$emit("onArb", event);
+    onArb(value) {
+      this.$emit("onArb", value);
     },
-    onTyp(event) {
-      this.$emit("onTyp", event);
+    onTyp(value) {
+      this.$emit("onTyp", value);
     },
-    onLeve(event) {
-      this.$emit("onLeve", event);
+    onLeve(value) {
+      this.$emit("onLeve", value);
     },
-    onText(event) {
-      this.$emit("onText", event);
+    onText(value) {
+      this.$emit("onText", value);
     },
-    onInfo(event) {
-      this.$emit("onInfo", event);
+    onInfo(value) {
+      this.$emit("onInfo", value);
     },
-    onValuta(event) {
-      this.$emit("onValuta", event);
+    onValuta(value) {
+      this.$emit("onValuta", value);
     },
-    onMangd(event) {
-      this.$emit("onMangd", event);
+    onMangd(value) {
+      this.$emit("onMangd", value);
     },
-    onInprisex(event) {
-      this.$emit("onInprisex", event);
+    onInprisex(value) {
+      this.$emit("onInprisex", value);
     },
-    onProcent(event) {
-      this.$emit("onProcent", event);
+    onProcent(value) {
+      this.$emit("onProcent", value);
     },
-    onFakturanum(event) {
-      this.$emit("onFakturanum", event);
+    onFakturanum(value) {
+      this.$emit("onFakturanum", value);
     },
-    onKommentar(event) {
-      this.$emit("onKommentar", event);
+    onKommentar(value) {
+      this.$emit("onKommentar", value);
     },
-    onStart(event) {
-      this.$emit("onStart", event);
+    onStart(value) {
+      this.$emit("onStart", value);
     },
-    onSlut(event) {
-      this.$emit("onSlut", event);
+    onSlut(value) {
+      this.$emit("onSlut", value);
     },
   },
 };

@@ -23,7 +23,7 @@
         id="start"
         :min="shell.now"
         :value="shell.start"
-        @input="$emit('onStart', $event)"
+        @input="$emit('onStart', $event.target.value)"
       />
       <label for="slut"> Periodisering Slut </label>
       <input
@@ -32,7 +32,7 @@
         id="slut"
         :min="shell.now"
         :value="shell.slut"
-        @input="$emit('onSlut', $event)"
+        @input="$emit('onSlut', $event.target.value)"
       />
       <label for="perioder"> Periodisering antal månader </label>
       <input

@@ -9,18 +9,24 @@
       <div class="instanceContainer">
         <div class="detailsContainer">
           <div class="detail">
-            <p>
-              {{ instance.saljare }}
+            <p v-if="instance.saljare.name == '1'">
+              {{ instance.saljare.rst }}
+            </p>
+            <p v-else >
+              {{ instance.saljare.copernicus }}
+            </p>
+          </div>
+          <div class="detail">
+            <p v-if="instance.kopare.name == '1'">
+              {{ instance.kopare.rst }}
+            </p>
+            <p v-else >
+              {{ instance.kopare.copernicus }}
             </p>
           </div>
           <div class="detail">
             <p>
-              {{ instance.kopare }}
-            </p>
-          </div>
-          <div class="detail">
-            <p>
-              {{ instance.arbetstyp }}
+              {{ instance.arbetstyp.arbetstyp }}
             </p>
           </div>
           <div class="detail">
@@ -41,18 +47,16 @@
         </div>
       </div>
       <div class="buttonContainer">
-        <button class="button delete">
-          DELETE
-        </button>
-        <button class="button" @click="$emit('handleRemove')">
-          BACK
-        </button>
+        <button class="button delete" @click="handleDelete">DELETE</button>
+        <button class="button" @click="$emit('handleRemove')">BACK</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import remove from '@/assets/scripts/requests/remove'
+
 export default {
   name: "Read-delete",
   props: {
@@ -61,14 +65,73 @@ export default {
   },
   data() {
     return {
-      instance: {},
+      instance: {
+        main_id: "",
+        saljare: {
+          saljare_id: "",
+          rst: "",
+          copernicus: "",
+          kontakt: "",
+          name: "",
+        },
+        kopare: {
+          kopare_id: "",
+          rst: "",
+          copernicus: "",
+          kontakt: "",
+          name: "",
+        },
+        arbetstyp: {
+          arbetstyp_id: "",
+          arbetstyp: "",
+          tillverkare: "",
+        },
+        antal: "1",
+        typ: "",
+        leverantor: "",
+        text: "",
+        info: "Vid frågor maila Licensdesken xxx@xxx.se",
+        valuta: "SEK",
+        mangd: "1",
+        inprisex: "0",
+        inprisin: "0",
+        procent: "5",
+        oh: "0",
+        totalt: "0",
+        fakturanum: "",
+        kommentar: "",
+        inpris: "0",
+        start: "",
+        slut: "",
+        perioder: "0",
+        internfakt: "0",
+        upfront: "0",
+        rest: "0",
+        intakt: "0",
+        scan: "0",
+        now: "",
+      },
       text: "",
     };
+  },
+  methods: {
+    async handleDelete() {
+      let obj = {}
+
+      obj.tabel = 'main'
+      obj.id = this.selectedRemove
+
+      await remove({data: obj}, 'main')
+
+      this.$emit('reload')
+      this.$emit('handleRemove')
+    }
   },
   mounted() {
     this.instance = this.instances.find(
       (inst) => inst.main_id == this.selectedRemove
     );
+
     this.text = this.instance.text.replaceAll("\n", ". ");
   },
 };

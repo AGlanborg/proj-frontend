@@ -5,6 +5,7 @@
       :instances="instances"
       :selectedRemove="selectedRemove"
       @handleRemove="handleRemove"
+      @reload="$emit('reload')"
     />
     <Upld
       v-if="upload"
@@ -106,7 +107,7 @@ export default {
       this.id = "";
     },
     handleRemove(id) {
-      this.remove ? (this.remove = false) : (this.remove = true);
+      this.remove = !this.remove;
       this.selectedRemove
         ? (this.selectedRemove = 0)
         : (this.selectedRemove = id);

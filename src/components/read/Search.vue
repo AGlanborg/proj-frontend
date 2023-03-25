@@ -41,13 +41,17 @@
         <select id="format" v-model="rapport">
           <option value="1">Summering verifikationer</option>
           <option value="2">Periodiserad leverantörsfakturor</option>
-          <option value="3">Totala kostnaden per tillverkare</option>
+          <option value="3">Periodiserad OH intäkt</option>
         </select>
       </div>
     </div>
     <div
       class="resultContainer"
-      :class="{ heightResult: title, widthResult: category, resultScroll: rapport == '2' }"
+      :class="{
+        heightResult: title,
+        widthResult: category,
+        resultScroll: rapport != '1',
+      }"
     >
       <Verifikationer
         v-if="rapport == '1'"
@@ -78,19 +82,36 @@
         @toggleUpload="$emit('toggleUpload')"
         @toggleCreate="$emit('toggleCreate')"
       />
+      <OHintakt
+        v-if="rapport == '3'"
+        :category="category"
+        :instances="instances"
+        :title="title"
+        :saljare="saljare"
+        :kopare="kopare"
+        :arbetstyp="arbetstyp"
+        :now="now"
+        @handleCopy="handleCopy"
+        @handleEdit="handleEdit"
+        @handleRemove="handleRemove"
+        @toggleUpload="$emit('toggleUpload')"
+        @toggleCreate="$emit('toggleCreate')"
+      />
     </div>
   </main>
 </template>
 
 <script>
 import Verifikationer from "./sections/rapporter/Verifikationer.vue";
-import Leverantorfakturor from './sections/rapporter/Leverantorfakturor.vue';
+import Leverantorfakturor from "./sections/rapporter/Leverantorfakturor.vue";
+import OHintakt from "./sections/rapporter/OHintakt.vue";
 
 export default {
   name: "Read-search",
   components: {
     Verifikationer,
     Leverantorfakturor,
+    OHintakt,
   },
   props: {
     category: Boolean,

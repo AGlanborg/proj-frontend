@@ -41,7 +41,7 @@ export default function levrantor(data, now) {
 
     for (let n = 0; n < months.length; n += 1) {
       if (checkMonth(data[i].start, data[i].slut, months[n])) {
-        text += data[i].internfakt + ","
+        text += parseFloat(data[i].oh / data[i].perioder).toFixed(2) + ","
       } else {
         text += ","
       }

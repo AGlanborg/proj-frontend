@@ -106,7 +106,6 @@
         :saljare="saljare"
         :kopare="kopare"
         :arbetstyp="arbetstyp"
-        :now="now"
         @handleCopy="handleCopy"
         @handleEdit="handleEdit"
         @handleRemove="handleRemove"

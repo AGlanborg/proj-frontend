@@ -9,7 +9,7 @@
     </div>
     <div class="buttonContainer">
       <abbr title="Download seleced items">
-        <button class="button">
+        <button class="button" @click="handleDownload">
           <span class="material-icons check">download</span>
         </button>
       </abbr>
@@ -297,6 +297,8 @@
 </template>
 
 <script>
+import raw from "@/assets/scripts/csv/raw"
+
 export default {
   name: "Search-results",
   props: {
@@ -351,6 +353,19 @@ export default {
         this.all = true;
       }
     },
+    handleDownload() {
+      let data = []
+
+      for (let i = 0; i < this.instances.length; i += 1) {
+        if (this.checked.includes(this.instances[i].main_id)) {
+          data.push({...this.instances[i]})
+        }
+      }
+
+      let csvContent = "data:text/csv;charset=utf-8," + raw(data);
+
+      window.open(encodeURI(csvContent));
+    }
   },
 };
 </script>

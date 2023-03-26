@@ -9,7 +9,7 @@
     </div>
     <div class="buttonContainer">
       <abbr title="Download seleced items">
-        <button class="button">
+        <button class="button" @click="handleDownload">
           <span class="material-icons check">download</span>
         </button>
       </abbr>
@@ -146,6 +146,10 @@
 </template>
 
 <script>
+import createMonths from "@/assets/scripts/transform/createMonths"
+import checkMonth from "@/assets/scripts/checkMonth"
+import ohintakt from "@/assets/scripts/csv/ohintakt"
+
 export default {
   name: "Search-results",
   props: {
@@ -205,94 +209,29 @@ export default {
     getAmount(oh, perioder) {
       return parseFloat(oh / perioder).toFixed(2)
     },
-    removeZero(text) {
-      if (text.includes("0")) {
-        text.replace("0", "");
-      }
-      return text;
-    },
     checkMonth(start, slut, month) {
-      let result = false;
+      return checkMonth(start, slut, month)
+    },
+    handleDownload() {
+      let data = []
 
-      start = start.split("-");
-      slut = slut.split("-");
-      month = month.split("-");
-
-      start[1] = parseInt(this.removeZero(start[1]));
-      start[0] = parseInt(start[0]);
-      slut[1] = parseInt(this.removeZero(slut[1]));
-      slut[0] = parseInt(slut[0]);
-      month[1] = parseInt(this.removeZero(month[1]));
-      month[0] = parseInt(month[0]);
-
-      if (
-        (month[0] == start[0] &&
-          month[0] == slut[0] &&
-          month[1] >= start[1] &&
-          month[1] <= slut[1]) ||
-        (month[0] == start[0] && month[0] < slut[0] && month[1] >= start[1]) ||
-        (month[0] > start[0] && month[0] == slut[0] && month[1] <= slut[1]) ||
-        (month[0] > start[0] && month[0] < slut[0])
-      ) {
-        result = true;
+      for (let i = 0; i < this.instances.length; i += 1) {
+        if (this.checked.includes(this.instances[i].main_id)) {
+          data.push({...this.instances[i]})
+        }
       }
 
-      return result;
-    },
-    createMonths() {
-      let min = this.now.split("-");
-      let max = this.now.split("-");
-      let loop = true;
+      let csvContent = "data:text/csv;charset=utf-8," + ohintakt(data, this.now);
 
-      this.months = []
-
-      min[1] = parseInt(this.removeZero(min[1]));
-      min[0] = parseInt(min[0]);
-      max[1] = parseInt(this.removeZero(max[1]));
-      max[0] = parseInt(max[0]);
-
-      this.instances.forEach((item) => {
-        let start = item.start.split("-");
-        let end = item.slut.split("-");
-
-        start[1] = parseInt(this.removeZero(start[1]));
-        start[0] = parseInt(start[0]);
-        end[1] = parseInt(this.removeZero(end[1]));
-        end[0] = parseInt(end[0]);
-
-        if (start[0] < min[0] || (start[0] == min[0] && start[1] < min[1])) {
-          min = start;
-        }
-
-        if (end[0] > max[0] || (end[0] == max[0] && end[1] > max[1])) {
-          max = end;
-        }
-      });
-
-      while (loop) {
-        if (min[1].toString().length == 2) {
-          this.months.push(`${min[0]}-${min[1]}`);
-        } else {
-          this.months.push(`${min[0]}-0${min[1]}`);
-        }
-        if (min[1] == 12) {
-          min[1] = 1;
-          min[0] += 1;
-        } else {
-          min[1] += 1;
-        }
-        if (min[0] == max[0] && min[1] > max[1]) {
-          loop = false;
-        }
-      }
-    },
+      window.open(encodeURI(csvContent));
+    }
   },
   mounted() {
-    this.createMonths();
+    this.months = createMonths(this.instances, this.now);
   },
   watch: {
     instances() {
-      this.createMonths()
+      this.months = createMonths(this.instances, this.now)
     }
   }
 };

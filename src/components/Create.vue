@@ -40,6 +40,7 @@
         @onLeve="onLeve"
         @onText="onText"
         @onInfo="onInfo"
+        @reload="$emit('reload')"
       />
       <Oh
         :shell="shell"

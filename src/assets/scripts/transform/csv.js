@@ -3,27 +3,27 @@ import { csv } from "../requests/post"
 export default async function upload(text) {
     let data = {}
 
-    let txt = 'RST nummer för säljare, '
-    txt += 'Copernicus nummer för säljare, '
-    txt += 'Kontaktperson för säljare, '
-    txt += 'Namn för säljare, '
-    txt += 'RST nummer för köpare, '
-    txt += 'Copernicus nummer för köpare, '
-    txt += 'Kontaktperson för köpare, '
-    txt += 'Namn för köpare, '
-    txt += 'Tillverkare, Förkortning för arbetstyp, ';
-    txt += 'Antal Poster, Typ, Leverantör, ';
-    txt += 'Text, Kontaktinfo, Valuta, ';
-    txt += 'Antal licenser, Inpris ex. moms, ';
-    txt += 'Inpris inkl. moms, Procent (%), OH, ';
-    txt += 'Totalt inkl. moms och OH, Fakturanummer, ';
-    txt += 'Kommentar, Internpris, ';
-    txt += 'Periodisering Start, Periodisering Slut, ';
-    txt += 'Periodisering antal månader, ';
-    txt += 'Antal månader upfront, ';
-    txt += 'Antal månader resterande, ';
-    txt += 'Internfakt. per period, Intakt, ';
-    txt += 'Check, Faktureringsperiod';
+    let txt = 'RST nummer för säljare,'
+    txt += 'Copernicus nummer för säljare,'
+    txt += 'Kontaktperson för säljare,'
+    txt += 'Namn för säljare,'
+    txt += 'RST nummer för köpare,'
+    txt += 'Copernicus nummer för köpare,'
+    txt += 'Kontaktperson för köpare,'
+    txt += 'Namn för köpare,'
+    txt += 'Tillverkare,Förkortning för arbetstyp,';
+    txt += 'Antal Poster,Typ,Leverantör,';
+    txt += 'Text,Kontaktinfo,Valuta,';
+    txt += 'Antal licenser,Inpris ex. moms,';
+    txt += 'Inpris inkl. moms,Procent (%),OH,';
+    txt += 'Totalt inkl. moms och OH,Fakturanummer,';
+    txt += 'Kommentar,Internpris,';
+    txt += 'Periodisering Start,Periodisering Slut,';
+    txt += 'Periodisering antal månader,';
+    txt += 'Antal månader upfront,';
+    txt += 'Antal månader resterande,';
+    txt += 'Internfakt. per period,Intakt,';
+    txt += 'Check,Faktureringsperiod';
     const arr = [
         "RST nummer för säljare",
         "Copernicus nummer för säljare",
@@ -61,17 +61,17 @@ export default async function upload(text) {
         "Faktureringsperiod"
     ]
 
-    text = text.replaceAll('\r', '\n')
-    text = text.replaceAll('\n\n', '\n')
+    text = text.replaceAll('\r','\n')
+    text = text.replaceAll('\n\n','\n')
 
     const head = text.split('\n')[0].toUpperCase()
     let headArr = head.split(',')
 
     for (let i = 0; i < headArr.length; i += 1) {
-        headArr[i] = headArr[i].replace(/\s/g, '').toUpperCase()
+        headArr[i] = headArr[i].replace(/\s/g,'').toUpperCase()
     }
     for (let i = 0; i < arr.length; i += 1) {
-        arr[i] = arr[i].replace(/\s/g, '').toUpperCase()
+        arr[i] = arr[i].replace(/\s/g,'').toUpperCase()
     }
 
     if (

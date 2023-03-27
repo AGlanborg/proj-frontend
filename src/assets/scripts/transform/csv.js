@@ -13,7 +13,7 @@ export default async function upload(text) {
     txt += 'Namn för köpare,'
     txt += 'Tillverkare,Förkortning för arbetstyp,';
     txt += 'Antal Poster,Typ,Leverantör,';
-    txt += 'Text,Kontaktinfo,Valuta,';
+    txt += 'Text på internfaktura,Kontaktinfo,Valuta,';
     txt += 'Antal licenser,Inpris ex. moms,';
     txt += 'Inpris inkl. moms,Procent (%),OH,';
     txt += 'Totalt inkl. moms och OH,Fakturanummer,';
@@ -38,7 +38,7 @@ export default async function upload(text) {
         "Antal Poster",
         "Typ",
         "Leverantör",
-        "Text",
+        "Text på internfaktura",
         "Kontaktinfo",
         "Valuta",
         "Antal licenser",

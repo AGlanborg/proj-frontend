@@ -183,8 +183,6 @@ export default {
   flex-direction: column;
   justify-content: space-evenly;
   overflow: hidden;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
   text-align: center;
   box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
   background-color: rgba(0, 0, 0, 0.2);
@@ -194,10 +192,6 @@ export default {
   width: 55vw;
   margin: 0 6vw;
   padding: 0 1vw;
-}
-
-.explain::-webkit-scrollbar {
-  display: none;
 }
 
 .expand {

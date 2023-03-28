@@ -154,4 +154,19 @@ export default {
 input[type="number"] {
   width: 0;
 }
+
+.filterContainer {
+  height: 90vh;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.createContentContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.container {
+  padding: 0 25px;
+}
 </style>

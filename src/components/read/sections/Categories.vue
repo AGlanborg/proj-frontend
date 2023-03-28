@@ -23,7 +23,7 @@
       </p>
     </div>
     <Verifik
-      v-if="rapport == '1' || rapport == '0'"
+      v-if="rapport == '1'"
       :instances="instances"
       :saljare="saljare"
       :kopare="kopare"
@@ -40,6 +40,14 @@
       v-if="rapport == '3'"
       :instances="instances"
       :kopare="kopare"
+      @updateFilters="(obj) => $emit('updateFilters', obj)"
+    />
+    <Verifik
+      v-if="rapport == '0'"
+      :instances="instances"
+      :saljare="saljare"
+      :kopare="kopare"
+      :arbetstyp="arbetstyp"
       @updateFilters="(obj) => $emit('updateFilters', obj)"
     />
   </div>

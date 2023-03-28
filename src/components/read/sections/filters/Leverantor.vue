@@ -138,11 +138,11 @@ export default {
     },
   },
   mounted() {
-    this.initFilters()
+    this.initFilters();
   },
   watch: {
     instances() {
-      this.initFilters()
+      this.initFilters();
     },
   },
 };
@@ -167,6 +167,6 @@ input[type="number"] {
 }
 
 .container {
-  padding: 0 25px;
+  padding: 0 5vw;
 }
 </style>

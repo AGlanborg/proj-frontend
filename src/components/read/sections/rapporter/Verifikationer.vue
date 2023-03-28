@@ -240,7 +240,7 @@ export default {
         result = false;
       }
       if (!inst.text.includes(this.search)) {
-        result = false
+        result = false;
       }
 
       return result;

@@ -109,195 +109,198 @@
       <p>Check</p>
     </div>
   </div>
-  <div
-    class="resultContent"
-    :class="title ? 'minResults' : ''"
-  >
-    <div class="instance" v-for="inst in instances" v-bind:key="inst.main_id">
-      <div class="checkboxContainer">
-        <abbr title="Select row">
-          <button class="checkbox" @click="toggleCheckbox(inst.main_id)">
-            <span class="material-icons check" v-if="checked.includes(inst.main_id)">
-              check
-            </span>
-          </button>
-        </abbr>
-      </div>
-      <div class="buttonContainer">
-        <abbr title="Create copy of row">
-          <button class="button" @click="$emit('handleCopy', inst.main_id)">
-            <span class="material-icons check">content_copy</span>
-          </button>
-        </abbr>
-        <abbr title="Edit row">
-          <button class="button" @click="$emit('handleEdit', inst.main_id)">
-            <span class="material-icons check">edit</span>
-          </button>
-        </abbr>
-        <abbr title="Delete row">
-          <button class="button" @click="$emit('handleRemove', inst.main_id)">
-            <span class="material-icons check">delete</span>
-          </button>
-        </abbr>
-      </div>
-      <div class="valueContainer idContainer">
-        <p>
-          {{ inst.main_id }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.now }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p v-if="inst.saljare.name">
-          {{ inst.saljare.rst }}
-        </p>
-        <p v-else>
-          {{ inst.saljare.copernicus }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p v-if="inst.kopare.name">
-          {{ inst.kopare.rst }}
-        </p>
-        <p v-else>
-          {{ inst.kopare.copernicus }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.arbetstyp.arbetstyp }}
-        </p>
-      </div>
-      <div class="valueContainer idContainer">
-        <p>
-          {{ inst.antal }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.typ }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.leverantor }}
-        </p>
-      </div>
-      <div class="textContainer">
-        <div class="text">
+  <div class="resultContent" :class="title ? 'minResults' : ''">
+    <div v-for="inst in instances" v-bind:key="inst.main_id">
+      <div class="instance" v-if="checkFilters(inst)">
+        <div class="checkboxContainer">
+          <abbr title="Select row">
+            <button class="checkbox" @click="toggleCheckbox(inst.main_id)">
+              <span
+                class="material-icons check"
+                v-if="checked.includes(inst.main_id)"
+              >
+                check
+              </span>
+            </button>
+          </abbr>
+        </div>
+        <div class="buttonContainer">
+          <abbr title="Create copy of row">
+            <button class="button" @click="$emit('handleCopy', inst.main_id)">
+              <span class="material-icons check">content_copy</span>
+            </button>
+          </abbr>
+          <abbr title="Edit row">
+            <button class="button" @click="$emit('handleEdit', inst.main_id)">
+              <span class="material-icons check">edit</span>
+            </button>
+          </abbr>
+          <abbr title="Delete row">
+            <button class="button" @click="$emit('handleRemove', inst.main_id)">
+              <span class="material-icons check">delete</span>
+            </button>
+          </abbr>
+        </div>
+        <div class="valueContainer idContainer">
           <p>
-            {{ inst.text }}
+            {{ inst.main_id }}
           </p>
         </div>
-      </div>
-      <div class="textContainer">
-        <div class="text">
+        <div class="valueContainer">
           <p>
-            {{ inst.info }}
+            {{ inst.now }}
           </p>
         </div>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.valuta }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.mangd }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.inprisex }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.inprisin }}
-        </p>
-      </div>
-      <div class="valueContainer idContainer">
-        <p>
-          {{ inst.procent }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.oh }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.totalt }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.fakturanum }}
-        </p>
-      </div>
-      <div class="textContainer">
-        <div class="text">
-          <p>
-            {{ inst.kommentar }}
+        <div class="valueContainer">
+          <p v-if="inst.saljare.name">
+            {{ inst.saljare.rst }}
+          </p>
+          <p v-else>
+            {{ inst.saljare.copernicus }}
           </p>
         </div>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.inpris }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.start }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.slut }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.perioder }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.upfront }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.rest }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.internfakt }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.intakt }}
-        </p>
-      </div>
-      <div class="valueContainer idContainer">
-        <p>
-          {{ inst.scan }}
-        </p>
+        <div class="valueContainer">
+          <p v-if="inst.kopare.name">
+            {{ inst.kopare.rst }}
+          </p>
+          <p v-else>
+            {{ inst.kopare.copernicus }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.arbetstyp.arbetstyp }}
+          </p>
+        </div>
+        <div class="valueContainer idContainer">
+          <p>
+            {{ inst.antal }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.typ }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.leverantor }}
+          </p>
+        </div>
+        <div class="textContainer">
+          <div class="text">
+            <p>
+              {{ inst.text }}
+            </p>
+          </div>
+        </div>
+        <div class="textContainer">
+          <div class="text">
+            <p>
+              {{ inst.info }}
+            </p>
+          </div>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.valuta }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.mangd }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.inprisex }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.inprisin }}
+          </p>
+        </div>
+        <div class="valueContainer idContainer">
+          <p>
+            {{ inst.procent }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.oh }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.totalt }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.fakturanum }}
+          </p>
+        </div>
+        <div class="textContainer">
+          <div class="text">
+            <p>
+              {{ inst.kommentar }}
+            </p>
+          </div>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.inpris }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.start }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.slut }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.perioder }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.upfront }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.rest }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.internfakt }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.intakt }}
+          </p>
+        </div>
+        <div class="valueContainer idContainer">
+          <p>
+            {{ inst.scan }}
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import raw from "@/assets/scripts/csv/raw"
+import raw from "@/assets/scripts/csv/raw";
+import checkMonth from "@/assets/scripts/checkMonth";
 
 export default {
   name: "Rapport-raw",
@@ -308,13 +311,15 @@ export default {
     saljare: Array,
     kopare: Array,
     arbetstyp: Array,
+    search: String,
+    filters: Object,
   },
   emits: [
     "handleCopy",
     "handleEdit",
     "handleRemove",
     "toggleUpload",
-    "toggleCreate"
+    "toggleCreate",
   ],
   data() {
     return {
@@ -354,18 +359,56 @@ export default {
       }
     },
     handleDownload() {
-      let data = []
+      let data = [];
 
       for (let i = 0; i < this.instances.length; i += 1) {
         if (this.checked.includes(this.instances[i].main_id)) {
-          data.push({...this.instances[i]})
+          data.push({ ...this.instances[i] });
         }
       }
 
       let csvContent = "data:text/csv;charset=utf-8," + raw(data);
 
       window.open(encodeURI(csvContent));
-    }
+    },
+    checkFilters(inst) {
+      const start = this.filters.start;
+      const slut = this.filters.slut;
+      const saljare = this.filters.saljare;
+      const kopare = this.filters.kopare;
+      const arbetstyp = this.filters.arbetstyp;
+      const min = this.filters.min;
+      const max = this.filters.max;
+      let result = true;
+
+      if (start && slut) {
+        result = checkMonth(start, slut, inst.now);
+      } else if (start && !slut) {
+        result = checkMonth(start, "9999-99", inst.now);
+      } else if (!start && slut) {
+        result = checkMonth("1000-01", slut, inst.now);
+      }
+      if (
+        parseFloat(inst.totalt) < parseFloat(min) ||
+        parseFloat(inst.totalt) > parseFloat(max)
+      ) {
+        result = false;
+      }
+      if (saljare && saljare != inst.saljare.saljare_id && result) {
+        result = false;
+      }
+      if (kopare && kopare != inst.kopare.kopare_id && result) {
+        result = false;
+      }
+      if (arbetstyp && arbetstyp != inst.arbetstyp.arbetstyp_id && result) {
+        result = false;
+      }
+      if (!inst.text.includes(this.search)) {
+        result = false
+      }
+
+      return result;
+    },
   },
 };
 </script>
@@ -534,6 +577,6 @@ abbr {
 }
 
 .textContainer:nth-child(even) {
-    border-left: 5px solid rgb(44, 44, 64);
+  border-left: 5px solid rgb(44, 44, 64);
 }
 </style>

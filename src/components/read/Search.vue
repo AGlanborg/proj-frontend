@@ -49,7 +49,21 @@
       </div>
       <div class="formatContainer">
         <label for="format"> Välj Raport </label>
-        <select id="format" v-model="rapport">
+        <select
+          id="format"
+          v-model="rapport"
+          @change="
+            filters = {
+              start: '',
+              slut: '',
+              saljare: '',
+              kopare: '',
+              arbetstyp: '',
+              min: 0,
+              max: 0,
+            }
+          "
+        >
           <option value="1">Summering verifikationer</option>
           <option value="2">Periodiserad leverantörsfakturor</option>
           <option value="3">Periodiserad OH intäkt</option>
@@ -75,9 +89,9 @@
         :arbetstyp="arbetstyp"
         :filters="filters"
         :search="search"
-        @handleCopy="handleCopy"
-        @handleEdit="handleEdit"
-        @handleRemove="handleRemove"
+        @handleCopy="(value) => $emit('handleCopy', value)"
+        @handleEdit="(value) => $emit('handleEdit', value)"
+        @handleRemove="(value) => $emit('handleRemove', value)"
         @toggleUpload="$emit('toggleUpload')"
         @toggleCreate="$emit('toggleCreate')"
       />
@@ -90,9 +104,9 @@
         :kopare="kopare"
         :arbetstyp="arbetstyp"
         :now="now"
-        @handleCopy="handleCopy"
-        @handleEdit="handleEdit"
-        @handleRemove="handleRemove"
+        @handleCopy="(value) => $emit('handleCopy', value)"
+        @handleEdit="(value) => $emit('handleEdit', value)"
+        @handleRemove="(value) => $emit('handleRemove', value)"
         @toggleUpload="$emit('toggleUpload')"
         @toggleCreate="$emit('toggleCreate')"
       />
@@ -105,9 +119,11 @@
         :kopare="kopare"
         :arbetstyp="arbetstyp"
         :now="now"
-        @handleCopy="handleCopy"
-        @handleEdit="handleEdit"
-        @handleRemove="handleRemove"
+        :filters="filters"
+        :search="search"
+        @handleCopy="(value) => $emit('handleCopy', value)"
+        @handleEdit="(value) => $emit('handleEdit', value)"
+        @handleRemove="(value) => $emit('handleRemove', value)"
         @toggleUpload="$emit('toggleUpload')"
         @toggleCreate="$emit('toggleCreate')"
       />
@@ -119,9 +135,9 @@
         :saljare="saljare"
         :kopare="kopare"
         :arbetstyp="arbetstyp"
-        @handleCopy="handleCopy"
-        @handleEdit="handleEdit"
-        @handleRemove="handleRemove"
+        @handleCopy="(value) => $emit('handleCopy', value)"
+        @handleEdit="(value) => $emit('handleEdit', value)"
+        @handleRemove="(value) => $emit('handleRemove', value)"
         @toggleUpload="$emit('toggleUpload')"
         @toggleCreate="$emit('toggleCreate')"
       />
@@ -179,16 +195,7 @@ export default {
   },
   methods: {
     updateFilters(obj) {
-      this.filters = {...obj}
-    },
-    handleCopy(id) {
-      this.$emit("handleCopy", id);
-    },
-    handleEdit(id) {
-      this.$emit("handleEdit", id);
-    },
-    handleRemove(id) {
-      this.$emit("handleRemove", id);
+      this.filters = { ...obj };
     },
   },
 };

@@ -26,39 +26,6 @@
     </div>
     <div class="container">
       <div class="newText">
-        <label for="seller"> Säljare </label>
-        <select id="seller" v-model="seller" @change="updateFilters">
-          <option selected disabled hidden :value="seller.saljare_id">
-            <div v-if="seller.saljare_id == ''"></div>
-            <div v-else>
-              <div v-if="seller.name">
-                {{ seller.rst }}
-              </div>
-              <div v-else>
-                {{ seller.copernicus }}
-              </div>
-            </div>
-          </option>
-          <option
-            v-for="inst in saljare"
-            v-bind:key="inst.saljare_id"
-            :value="inst"
-          >
-            <div v-if="inst.name">
-              {{ inst.rst }}
-            </div>
-            <div v-else>
-              {{ inst.copernicus }}
-            </div>
-          </option>
-          <option
-            :value="{ saljare_id: '', name: '', copernicus: '' }"
-          ></option>
-        </select>
-      </div>
-    </div>
-    <div class="container">
-      <div class="newText">
         <label for="kopare"> Köpare </label>
         <select id="kopare" v-model="buyer" @change="updateFilters">
           <option selected disabled hidden :value="buyer.kopare_id">
@@ -90,28 +57,7 @@
     </div>
     <div class="container">
       <div class="newText">
-        <label for="arbetstyp"> Arbetstyp </label>
-        <select id="arbetstyp" v-model="worktype" @change="updateFilters">
-          <option selected disabled hidden :value="worktype.arbetstyp_id">
-            <div v-if="worktype.arbetstyp_id == ''"></div>
-            <div v-else>
-              {{ worktype.arbetstyp }}
-            </div>
-          </option>
-          <option
-            v-for="inst in arbetstyp"
-            v-bind:key="inst.arbetstyp_id"
-            :value="inst"
-          >
-            {{ inst.arbetstyp }}
-          </option>
-          <option :value="{ arbetstyp_id: '', tillverkare: '', arbetstyp: '' }"></option>
-        </select>
-      </div>
-    </div>
-    <div class="container">
-      <div class="newText">
-        <label for="min"> Min kostnad </label>
+        <label for="min"> Min inpris </label>
         <input
           id="min"
           type="number"
@@ -125,7 +71,7 @@
     </div>
     <div class="container">
       <div class="newText">
-        <label for="max"> Max kostnad </label>
+        <label for="max"> Max inpris </label>
         <input
           id="max"
           type="number"
@@ -151,20 +97,10 @@ export default {
   },
   data() {
     return {
-      seller: {
-        saljare_id: "",
-        name: "",
-        copernicus: "",
-      },
       buyer: {
         kopare_id: "",
         name: "",
         copernicus: "",
-      },
-      worktype: {
-        arbetstyp_id: "",
-        tillverkare: "",
-        arbetstyp: "",
       },
       start: "",
       slut: "",
@@ -179,9 +115,7 @@ export default {
       const obj = {
         start: this.start,
         slut: this.slut,
-        saljare: this.seller.saljare_id,
         kopare: this.buyer.kopare_id,
-        arbetstyp: this.worktype.arbetstyp_id,
         min: this.min,
         max: this.max,
       };
@@ -194,7 +128,7 @@ export default {
           this.months.push(value.now);
         }
 
-        this.max = Math.max(Math.ceil(parseFloat(value.totalt)), this.max);
+        this.max = Math.max(Math.ceil(parseFloat(value.inpris)), this.max);
         this.ceil = this.max;
       });
 

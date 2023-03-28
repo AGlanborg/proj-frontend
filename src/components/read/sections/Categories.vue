@@ -30,16 +30,26 @@
       :arbetstyp="arbetstyp"
       @updateFilters="(obj) => $emit('updateFilters', obj)"
     />
+    <Oh
+      v-if="rapport == '3'"
+      :instances="instances"
+      :saljare="saljare"
+      :kopare="kopare"
+      :arbetstyp="arbetstyp"
+      @updateFilters="(obj) => $emit('updateFilters', obj)"
+    />
   </div>
 </template>
 
 <script>
 import Leve from "./filters/Verifik.vue";
+import Oh from "./filters/OH.vue"
 
 export default {
   name: "Read-categories",
   components: {
     Leve,
+    Oh,
   },
   props: {
     category: Boolean,

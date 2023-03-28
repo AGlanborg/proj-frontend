@@ -1,4 +1,5 @@
 <template>
+  <Categories :category="category" @toggleCategory="category = !category" />
   <main class="mainContainer" :class="category ? '' : 'expandAll'">
     <div class="createArrowContainer">
       <button class="createArrow" :class="category ? 'createArrowLeft' : ''">
@@ -14,7 +15,7 @@
     <div class="titleContainer">
       <button class="title" @click="title = !title">
         <h2>
-          Search<span class="material-icons" :class="{ open: title }"
+          Start<span class="material-icons" :class="{ open: title }"
             >keyboard_arrow_up</span
           >
         </h2>
@@ -117,6 +118,7 @@
 </template>
 
 <script>
+import Categories from "./sections/Categories.vue";
 import Verifikationer from "./sections/rapporter/Verifikationer.vue";
 import Leverantorfakturor from "./sections/rapporter/Leverantorfakturor.vue";
 import OHintakt from "./sections/rapporter/OHintakt.vue";
@@ -125,13 +127,20 @@ import Raw from "./sections/rapporter/Raw.vue";
 export default {
   name: "Read-search",
   components: {
+    Categories,
     Verifikationer,
     Leverantorfakturor,
     OHintakt,
     Raw,
   },
+  emits: [
+    "handleCopy",
+    "handleEdit",
+    "handleRemove",
+    "toggleUpload",
+    "toggleCreate"
+  ],
   props: {
-    category: Boolean,
     instances: Array,
     create: Boolean,
     saljare: Array,
@@ -141,6 +150,7 @@ export default {
   },
   data() {
     return {
+      category: false,
       title: false,
       search: "",
       rapport: "1",

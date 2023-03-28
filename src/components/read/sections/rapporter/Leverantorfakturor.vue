@@ -151,7 +151,7 @@ import checkMonth from "@/assets/scripts/checkMonth"
 import leverantor from "@/assets/scripts/csv/leverantor"
 
 export default {
-  name: "Search-results",
+  name: "Rapport-leverantor",
   props: {
     category: Boolean,
     instances: Array,

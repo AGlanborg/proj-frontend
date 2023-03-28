@@ -136,7 +136,7 @@
 import verifikation from "@/assets/scripts/csv/verifikationer"
 
 export default {
-  name: "Search-results",
+  name: "Rapport-verifikationer",
   props: {
     category: Boolean,
     instances: Array,

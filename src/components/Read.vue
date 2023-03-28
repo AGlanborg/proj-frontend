@@ -24,11 +24,8 @@
       @handleSure="commitEdit"
       @toggleSure="toggleSure"
     />
-    <Categories :category="category" @toggleCategory="category = !category" />
     <Search
-      :category="category"
       :instances="instances"
-      :remove="remove"
       :create="create"
       :saljare="saljare"
       :kopare="kopare"
@@ -44,7 +41,6 @@
 </template>
 
 <script>
-import Categories from "./read/Categories.vue";
 import Search from "./read/Search.vue";
 import Remove from "./covers/Remove.vue";
 import Upld from "./covers/Upld.vue";
@@ -53,7 +49,6 @@ import Sure from "./covers/Sure.vue";
 export default {
   name: "Main-read",
   components: {
-    Categories,
     Search,
     Remove,
     Upld,
@@ -71,7 +66,6 @@ export default {
   },
   data() {
     return {
-      category: false,
       remove: false,
       upload: false,
       copy: false,

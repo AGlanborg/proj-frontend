@@ -10,7 +10,7 @@
     <div class="titleContainer">
       <button class="title" @click="title = !title">
         <h2>
-          Categories<span class="material-icons" :class="title ? 'open' : ''">
+          Filter<span class="material-icons" :class="title ? 'open' : ''">
             keyboard_arrow_up
           </span>
         </h2>
@@ -22,17 +22,17 @@
         <strong>Search</strong>, kan följande fält fyllas i.
       </p>
     </div>
-    <Filters />
+    <Leve />
   </div>
 </template>
 
 <script>
-import Filters from "./sections/Filters.vue";
+import Leve from "./filters/Leve.vue";
 
 export default {
   name: "Read-categories",
   components: {
-    Filters,
+    Leve,
   },
   props: {
     category: Boolean,

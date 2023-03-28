@@ -151,7 +151,7 @@ import checkMonth from "@/assets/scripts/checkMonth"
 import ohintakt from "@/assets/scripts/csv/ohintakt"
 
 export default {
-  name: "Search-results",
+  name: "Rapport-OHintakt",
   props: {
     category: Boolean,
     instances: Array,

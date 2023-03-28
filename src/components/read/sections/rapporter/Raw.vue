@@ -300,7 +300,7 @@
 import raw from "@/assets/scripts/csv/raw"
 
 export default {
-  name: "Search-results",
+  name: "Rapport-raw",
   props: {
     category: Boolean,
     instances: Array,

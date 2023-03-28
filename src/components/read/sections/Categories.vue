@@ -19,15 +19,22 @@
     <div class="explain" :class="title ? 'expand' : ''">
       <p class="explainText">
         För att filtrera det innehåll som visas i resultatfältet under rubriken
-        <strong>Search</strong>, kan följande fält fyllas i.
+        <strong>Start</strong>, kan följande fält fyllas i.
       </p>
     </div>
-    <Leve />
+    <Leve
+      v-if="rapport == '1'"
+      :instances="instances"
+      :saljare="saljare"
+      :kopare="kopare"
+      :arbetstyp="arbetstyp"
+      @updateFilters="(obj) => $emit('updateFilters', obj)"
+    />
   </div>
 </template>
 
 <script>
-import Leve from "./filters/Leve.vue";
+import Leve from "./filters/Verifik.vue";
 
 export default {
   name: "Read-categories",
@@ -36,6 +43,12 @@ export default {
   },
   props: {
     category: Boolean,
+    rapport: String,
+    instances: Array,
+    saljare: Array,
+    kopare: Array,
+    arbetstyp: Array,
+    now: String,
   },
   data() {
     return {
@@ -44,9 +57,9 @@ export default {
   },
   methods: {
     toggleCategory() {
-      this.title = false
-      this.$emit('toggleCategory')
-    }
+      this.title = false;
+      this.$emit("toggleCategory");
+    },
   },
 };
 </script>
@@ -100,9 +113,6 @@ export default {
   align-items: center;
   cursor: pointer;
   user-select: none;
-  height: 60px;
-  width: 285px;
-  padding-left: 40px;
   line-height: 0;
 }
 

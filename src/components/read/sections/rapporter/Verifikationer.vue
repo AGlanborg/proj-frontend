@@ -49,91 +49,94 @@
       </abbr>
     </div>
   </div>
-  <div
-    class="resultContent"
-    :class="title ? 'minResults' : ''"
-  >
-    <div class="instance" v-for="inst in instances" v-bind:key="inst.main_id">
-      <div class="checkboxContainer">
-        <abbr title="Select row">
-          <button class="checkbox" @click="toggleCheckbox(inst.main_id)">
-            <span class="material-icons check" v-if="checked.includes(inst.main_id)">
-              check
-            </span>
-          </button>
-        </abbr>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.main_id }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.now }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p v-if="inst.saljare.name">
-          {{ inst.saljare.rst }}
-        </p>
-        <p v-else>
-          {{ inst.saljare.copernicus }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p v-if="inst.kopare.name">
-          {{ inst.kopare.rst }}
-        </p>
-        <p v-else>
-          {{ inst.kopare.copernicus }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.arbetstyp.arbetstyp }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.antal }}
-        </p>
-      </div>
-      <div class="valueContainer">
-        <p>
-          {{ inst.totalt }}
-        </p>
-      </div>
-      <div class="textContainer">
-        <div class="text">
+  <div class="resultContent" :class="title ? 'minResults' : ''">
+    <div v-for="inst in instances" v-bind:key="inst.main_id">
+      <div class="instance" v-if="checkFilters(inst)">
+        <div class="checkboxContainer">
+          <abbr title="Select row">
+            <button class="checkbox" @click="toggleCheckbox(inst.main_id)">
+              <span
+                class="material-icons check"
+                v-if="checked.includes(inst.main_id)"
+              >
+                check
+              </span>
+            </button>
+          </abbr>
+        </div>
+        <div class="valueContainer">
           <p>
-            {{ inst.text }}
+            {{ inst.main_id }}
           </p>
         </div>
-      </div>
-      <div class="buttonContainer">
-        <abbr title="Create copy of row">
-          <button class="button" @click="$emit('handleCopy', inst.main_id)">
-            <span class="material-icons check">content_copy</span>
-          </button>
-        </abbr>
-        <abbr title="Edit row">
-          <button class="button" @click="$emit('handleEdit', inst.main_id)">
-            <span class="material-icons check">edit</span>
-          </button>
-        </abbr>
-        <abbr title="Delete row">
-          <button class="button" @click="$emit('handleRemove', inst.main_id)">
-            <span class="material-icons check">delete</span>
-          </button>
-        </abbr>
+        <div class="valueContainer">
+          <p>
+            {{ inst.now }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p v-if="inst.saljare.name">
+            {{ inst.saljare.rst }}
+          </p>
+          <p v-else>
+            {{ inst.saljare.copernicus }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p v-if="inst.kopare.name">
+            {{ inst.kopare.rst }}
+          </p>
+          <p v-else>
+            {{ inst.kopare.copernicus }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.arbetstyp.arbetstyp }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.antal }}
+          </p>
+        </div>
+        <div class="valueContainer">
+          <p>
+            {{ inst.totalt }}
+          </p>
+        </div>
+        <div class="textContainer">
+          <div class="text">
+            <p>
+              {{ inst.text }}
+            </p>
+          </div>
+        </div>
+        <div class="buttonContainer">
+          <abbr title="Create copy of row">
+            <button class="button" @click="$emit('handleCopy', inst.main_id)">
+              <span class="material-icons check">content_copy</span>
+            </button>
+          </abbr>
+          <abbr title="Edit row">
+            <button class="button" @click="$emit('handleEdit', inst.main_id)">
+              <span class="material-icons check">edit</span>
+            </button>
+          </abbr>
+          <abbr title="Delete row">
+            <button class="button" @click="$emit('handleRemove', inst.main_id)">
+              <span class="material-icons check">delete</span>
+            </button>
+          </abbr>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import verifikation from "@/assets/scripts/csv/verifikationer"
+import verifikation from "@/assets/scripts/csv/verifikationer";
+import checkMonth from "@/assets/scripts/checkMonth";
 
 export default {
   name: "Rapport-verifikationer",
@@ -144,13 +147,14 @@ export default {
     saljare: Array,
     kopare: Array,
     arbetstyp: Array,
+    filters: Object,
   },
   emits: [
     "handleCopy",
     "handleEdit",
     "handleRemove",
     "toggleUpload",
-    "toggleCreate"
+    "toggleCreate",
   ],
   data() {
     return {
@@ -190,18 +194,53 @@ export default {
       }
     },
     handleDownload() {
-      let data = []
+      let data = [];
 
       for (let i = 0; i < this.instances.length; i += 1) {
         if (this.checked.includes(this.instances[i].main_id)) {
-          data.push({...this.instances[i]})
+          data.push({ ...this.instances[i] });
         }
       }
 
       let csvContent = "data:text/csv;charset=utf-8," + verifikation(data);
 
       window.open(encodeURI(csvContent));
-    }
+    },
+    checkFilters(inst) {
+      const start = this.filters.start;
+      const slut = this.filters.slut;
+      const saljare = this.filters.saljare;
+      const kopare = this.filters.kopare;
+      const arbetstyp = this.filters.arbetstyp;
+      const min = this.filters.min;
+      const max = this.filters.max;
+      let result = true;
+
+      if (start && slut) {
+        result = checkMonth(start, slut, inst.now);
+      } else if (start && !slut) {
+        result = checkMonth(start, "9999-99", inst.now);
+      } else if (!start && slut) {
+        result = checkMonth("1000-01", slut, inst.now);
+      }
+      if (
+        parseFloat(inst.totalt) < parseFloat(min) ||
+        parseFloat(inst.totalt) > parseFloat(max)
+      ) {
+        result = false;
+      }
+      if (saljare && saljare != inst.saljare.saljare_id && result) {
+        result = false;
+      }
+      if (kopare && kopare != inst.kopare.kopare_id && result) {
+        result = false;
+      }
+      if (arbetstyp && arbetstyp != inst.arbetstyp.arbetstyp_id && result) {
+        result = false;
+      }
+
+      return result;
+    },
   },
 };
 </script>

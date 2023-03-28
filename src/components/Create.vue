@@ -17,14 +17,10 @@
       </p>
     </div>
     <div class="createContentContainer" :class="title ? 'minimize' : ''">
-      <div class="idContainer" :class="{idInside: create && shell.main_id}">
-        <p>
-          För närvarande redigerar:
-        </p>
+      <div class="idContainer" :class="{ idInside: create && shell.main_id }">
+        <p>För närvarande redigerar:</p>
         <div class="id">
-          <p>
-            ID : {{ shell.main_id }}
-          </p>
+          <p>ID : {{ shell.main_id }}</p>
         </div>
       </div>
       <Mottagande
@@ -33,29 +29,39 @@
         :saljare="saljare"
         :kopare="kopare"
         :arbetstyp="arbetstyp"
-        @onSaljare="onSaljare"
-        @onKopare="onKopare"
-        @onArb="onArb"
-        @onTyp="onTyp"
-        @onLeve="onLeve"
-        @onText="onText"
-        @onInfo="onInfo"
+        @onSaljare="(value) => $emit('onSaljare', value)"
+        @onKopare="(value) => $emit('onKopare', value)"
+        @onArb="(value) => $emit('onArb', value)"
+        @onTyp="(value) => $emit('onTyp', value)"
+        @onLeve="(value) => $emit('onLeve', value)"
+        @onText="(value) => $emit('onText', value)"
+        @onInfo="(value) => $emit('onInfo', value)"
         @reload="$emit('reload')"
       />
       <Oh
         :shell="shell"
-        @onValuta="onValuta"
-        @onMangd="onMangd"
-        @onInprisex="onInprisex"
-        @onProcent="onProcent"
-        @onFakturanum="onFakturanum"
-        @onKommentar="onKommentar"
+        @onValuta="(value) => $emit('onValuta', value)"
+        @onMangd="(value) => $emit('onMangd', value)"
+        @onInprisex="(value) => $emit('onInprisex', value)"
+        @onProcent="(value) => $emit('onProcent', value)"
+        @onFakturanum="(value) => $emit('onFakturanum', value)"
+        @onKommentar="(value) => $emit('onKommentar', value)"
       />
-      <Periodisering :shell="shell" @onStart="onStart" @onSlut="onSlut" />
+      <Periodisering
+        :shell="shell"
+        @onStart="(value) => $emit('onStart', value)"
+        @onSlut="(value) => $emit('onSlut', value)"
+      />
       <div class="createButtonContainer">
-        <button class="createButton" @click="handleUpdate" v-if="shell.main_id">Update</button>
-        <button class="createButton" @click="handleCreate" v-else >Create</button>
-        <button class="createButton clear" @click="$emit('handleClear')">Clear</button>
+        <button class="createButton" @click="handleUpdate" v-if="shell.main_id">
+          Update
+        </button>
+        <button class="createButton" @click="handleCreate" v-else>
+          Create
+        </button>
+        <button class="createButton clear" @click="$emit('handleClear')">
+          Clear
+        </button>
       </div>
     </div>
   </div>
@@ -66,8 +72,8 @@ import Mottagande from "./create/Mottagande.vue";
 import Oh from "./create/Oh.vue";
 import Periodisering from "./create/Periodisering.vue";
 
-import { form } from '@/assets/scripts/requests/post'
-import put from '@/assets/scripts/requests/put'
+import { form } from "@/assets/scripts/requests/post";
+import put from "@/assets/scripts/requests/put";
 
 export default {
   name: "Main-create",
@@ -91,83 +97,38 @@ export default {
   },
   methods: {
     async handleCreate() {
-      const values = Object.values(this.shell)
+      const values = Object.values(this.shell);
 
-      let text = `'${this.shell.saljare.saljare_id}',`
-      text += `'${this.shell.kopare.kopare_id}',`
-      text += `'${this.shell.arbetstyp.arbetstyp_id}',`
+      let text = `'${this.shell.saljare.saljare_id}',`;
+      text += `'${this.shell.kopare.kopare_id}',`;
+      text += `'${this.shell.arbetstyp.arbetstyp_id}',`;
 
-      values.splice(0, 4)
+      values.splice(0, 4);
 
-      for(let i = 0; i < values.length; i += 1) {
-        text += `'${values[i]}',`
+      for (let i = 0; i < values.length; i += 1) {
+        text += `'${values[i]}',`;
       }
 
-      text = text.substring(0, text.length - 1)
+      text = text.substring(0, text.length - 1);
 
-      await form({data: text}, "main")
+      await form({ data: text }, "main");
 
-      this.$emit('handleClear')
-      this.$emit('reload')
-      this.$emit('toggleCreate')
+      this.$emit("handleClear");
+      this.$emit("reload");
+      this.$emit("toggleCreate");
     },
     async handleUpdate() {
-      let obj = {...this.shell}
+      let obj = { ...this.shell };
 
-      obj.saljare = this.shell.saljare.saljare_id
-      obj.kopare = this.shell.kopare.kopare_id
-      obj.arbetstyp = this.shell.arbetstyp.arbetstyp_id
+      obj.saljare = this.shell.saljare.saljare_id;
+      obj.kopare = this.shell.kopare.kopare_id;
+      obj.arbetstyp = this.shell.arbetstyp.arbetstyp_id;
 
-      await put({data: obj}, "main")
+      await put({ data: obj }, "main");
 
-      this.$emit('handleClear')
-      this.$emit('reload')
-      this.$emit('toggleCreate')
-    },
-    onSaljare(value) {
-      this.$emit("onSaljare", value);
-    },
-    onKopare(value) {
-      this.$emit("onKopare", value);
-    },
-    onArb(value) {
-      this.$emit("onArb", value);
-    },
-    onTyp(value) {
-      this.$emit("onTyp", value);
-    },
-    onLeve(value) {
-      this.$emit("onLeve", value);
-    },
-    onText(value) {
-      this.$emit("onText", value);
-    },
-    onInfo(value) {
-      this.$emit("onInfo", value);
-    },
-    onValuta(value) {
-      this.$emit("onValuta", value);
-    },
-    onMangd(value) {
-      this.$emit("onMangd", value);
-    },
-    onInprisex(value) {
-      this.$emit("onInprisex", value);
-    },
-    onProcent(value) {
-      this.$emit("onProcent", value);
-    },
-    onFakturanum(value) {
-      this.$emit("onFakturanum", value);
-    },
-    onKommentar(value) {
-      this.$emit("onKommentar", value);
-    },
-    onStart(value) {
-      this.$emit("onStart", value);
-    },
-    onSlut(value) {
-      this.$emit("onSlut", value);
+      this.$emit("handleClear");
+      this.$emit("reload");
+      this.$emit("toggleCreate");
     },
   },
 };

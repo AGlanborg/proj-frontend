@@ -1,8 +1,6 @@
 import removeZero from "./transform/removeZero";
 
 export default function checkMonth(start, slut, month) {
-    let result = false;
-
     start = start.split("-");
     slut = slut.split("-");
     month = month.split("-");
@@ -23,8 +21,8 @@ export default function checkMonth(start, slut, month) {
         (month[0] > start[0] && month[0] == slut[0] && month[1] <= slut[1]) ||
         (month[0] > start[0] && month[0] < slut[0])
     ) {
-        result = true;
+        return true;
     }
 
-    return result;
+    return false;
 }

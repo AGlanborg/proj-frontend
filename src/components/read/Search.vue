@@ -1,5 +1,15 @@
 <template>
-  <Categories :category="category" @toggleCategory="category = !category" />
+  <Categories
+    :category="category"
+    :instances="instances"
+    :rapport="rapport"
+    :saljare="saljare"
+    :kopare="kopare"
+    :arbetstyp="arbetstyp"
+    :now="now"
+    @toggleCategory="category = !category"
+    @updateFilters="updateFilters"
+  />
   <main class="mainContainer" :class="category ? '' : 'expandAll'">
     <div class="createArrowContainer">
       <button class="createArrow" :class="category ? 'createArrowLeft' : ''">
@@ -24,7 +34,7 @@
     <div class="explain" :class="{ expand: title }">
       <p class="explainText">
         Under denna rubrik kan du se all data som är sparad i databasen. Använd
-        valalternativen under <strong>Categories</strong> rubriken och sökfältet
+        valalternativen under <strong>Filter</strong> rubriken och sökfältet
         nedan för att sortera innehållet av resultatfältet.
       </p>
     </div>
@@ -63,6 +73,7 @@
         :saljare="saljare"
         :kopare="kopare"
         :arbetstyp="arbetstyp"
+        :filters="filters"
         @handleCopy="handleCopy"
         @handleEdit="handleEdit"
         @handleRemove="handleRemove"
@@ -138,7 +149,7 @@ export default {
     "handleEdit",
     "handleRemove",
     "toggleUpload",
-    "toggleCreate"
+    "toggleCreate",
   ],
   props: {
     instances: Array,
@@ -154,9 +165,21 @@ export default {
       title: false,
       search: "",
       rapport: "1",
+      filters: {
+        start: "",
+        slut: "",
+        saljare: "",
+        kopare: "",
+        arbetstyp: "",
+        min: 0,
+        max: 0,
+      },
     };
   },
   methods: {
+    updateFilters(obj) {
+      this.filters = {...obj}
+    },
     handleCopy(id) {
       this.$emit("handleCopy", id);
     },

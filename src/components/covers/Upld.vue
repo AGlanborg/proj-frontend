@@ -43,35 +43,37 @@
           </textarea>
         </div>
       </div>
-      <div class="downloadContainer">
-        <div>
-          <p class="explainText">Ladda ner Mall</p>
-          <button class="button" @click="handleMall">Download</button>
-          <div class="redText">
-            <p v-if="red">Innehållet följer inte mallen</p>
+      <div>
+        <div class="downloadContainer">
+          <div>
+            <p class="explainText">Ladda ner Mall</p>
+            <button class="button" @click="handleMall">Download</button>
+            <div class="redText">
+              <p v-if="red">Innehållet följer inte mallen</p>
+            </div>
+          </div>
+          <div>
+            <p class="explainText">Ladda ner Exempel</p>
+            <button class="button" @click="handleExample">Download</button>
+          </div>
+          <div>
+            <p class="explainText">Öppna Instruktioner</p>
+            <a href="./Instruktioner.pdf" target="_blank">
+              <button class="button">Open</button>
+            </a>
           </div>
         </div>
-        <div>
-          <p class="explainText">Ladda ner Exempel</p>
-          <button class="button" @click="handleExample">Download</button>
-        </div>
-        <div>
-          <p class="explainText">Öppna Instruktioner</p>
-          <a href="./Instruktioner.pdf" target="_blank">
-            <button class="button">Open</button>
-          </a>
-        </div>
-      </div>
-      <div class="instanceContainer">
-        <div class="buttonContainer">
-          <button
-            class="button upload"
-            :class="!text || red ? 'disabled' : ''"
-            @click="handleUpload"
-          >
-            UPLOAD
-          </button>
-          <button class="button" @click="$emit('toggleUpload')">BACK</button>
+        <div class="instanceContainer">
+          <div class="buttonContainer">
+            <button
+              class="button upload"
+              :class="!text || red ? 'disabled' : ''"
+              @click="handleUpload"
+            >
+              UPLOAD
+            </button>
+            <button class="button" @click="$emit('toggleUpload')">BACK</button>
+          </div>
         </div>
       </div>
     </div>
@@ -190,7 +192,7 @@ textarea {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin: 50px 0;
+  padding: 20px 0;
 }
 
 .button {

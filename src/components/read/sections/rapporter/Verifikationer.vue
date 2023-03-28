@@ -147,6 +147,7 @@ export default {
     saljare: Array,
     kopare: Array,
     arbetstyp: Array,
+    search: String,
     filters: Object,
   },
   emits: [
@@ -237,6 +238,9 @@ export default {
       }
       if (arbetstyp && arbetstyp != inst.arbetstyp.arbetstyp_id && result) {
         result = false;
+      }
+      if (!inst.text.includes(this.search)) {
+        result = false
       }
 
       return result;

@@ -45,7 +45,7 @@
             <span class="material-icons check">search</span>
           </button>
         </abbr>
-        <input type="text" class="search" lang="sv" v-bind="search" />
+        <input type="text" class="search" lang="sv" v-model="search" />
       </div>
       <div class="formatContainer">
         <label for="format"> Välj Raport </label>
@@ -74,6 +74,7 @@
         :kopare="kopare"
         :arbetstyp="arbetstyp"
         :filters="filters"
+        :search="search"
         @handleCopy="handleCopy"
         @handleEdit="handleEdit"
         @handleRemove="handleRemove"

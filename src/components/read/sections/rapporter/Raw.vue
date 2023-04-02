@@ -1,13 +1,11 @@
 <template>
   <div class="instance header">
-    <div class="checkboxContainer">
-      <abbr title="Select all">
-        <button class="checkbox" @click="toggleAll">
-          <span class="material-icons check" v-if="all"> check </span>
+    <div class="buttonContainer">
+      <abbr title="Create a new row">
+        <button class="button" @click="$emit('toggleCreate')">
+          <span class="material-icons check">add</span>
         </button>
       </abbr>
-    </div>
-    <div class="buttonContainer">
       <abbr title="Download seleced items">
         <button class="button" @click="handleDownload">
           <span class="material-icons check">download</span>
@@ -18,9 +16,11 @@
           <span class="material-icons check">upload</span>
         </button>
       </abbr>
-      <abbr title="Create a new row">
-        <button class="button" @click="$emit('toggleCreate')">
-          <span class="material-icons check">add</span>
+    </div>
+    <div class="checkboxContainer">
+      <abbr title="Select all">
+        <button class="checkbox" @click="toggleAll">
+          <span class="material-icons check" v-if="all"> check </span>
         </button>
       </abbr>
     </div>
@@ -112,18 +112,6 @@
   <div class="resultContent" :class="title ? 'minResults' : ''">
     <div v-for="inst in instances" v-bind:key="inst.main_id">
       <div class="instance" v-if="checkFilters(inst)">
-        <div class="checkboxContainer">
-          <abbr title="Select row">
-            <button class="checkbox" @click="toggleCheckbox(inst.main_id)">
-              <span
-                class="material-icons check"
-                v-if="checked.includes(inst.main_id)"
-              >
-                check
-              </span>
-            </button>
-          </abbr>
-        </div>
         <div class="buttonContainer">
           <abbr title="Create copy of row">
             <button class="button" @click="$emit('handleCopy', inst.main_id)">
@@ -138,6 +126,18 @@
           <abbr title="Delete row">
             <button class="button" @click="$emit('handleRemove', inst.main_id)">
               <span class="material-icons check">delete</span>
+            </button>
+          </abbr>
+        </div>
+        <div class="checkboxContainer">
+          <abbr title="Select row">
+            <button class="checkbox" @click="toggleCheckbox(inst.main_id)">
+              <span
+                class="material-icons check"
+                v-if="checked.includes(inst.main_id)"
+              >
+                check
+              </span>
             </button>
           </abbr>
         </div>
@@ -404,7 +404,7 @@ export default {
         result = false;
       }
       if (!inst.text.includes(this.search)) {
-        result = false
+        result = false;
       }
 
       return result;
@@ -537,6 +537,7 @@ abbr {
   scrollbar-width: none;
   display: inline-block;
   white-space: pre-line;
+  overflow-wrap: break-all;
   width: 100%;
   line-height: 15px;
   margin: 0;

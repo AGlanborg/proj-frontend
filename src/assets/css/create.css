@@ -50,6 +50,7 @@ textarea {
   flex-wrap: wrap;
   height: 18vh;
   width: 18vw;
+  overflow-wrap: break-word;
 }
 
 .createContainer {

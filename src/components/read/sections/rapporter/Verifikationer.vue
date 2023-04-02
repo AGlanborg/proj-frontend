@@ -304,8 +304,8 @@ abbr {
 
 .checkboxContainer {
   border-right: 5px solid rgb(44, 44, 64);
-  height: 5vh;
-  width: 5vh;
+  min-height: 5vh;
+  min-width: 5vh;
 }
 
 .checkbox,
@@ -353,7 +353,10 @@ abbr {
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.1);
   flex-grow: 1;
-  height: 5vh;
+  min-height: 5vh;
+  min-width: 10vw;
+  width: 100%;
+  max-width: 32vw;
   padding: 0 10px;
 }
 

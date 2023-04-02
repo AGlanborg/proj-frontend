@@ -63,7 +63,8 @@ export default async function upload(text) {
 
     text = text.replaceAll('\r','\n')
     text = text.replaceAll('\n\n','\n')
-
+    console.log(text)
+    console.log(txt)
     const head = text.split('\n')[0].toUpperCase()
     let headArr = head.split(',')
 

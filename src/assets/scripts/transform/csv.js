@@ -22,7 +22,7 @@ export default async function upload(text) {
     txt += 'Periodisering antal månader,';
     txt += 'Antal månader upfront,';
     txt += 'Antal månader resterande,';
-    txt += 'Internfakt. per period,Intakt,';
+    txt += 'Internfakt. per period,Intäkt,';
     txt += 'Check,Faktureringsperiod';
     const arr = [
         "RST nummer för säljare",
@@ -56,7 +56,7 @@ export default async function upload(text) {
         "Antal månader upfront",
         "Antal månader resterande",
         "Internfakt. per period",
-        "Intakt",
+        "Intäkt",
         "Check",
         "Faktureringsperiod"
     ]

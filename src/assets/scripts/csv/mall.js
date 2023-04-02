@@ -19,7 +19,7 @@ export default function exmaple() {
       text += "Periodisering antal månader,";
       text += "Antal månader upfront,";
       text += "Antal månader resterande,";
-      text += "Internfakt. per period,Intakt,";
+      text += "Internfakt. per period,Intäkt,";
       text += "Check,Faktureringsperiod";
 
       return text

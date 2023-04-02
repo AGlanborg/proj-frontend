@@ -19,7 +19,7 @@ export default function exmaple() {
       text += "Periodisering antal månader,";
       text += "Antal månader upfront,";
       text += "Antal månader resterande,";
-      text += "Internfakt. per period,Intakt,";
+      text += "Internfakt. per period,Intäkt,";
       text += "Check,Faktureringsperiod\n";
       text += '111,11111,Aud,0,100,10000,Gna,0,Allvis,ALL,1,Licens,Agne,Licenskostnad,Ropa,SEK,123,979,"1223,75",5,"61,19","158047,62",98224,,158048,2023-03,2024-02,12,0,12,13171,158052,4,2023-03\n'
       text += '222,22222,Balder,0,200,20000,Hel,0,Andvare,AND,1,Support,Alfhild,Supportkostnad,Skrik,SEK,12,621,"776,25",5,"38,81","9780,72",15819,,9781,2023-03,2024-02,12,0,12,815,9780,-1,2023-03\n'

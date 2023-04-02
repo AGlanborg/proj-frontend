@@ -70,6 +70,11 @@
           <option value="0">Raw data</option>
         </select>
       </div>
+      <div class="createNewContainer">
+        <button class="button" @click="$emit('toggleCreate')">
+          Skapa ny +
+        </button>
+      </div>
     </div>
     <div
       class="resultContainer"
@@ -363,6 +368,13 @@ abbr {
   flex-direction: column;
 }
 
+.createNewContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 35px;
+}
+
 .formatContainer > label {
   margin: 0;
   font-size: 1.5vh;
@@ -402,5 +414,15 @@ abbr {
 
 .resultScroll {
   overflow: scroll;
+}
+
+.button {
+  cursor: pointer;
+  border: 2px solid rgb(200, 200, 200);
+  background-color: rgb(44, 44, 64);
+  padding: 15px;
+  margin-bottom: 0;
+  border-radius: 20px;
+  font-size: 18px;
 }
 </style>

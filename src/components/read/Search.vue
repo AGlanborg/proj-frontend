@@ -418,7 +418,7 @@ abbr {
 
 .button {
   cursor: pointer;
-  border: 2px solid rgb(200, 200, 200);
+  outline: 2px solid rgb(200, 200, 200);
   background-color: rgb(44, 44, 64);
   padding: 15px;
   margin-bottom: 0;

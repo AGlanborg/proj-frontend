@@ -39,6 +39,11 @@
       </p>
     </div>
     <div class="navContainer">
+      <div class="createNewContainer">
+        <button class="button" @click="$emit('toggleCreate')">
+          Skapa ny +
+        </button>
+      </div>
       <div class="searchContainer">
         <abbr title="Search by text">
           <button class="searchButtonContainer">
@@ -69,11 +74,6 @@
           <option value="3">Periodiserad OH intäkt</option>
           <option value="0">Raw data</option>
         </select>
-      </div>
-      <div class="createNewContainer">
-        <button class="button" @click="$emit('toggleCreate')">
-          Skapa ny +
-        </button>
       </div>
     </div>
     <div
@@ -339,7 +339,7 @@ abbr {
   flex-direction: row;
   background-color: rgb(44, 44, 64);
   height: 5vh;
-  margin: 2vh 2vw 1vh 6.5vw;
+  margin: 2vh 2vw 1vh 1vw;
   width: 30vw;
   border-radius: 20px;
 }
@@ -372,7 +372,7 @@ abbr {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 35px;
+  margin: 2vh 1vw 1vh 6.5vw;
 }
 
 .formatContainer > label {

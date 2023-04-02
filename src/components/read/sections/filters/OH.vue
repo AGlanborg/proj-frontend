@@ -158,6 +158,7 @@ input[type="number"] {
 .filterContainer {
   height: 90vh;
   overflow-y: scroll;
+  overflow-x: hidden;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }

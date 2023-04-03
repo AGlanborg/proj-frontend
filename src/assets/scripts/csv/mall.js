@@ -1,4 +1,4 @@
-export default function exmaple() {
+export default function mall() {
     let text = "RST nummer för säljare,";
       text += "Copernicus nummer för säljare,";
       text += "Kontaktperson för säljare,";
@@ -12,15 +12,10 @@ export default function exmaple() {
       text += "Text på internfaktura,";
       text += "Kontaktinfo,Valuta,";
       text += "Antal licenser,Inpris ex. moms,";
-      text += "Inpris inkl. moms,Procent (%),OH,";
-      text += "Totalt inkl. moms och OH,Fakturanummer,";
-      text += "Kommentar,Internpris,";
+      text += "Procent (%),"
+      text += "Fakturanummer,Kommentar,";
       text += "Periodisering Start,Periodisering Slut,";
-      text += "Periodisering antal månader,";
-      text += "Antal månader upfront,";
-      text += "Antal månader resterande,";
-      text += "Internfakt. per period,Intäkt,";
-      text += "Check,Faktureringsperiod";
+      text += "Faktureringsperiod";
 
       return text
 }

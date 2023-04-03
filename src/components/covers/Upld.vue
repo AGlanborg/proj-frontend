@@ -22,14 +22,24 @@
   </div>
   <div class="removeContainer">
     <div class="remove">
-      <div>
-        <label for="file" class="fileText"> Välj fil nedan </label>
-        <input
-          type="file"
-          id="file"
-          accept=".csv"
-          @change="handleFile($event)"
-        />
+      <div class="downloadContainer">
+        <div>
+          <p class="explainText">Ladda ner Mall</p>
+          <button class="button" @click="handleMall">Download</button>
+          <div class="redText">
+            <p v-if="red">Innehållet följer inte mallen</p>
+          </div>
+        </div>
+        <div>
+          <p class="explainText">Ladda ner Exempel</p>
+          <button class="button" @click="handleExample">Download</button>
+        </div>
+        <div>
+          <p class="explainText">Öppna Instruktioner</p>
+          <a href="./Instruktioner.pdf" target="_blank">
+            <button class="button">Open</button>
+          </a>
+        </div>
       </div>
       <div class="textareaContainer">
         <div>
@@ -44,24 +54,14 @@
         </div>
       </div>
       <div>
-        <div class="downloadContainer">
-          <div>
-            <p class="explainText">Ladda ner Mall</p>
-            <button class="button" @click="handleMall">Download</button>
-            <div class="redText">
-              <p v-if="red">Innehållet följer inte mallen</p>
-            </div>
-          </div>
-          <div>
-            <p class="explainText">Ladda ner Exempel</p>
-            <button class="button" @click="handleExample">Download</button>
-          </div>
-          <div>
-            <p class="explainText">Öppna Instruktioner</p>
-            <a href="./Instruktioner.pdf" target="_blank">
-              <button class="button">Open</button>
-            </a>
-          </div>
+        <div>
+          <label for="file" class="fileText"> Välj fil nedan </label>
+          <input
+            type="file"
+            id="file"
+            accept=".csv"
+            @change="handleFile($event)"
+          />
         </div>
         <div class="instanceContainer">
           <div class="buttonContainer">
@@ -209,14 +209,13 @@ textarea {
 
 .instanceContainer {
   width: 70vw;
-  margin: 0 5vw;
+  margin: 5vh 5vw 0;
   border-radius: 20px;
 }
 
 .fileText {
   display: block;
-  font-size: 35px;
-  margin-top: 3vh;
+  font-size: 25px;
 }
 
 .textareaContainer {
@@ -274,5 +273,6 @@ textarea {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-top: 5vh;
 }
 </style>

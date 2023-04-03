@@ -1,4 +1,4 @@
-export default function levrantor(data) {
+export default function raw(data) {
   let text = "Id,"
   text += "Faktureringsperiod,";
   text += "Säljare,";

@@ -1,101 +1,85 @@
 import { csv } from "../requests/post"
 
 export default async function upload(text) {
-    let data = {}
+  let data = {}
 
-    let txt = 'RST nummer för säljare,'
-    txt += 'Copernicus nummer för säljare,'
-    txt += 'Kontaktperson för säljare,'
-    txt += 'Namn för säljare,'
-    txt += 'RST nummer för köpare,'
-    txt += 'Copernicus nummer för köpare,'
-    txt += 'Kontaktperson för köpare,'
-    txt += 'Namn för köpare,'
-    txt += 'Tillverkare,Förkortning för arbetstyp,';
-    txt += 'Antal Poster,Typ,Leverantör,';
-    txt += 'Text på internfaktura,Kontaktinfo,Valuta,';
-    txt += 'Antal licenser,Inpris ex. moms,';
-    txt += 'Inpris inkl. moms,Procent (%),OH,';
-    txt += 'Totalt inkl. moms och OH,Fakturanummer,';
-    txt += 'Kommentar,Internpris,';
-    txt += 'Periodisering Start,Periodisering Slut,';
-    txt += 'Periodisering antal månader,';
-    txt += 'Antal månader upfront,';
-    txt += 'Antal månader resterande,';
-    txt += 'Internfakt. per period,Intäkt,';
-    txt += 'Check,Faktureringsperiod';
-    const arr = [
-        "RST nummer för säljare",
-        "Copernicus nummer för säljare",
-        "Kontaktperson för säljare",
-        "Namn för säljare",
-        "RST nummer för köpare",
-        "Copernicus nummer för köpare",
-        "Kontaktperson för köpare",
-        "Namn för köpare",
-        "Tillverkare",
-        "Förkortning för arbetstyp",
-        "Antal Poster",
-        "Typ",
-        "Leverantör",
-        "Text på internfaktura",
-        "Kontaktinfo",
-        "Valuta",
-        "Antal licenser",
-        "Inpris ex. moms",
-        "Inpris inkl. moms",
-        "Procent (%)",
-        "OH",
-        "Totalt inkl. moms och OH",
-        "Fakturanummer",
-        "Kommentar",
-        "Internpris",
-        "Periodisering Start",
-        "Periodisering Slut",
-        "Periodisering antal månader",
-        "Antal månader upfront",
-        "Antal månader resterande",
-        "Internfakt. per period",
-        "Intäkt",
-        "Check",
-        "Faktureringsperiod"
-    ]
+  const arr = [
+    "RST nummer för säljare",
+    "Copernicus nummer för säljare",
+    "Kontaktperson för säljare",
+    "Namn för säljare",
+    "RST nummer för köpare",
+    "Copernicus nummer för köpare",
+    "Kontaktperson för köpare",
+    "Namn för köpare",
+    "Tillverkare",
+    "Förkortning för arbetstyp",
+    "Antal Poster",
+    "Typ",
+    "Leverantör",
+    "Text på internfaktura",
+    "Kontaktinfo",
+    "Valuta",
+    "Antal licenser",
+    "Inpris ex. moms",
+    "Inpris inkl. moms",
+    "Procent (%)",
+    "OH",
+    "Totalt inkl. moms och OH",
+    "Fakturanummer",
+    "Kommentar",
+    "Internpris",
+    "Periodisering Start",
+    "Periodisering Slut",
+    "Periodisering antal månader",
+    "Antal månader upfront",
+    "Antal månader resterande",
+    "Internfakt. per period",
+    "Intäkt",
+    "Check",
+    "Faktureringsperiod"
+  ]
 
-    text = text.replaceAll('\r','\n')
-    text = text.replaceAll('\n\n','\n')
-    console.log(text)
-    console.log(txt)
-    const head = text.split('\n')[0].toUpperCase()
-    let headArr = head.split(',')
+  if (text.includes('\r')) {
+    text = text.replaceAll('\r', '\n')
+  }
+  if (text.includes('\n\n')) {
+    text = text.replaceAll('\n\n', '\n')
+  }
+  if (text.includes(';')) {
+    text = text.replaceAll(';', ',')
+  }
 
-    for (let i = 0; i < headArr.length; i += 1) {
-        headArr[i] = headArr[i].replace(/\s/g,'').toUpperCase()
-    }
-    for (let i = 0; i < arr.length; i += 1) {
-        arr[i] = arr[i].replace(/\s/g,'').toUpperCase()
-    }
+  const head = text.split('\n')[0].toUpperCase()
+  let headArr = head.split(',')
 
-    if (
-        head == txt.toUpperCase() ||
-        headArr.sort().join(',').toUpperCase() == arr.sort().join(',').toUpperCase()
-        ) {
-        let content = text.split('\n')
+  for (let i = 0; i < headArr.length; i += 1) {
+    headArr[i] = headArr[i].replace(/\s/g, '').toUpperCase()
+  }
+  for (let i = 0; i < arr.length; i += 1) {
+    arr[i] = arr[i].replace(/\s/g, '').toUpperCase()
+  }
 
-        data['header'] = content[0]
+  if (
+    headArr.sort().join(',').toUpperCase() == arr.sort().join(',').toUpperCase()
+  ) {
+    let content = text.split('\n')
 
-        content.shift()
+    data['header'] = content[0]
 
-        for (let i = 0; i < content.length; i+= 1) {
-            if (content[i] == '') {
-                content.splice(i, 1)
-                i = 0
-            }
-        }
+    content.shift()
 
-        data['content'] = content
-
-        return csv(data)
+    for (let i = 0; i < content.length; i += 1) {
+      if (content[i] == '') {
+        content.splice(i, 1)
+        i = 0
+      }
     }
 
-    return { title: "Invalid content" }
+    data['content'] = content
+
+    return csv(data)
+  }
+
+  return { title: "Invalid content" }
 }

@@ -22,21 +22,11 @@ export default async function upload(text) {
     "Valuta",
     "Antal licenser",
     "Inpris ex. moms",
-    "Inpris inkl. moms",
     "Procent (%)",
-    "OH",
-    "Totalt inkl. moms och OH",
     "Fakturanummer",
     "Kommentar",
-    "Internpris",
     "Periodisering Start",
     "Periodisering Slut",
-    "Periodisering antal månader",
-    "Antal månader upfront",
-    "Antal månader resterande",
-    "Internfakt. per period",
-    "Intäkt",
-    "Check",
     "Faktureringsperiod"
   ]
 
@@ -55,11 +45,17 @@ export default async function upload(text) {
 
   for (let i = 0; i < headArr.length; i += 1) {
     headArr[i] = headArr[i].replace(/\s/g, '').toUpperCase()
+
+    if(headArr[i] == "") {
+      headArr.splice(i, 1)
+      i = 0
+    }
   }
   for (let i = 0; i < arr.length; i += 1) {
     arr[i] = arr[i].replace(/\s/g, '').toUpperCase()
   }
-
+  console.log(headArr)
+  console.log(arr)
   if (
     headArr.sort().join(',').toUpperCase() == arr.sort().join(',').toUpperCase()
   ) {

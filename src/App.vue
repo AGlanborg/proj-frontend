@@ -159,7 +159,7 @@ export default {
       ).toFixed(2);
       this.shell.totalt = parseFloat(
         Math.round(
-          parseFloat(this.shell.mangd) *
+          parseInt(this.shell.mangd) *
             (parseFloat(this.shell.inprisin) + parseFloat(this.shell.oh)) *
             100
         ) / 100

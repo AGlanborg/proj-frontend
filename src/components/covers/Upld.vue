@@ -22,25 +22,6 @@
   </div>
   <div class="removeContainer">
     <div class="remove">
-      <div class="downloadContainer">
-        <div>
-          <p class="explainText">Ladda ner Mall</p>
-          <button class="button" @click="handleMall">Download</button>
-          <div class="redText">
-            <p v-if="red">Innehållet följer inte mallen</p>
-          </div>
-        </div>
-        <div>
-          <p class="explainText">Ladda ner Exempel</p>
-          <button class="button" @click="handleExample">Download</button>
-        </div>
-        <div>
-          <p class="explainText">Öppna Instruktioner</p>
-          <a href="./Instruktioner.pdf" target="_blank">
-            <button class="button">Open</button>
-          </a>
-        </div>
-      </div>
       <div class="textareaContainer">
         <div>
           <label for="text" class="textareaLabel"> {{ title }} </label>
@@ -62,6 +43,25 @@
             accept=".csv"
             @change="handleFile($event)"
           />
+        </div>
+        <div class="downloadContainer">
+          <div>
+            <p class="explainText">Ladda ner Mall</p>
+            <button class="button" @click="handleMall">Download</button>
+            <div class="redText">
+              <p v-if="red">Innehållet följer inte mallen</p>
+            </div>
+          </div>
+          <div>
+            <p class="explainText">Ladda ner Exempel</p>
+            <button class="button" @click="handleExample">Download</button>
+          </div>
+          <div>
+            <p class="explainText">Öppna Instruktioner</p>
+            <a href="./Instruktioner.pdf" target="_blank">
+              <button class="button">Open</button>
+            </a>
+          </div>
         </div>
         <div class="instanceContainer">
           <div class="buttonContainer">
@@ -161,7 +161,7 @@ textarea {
   background-color: rgba(0, 0, 0, 0.4);
   height: 30vh;
   width: 75vw;
-  margin: 10px 0;
+  margin: 10px 0 0;
 }
 
 .removeContainer {
@@ -228,6 +228,8 @@ textarea {
 .textareaLabel {
   display: block;
   text-align: left;
+  height: 25px;
+  margin-top: 25px;
 }
 
 .explainText {

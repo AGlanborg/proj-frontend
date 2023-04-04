@@ -231,7 +231,7 @@ input[type="number"] {
   scrollbar-width: none;
 }
 
-.createContentContainer::-webkit-scrollbar {
+.filterContainer::-webkit-scrollbar {
   display: none;
 }
 

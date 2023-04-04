@@ -209,7 +209,7 @@ textarea {
 
 .instanceContainer {
   width: 70vw;
-  margin: 5vh 5vw 0;
+  margin: 0 5vw;
   border-radius: 20px;
 }
 
@@ -275,6 +275,6 @@ textarea {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 5vh;
+  margin-top: 2.5vh;
 }
 </style>

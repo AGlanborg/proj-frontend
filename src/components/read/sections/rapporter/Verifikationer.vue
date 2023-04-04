@@ -334,7 +334,7 @@ abbr {
   min-height: 5vh;
   width: 6vw;
   min-width: 100px;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .noWrap {
@@ -373,6 +373,7 @@ abbr {
   display: inline-block;
   white-space: pre-line;
   width: 100%;
+  font-size: 14px;
   line-height: 15px;
   margin: 0;
 }

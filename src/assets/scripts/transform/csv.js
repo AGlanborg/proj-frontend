@@ -54,8 +54,7 @@ export default async function upload(text) {
   for (let i = 0; i < arr.length; i += 1) {
     arr[i] = arr[i].replace(/\s/g, '').toUpperCase()
   }
-  console.log(headArr)
-  console.log(arr)
+
   if (
     headArr.sort().join(',').toUpperCase() == arr.sort().join(',').toUpperCase()
   ) {

@@ -57,17 +57,7 @@
         <select
           id="format"
           v-model="rapport"
-          @change="
-            filters = {
-              start: '',
-              slut: '',
-              saljare: '',
-              kopare: '',
-              arbetstyp: '',
-              min: 0,
-              max: 0,
-            }
-          "
+          @change="(event) => handleRapport(event.target.value)"
         >
           <option value="1">Summering verifikationer</option>
           <option value="2">Periodiserad leverantörsfakturor</option>
@@ -205,6 +195,18 @@ export default {
   methods: {
     updateFilters(obj) {
       this.filters = { ...obj };
+    },
+    handleRapport(value) {
+      this.filters = {
+        start: "",
+        slut: "",
+        saljare: "",
+        kopare: "",
+        arbetstyp: "",
+        min: 0,
+        max: 0,
+      };
+      this.rapport = value;
     },
   },
 };

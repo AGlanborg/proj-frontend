@@ -1,12 +1,12 @@
 <template>
   <div class="categoryContainer" :class="category ? '' : 'hideAll'">
-    <div class="hideContainer">
+    <!-- <div class="hideContainer">
       <button class="hide" @click="toggleCategory">
         <span class="material-icons hideIcon" :class="category ? 'open' : ''">
           keyboard_arrow_left
         </span>
       </button>
-    </div>
+    </div> -->
     <div class="titleContainer">
       <button class="title" @click="title = !title">
         <h2>

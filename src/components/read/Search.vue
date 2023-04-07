@@ -177,7 +177,7 @@ export default {
   },
   data() {
     return {
-      category: false,
+      category: true,
       title: false,
       search: "",
       rapport: "1",

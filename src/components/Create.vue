@@ -111,6 +111,9 @@ export default {
 
       text = text.substring(0, text.length - 1);
 
+      text.replaceAll("\n", ". ")
+      text.replaceAll("\r", ". ")
+
       await form({ data: text }, "main");
 
       this.$emit("handleClear");

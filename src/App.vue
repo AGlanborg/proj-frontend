@@ -11,6 +11,7 @@
     :empty="empty"
     :now="now"
     @toggleCreate="create = !create"
+    @handleClear="handleClear"
     @handleCopy="handleCopy"
     @handleEdit="handleEdit"
     @reload="reload"
@@ -25,37 +26,47 @@
     :kopare="kopare"
     :arbetstyp="arbetstyp"
     @toggleCreate="create = !create"
-    @handleClear="shell = {...empty}"
+    @handleClear="handleClear"
     @onSaljare="onSaljare"
     @onKopare="onKopare"
     @onArb="onArb"
     @onTyp="onTyp"
-    @onLeve="(value) => shell.leverantor = value"
-    @onText="(value) => shell.text = value"
-    @onInfo="(value) => shell.info = value"
-    @onValuta="(value) => shell.valuta = value"
-    @onMangd="(value) => {
-      shell.mangd = value
-      updContent()
-    }"
-    @onInprisex="(value) => {
-      shell.inprisex = value
-      updContent()
-    }"
-    @onProcent="(value) => {
-      shell.procent = value
-      updContent()
-    }"
-    @onFakturanum="(value) => shell.fakturanum = value"
-    @onKommentar="(value) => shell.kommentar = value"
-    @onStart="(value) => {
-      shell.start = value
-      updContent()
-    }"
-    @onSlut="(value) => {
-      shell.slut = value
-      updContent()
-    }"
+    @onLeve="(value) => (shell.leverantor = value)"
+    @onText="(value) => (shell.text = value)"
+    @onInfo="(value) => (shell.info = value)"
+    @onValuta="(value) => (shell.valuta = value)"
+    @onMangd="
+      (value) => {
+        shell.mangd = value;
+        updContent();
+      }
+    "
+    @onInprisex="
+      (value) => {
+        shell.inprisex = value;
+        updContent();
+      }
+    "
+    @onProcent="
+      (value) => {
+        shell.procent = value;
+        updContent();
+      }
+    "
+    @onFakturanum="(value) => (shell.fakturanum = value)"
+    @onKommentar="(value) => (shell.kommentar = value)"
+    @onStart="
+      (value) => {
+        shell.start = value;
+        updContent();
+      }
+    "
+    @onSlut="
+      (value) => {
+        shell.slut = value;
+        updContent();
+      }
+    "
     @reload="reload"
   />
 </template>
@@ -109,21 +120,21 @@ export default {
         valuta: "SEK",
         mangd: "1",
         inprisex: "0",
-        inprisin: "0",
+        inprisin: "0.00",
         procent: "5",
-        oh: "0",
-        totalt: "0",
+        oh: "0.00",
+        totalt: "0.00",
         fakturanum: "",
         kommentar: "",
-        inpris: "0",
+        inpris: 0,
         start: "",
         slut: "",
-        perioder: "0",
-        internfakt: "0",
-        upfront: "0",
-        rest: "0",
-        intakt: "0",
-        scan: "0",
+        perioder: 1,
+        internfakt: 0,
+        upfront: "0.00",
+        rest: 1,
+        intakt: 0,
+        scan: 0,
         now: "",
       },
       empty: {},
@@ -233,7 +244,7 @@ export default {
           this.shell.arbetstyp = { ...this.empty.arbetstyp };
         }
       } else if (value == "") {
-        this.shell.saljare = { ...this.empty.saljare }
+        this.shell.saljare = { ...this.empty.saljare };
       } else {
         this.shell.saljare = this.saljare.find((x) => x.saljare_id == value);
       }
@@ -250,7 +261,7 @@ export default {
           this.shell.arbetstyp = { ...this.empty.arbetstyp };
         }
       } else if (value == "") {
-        this.shell.kopare = { ...this.empty.kopare }
+        this.shell.kopare = { ...this.empty.kopare };
       } else {
         this.shell.kopare = this.kopare.find((x) => x.kopare_id == value);
       }
@@ -267,7 +278,7 @@ export default {
           this.shell.kopare = { ...this.empty.kopare };
         }
       } else if (value == "") {
-        this.shell.arbetstyp = { ...this.empty.arbetstyp }
+        this.shell.arbetstyp = { ...this.empty.arbetstyp };
       } else {
         this.shell.arbetstyp = this.arbetstyp.find(
           (x) => x.arbetstyp_id == value
@@ -285,6 +296,12 @@ export default {
       } else {
         this.shell.text = this.shell.typ + "kostnad " + this.shell.text;
       }
+    },
+    handleClear() {
+      this.shell = { ...this.empty };
+      this.shell.saljare = { ...this.empty.saljare };
+      this.shell.kopare = { ...this.empty.kopare };
+      this.shell.arbetstyp = { ...this.empty.arbetstyp };
     },
   },
   async mounted() {
@@ -306,27 +323,11 @@ export default {
     this.shell.slut = now;
     this.shell.now = now;
     this.now = now;
-    this.empty = { ...this.shell };
 
-    this.empty.saljare = {
-      saljare_id: "",
-      rst: "",
-      copernicus: "",
-      kontakt: "",
-      name: "",
-    };
-    this.empty.kopare = {
-      kopare_id: "",
-      rst: "",
-      copernicus: "",
-      kontakt: "",
-      name: "",
-    };
-    this.empty.arbetstyp = {
-      arbetstyp_id: "",
-      arbetstyp: "",
-      tillverkare: "",
-    };
+    this.empty = { ...this.shell };
+    this.empty.saljare = { ...this.shell.saljare };
+    this.empty.kopare = { ...this.shell.kopare };
+    this.empty.arbetstyp = { ...this.shell.arbetstyp };
 
     this.updContent();
     this.updPerioder();

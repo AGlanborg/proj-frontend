@@ -3,7 +3,7 @@
     <div class="titleContainer">
       <button class="title" @click="this.title = !this.title">
         <h2>
-          Create<span class="material-icons" :class="title ? 'open' : ''"
+          Skapa<span class="material-icons" :class="title ? 'open' : ''"
             >keyboard_arrow_up</span
           >
         </h2>
@@ -54,13 +54,13 @@
       />
       <div class="createButtonContainer">
         <button class="createButton" @click="handleUpdate" v-if="shell.main_id">
-          Update
+          Uppdatera
         </button>
         <button class="createButton" @click="handleCreate" v-else>
-          Create
+          Skapa
         </button>
         <button class="createButton clear" @click="$emit('handleClear')">
-          Clear
+          Ångra
         </button>
       </div>
     </div>

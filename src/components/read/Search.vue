@@ -40,7 +40,7 @@
     </div>
     <div class="navContainer">
       <div class="createNewContainer">
-        <button class="button" @click="$emit('toggleCreate')">
+        <button class="button" @click="$emit('handleNew')">
           Skapa ny +
         </button>
       </div>
@@ -166,6 +166,7 @@ export default {
     "handleRemove",
     "toggleUpload",
     "toggleCreate",
+    "handleNew"
   ],
   props: {
     instances: Array,

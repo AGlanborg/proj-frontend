@@ -84,7 +84,7 @@
         id="kommentar"
         placeholder="..."
         :value="shell.kommentar"
-        @input="$event.target.value('onKommentar', $event.target.value)"
+        @input="$emit('onKommentar', $event.target.value)"
       />
     </div>
     <div class="newForm"></div>

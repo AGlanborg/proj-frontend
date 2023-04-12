@@ -108,7 +108,7 @@
         <div class="textContainer">
           <div class="text">
             <p>
-              {{ inst.text }}
+              {{ inst.text + " | " + inst.info }}
             </p>
           </div>
         </div>

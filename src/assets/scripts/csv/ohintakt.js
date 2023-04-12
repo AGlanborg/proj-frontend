@@ -32,7 +32,7 @@ export default function levrantor(data, now) {
       text += data[i].kopare.copernicus + ","
     }
 
-    text += data[i].text + ","
+    text += data[i].text + " | " + data[i].info + ","
     text += data[i].inpris + ","
     text += data[i].internfakt + ","
     text += data[i].start + ","

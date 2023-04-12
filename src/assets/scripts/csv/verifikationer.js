@@ -26,7 +26,7 @@ export default function levrantor(data) {
     text += data[i].arbetstyp.arbetstyp + ","
     text += data[i].antal + ","
     text += data[i].totalt + ","
-    text += data[i].text + "\n"
+    text += data[i].text + " | " + data[i].info + "\n"
   }
 
   text = text.substring(0, text.length - 1)

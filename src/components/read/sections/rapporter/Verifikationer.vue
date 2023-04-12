@@ -7,7 +7,7 @@
         </button>
       </abbr>
     </div>
-    <div class="valueContainer">
+    <div class="valueContainer idContainer">
       <p>Id</p>
     </div>
     <div class="valueContainer">
@@ -42,11 +42,11 @@
           <span class="material-icons check">upload</span>
         </button>
       </abbr>
-      <abbr title="Create a new row">
+      <!-- <abbr title="Create a new row">
         <button class="button" @click="$emit('toggleCreate')">
           <span class="material-icons check">add</span>
         </button>
-      </abbr>
+      </abbr> -->
     </div>
   </div>
   <div class="resultContent" :class="title ? 'minResults' : ''">
@@ -64,7 +64,7 @@
             </button>
           </abbr>
         </div>
-        <div class="valueContainer">
+        <div class="valueContainer idContainer">
           <p>
             {{ inst.main_id }}
           </p>
@@ -108,7 +108,7 @@
         <div class="textContainer">
           <div class="text">
             <p>
-              {{ inst.text }}
+              {{ inst.text + " | " + inst.info }}
             </p>
           </div>
         </div>
@@ -250,14 +250,7 @@ export default {
 </script>
 
 <style scoped>
-abbr {
-  text-decoration: none;
-}
-
-.inctanceContainer {
-  display: flex;
-  flex-direction: column;
-}
+@import "@/assets/css/rapporter.css";
 
 .maxResultContainer {
   width: 85vw;
@@ -267,39 +260,10 @@ abbr {
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  height: 70vh;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  transition: 0.5s;
 }
 
 .resultContent::-webkit-scrollbar {
   display: none;
-}
-
-.minResults {
-  height: 60vh;
-}
-
-.instance {
-  display: flex;
-  flex-direction: row;
-  min-height: 5vh;
-}
-
-.instance:nth-child(even) {
-  background-color: rgb(60, 60, 100);
-}
-
-.header {
-  border-bottom: 5px solid rgb(44, 44, 64);
-}
-
-.checkboxContainer,
-.buttonContainer {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
 }
 
 .checkboxContainer {
@@ -308,51 +272,17 @@ abbr {
   min-width: 5vh;
 }
 
-.checkbox,
-.button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  background-color: rgb(44, 44, 64);
-  width: 2.5vh;
-  height: 2.5vh;
-  min-width: 25px;
-  min-height: 25px;
-  border-radius: 5px;
-}
-
-.check {
-  user-select: none;
-  font-size: 2vh;
-}
-
 .valueContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 5vh;
-  width: 6vw;
-  min-width: 100px;
+  min-width: 6vw;
   font-size: 14px;
 }
 
-.noWrap {
-  white-space: nowrap;
-}
-
-.valueContainer p {
-  text-align: center;
-  margin: 0;
-  line-height: 20px;
+.idContainer {
+  min-width: 5vw;
 }
 
 .textContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.1);
-  flex-grow: 1;
   min-height: 5vh;
   min-width: 10vw;
   width: 100%;
@@ -360,48 +290,10 @@ abbr {
   padding: 0 10px;
 }
 
-.text {
-  display: flex;
-  flex-direction: row;
-  height: 4vh;
-}
-
 .text > p {
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  display: inline-block;
-  white-space: pre-line;
   width: 100%;
   font-size: 14px;
   line-height: 15px;
-  margin: 0;
-}
-
-.text > p::-webkit-scrollbar {
-  display: none;
-}
-
-.buttonContainer {
-  width: 8vw;
-}
-
-.button {
-  width: 3vh;
-  height: 3vh;
-}
-
-.headerTextContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  flex-grow: 1;
-}
-
-.headerTextContainer > p {
-  display: inline;
   margin: 0;
 }
 </style>

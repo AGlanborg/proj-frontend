@@ -1,11 +1,11 @@
 <template>
   <div class="instance header">
     <div class="buttonContainer">
-      <abbr title="Create a new row">
+      <!-- <abbr title="Create a new row">
         <button class="button" @click="$emit('toggleCreate')">
           <span class="material-icons check">add</span>
         </button>
-      </abbr>
+      </abbr> -->
       <abbr title="Download seleced items">
         <button class="button" @click="handleDownload">
           <span class="material-icons check">download</span>

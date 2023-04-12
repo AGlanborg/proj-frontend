@@ -426,5 +426,6 @@ abbr {
   margin-bottom: 0;
   border-radius: 20px;
   font-size: 18px;
+  width: 100px;
 }
 </style>

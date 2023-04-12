@@ -246,7 +246,7 @@ export default {
       }
       if (
         parseFloat(inst.totalt) < parseFloat(min) ||
-        parseFloat(inst.totalt) > parseFloat(max)
+        parseFloat(inst.totalt) > parseFloat(max ? max : 1000000000)
       ) {
         result = false;
       }

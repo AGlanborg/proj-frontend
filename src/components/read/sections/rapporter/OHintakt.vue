@@ -247,7 +247,7 @@ export default {
       }
       if (
         parseFloat(inst.inpris) < parseFloat(min) ||
-        parseFloat(inst.inpris) > parseFloat(max)
+        parseFloat(inst.inpris) > parseFloat(max ? max : 1000000000)
       ) {
         result = false;
       }

@@ -130,9 +130,25 @@
     </div>
     <div class="newForm">
       <div class="newContainer" :class="sal || kop || arb ? 'expandNew' : ''">
-        <New v-if="sal" :title="'Ny Säljare'" :rep="'saljare'" @createNew="createSaljare" />
-        <New v-else-if="kop" :title="'Ny Köpare'" :rep="'kopare'" @createNew="createKopare" />
-        <Arb v-else-if="arb" @createArbetstyp="createArbetstyp" />
+        <New
+          v-if="sal"
+          :title="'Ny Säljare'"
+          :rep="'saljare'"
+          @createNew="createSaljare"
+          @cancel="onSaljare('')"
+        />
+        <New
+          v-else-if="kop"
+          :title="'Ny Köpare'"
+          :rep="'kopare'"
+          @createNew="createKopare"
+          @cancel="onKopare('')"
+        />
+        <Arb
+          v-else-if="arb"
+          @createArbetstyp="createArbetstyp"
+          @cancel="onArb('')"
+        />
       </div>
     </div>
   </div>
@@ -197,16 +213,16 @@ export default {
       this.$emit("onArb", value);
     },
     createSaljare() {
-      this.$emit("reload")
-      this.sal = false
+      this.$emit("reload");
+      this.sal = false;
     },
     createKopare() {
-      this.$emit("reload")
-      this.kop = false
+      this.$emit("reload");
+      this.kop = false;
     },
     createArbetstyp() {
-      this.$emit("reload")
-      this.arb = false
+      this.$emit("reload");
+      this.arb = false;
     },
   },
 };

@@ -71,6 +71,11 @@
         @click="create"
         v-else
       />
+      <input
+        type="button"
+        value="Avbryt"
+        @click="$emit('cancel')"
+      />
     </div>
   </div>
 </template>

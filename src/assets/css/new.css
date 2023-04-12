@@ -35,6 +35,10 @@
     width: 100%;
 }
 
+.newButton > input:nth-child(even) {
+    margin-left: 15%;
+}
+
 .newSelect {
     display: flex;
     justify-content: center;

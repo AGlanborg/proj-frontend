@@ -232,6 +232,8 @@ export default {
         if (this.shell.arbetstyp.arbetstyp_id == "Ny") {
           this.shell.arbetstyp = { ...this.empty.arbetstyp };
         }
+      } else if (value == "") {
+        this.shell.saljare = { ...this.empty.saljare }
       } else {
         this.shell.saljare = this.saljare.find((x) => x.saljare_id == value);
       }
@@ -247,6 +249,8 @@ export default {
         if (this.shell.arbetstyp.arbetstyp_id == "Ny") {
           this.shell.arbetstyp = { ...this.empty.arbetstyp };
         }
+      } else if (value == "") {
+        this.shell.kopare = { ...this.empty.kopare }
       } else {
         this.shell.kopare = this.kopare.find((x) => x.kopare_id == value);
       }
@@ -262,6 +266,8 @@ export default {
         if (this.shell.kopare.kopare_id == "Ny") {
           this.shell.kopare = { ...this.empty.kopare };
         }
+      } else if (value == "") {
+        this.shell.arbetstyp = { ...this.empty.arbetstyp }
       } else {
         this.shell.arbetstyp = this.arbetstyp.find(
           (x) => x.arbetstyp_id == value

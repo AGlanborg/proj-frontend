@@ -32,6 +32,11 @@
         :class="{disabeled: !filled}"
         @click="create"
       />
+      <input
+        type="button"
+        value="Avbryt"
+        @click="$emit('cancel')"
+      />
     </div>
   </div>
 </template>

@@ -223,7 +223,7 @@ abbr {
   width: 97vw;
   height: 100vh;
   transition: 0.5s;
-  left: 25vw;
+  left: 15vw;
 }
 
 .createArrowContainer {
@@ -241,7 +241,7 @@ abbr {
 }
 
 .createArrowLeft {
-  left: 72vw;
+  left: 82vw;
 }
 
 .createArrowIcon {
@@ -394,7 +394,7 @@ abbr {
   flex-direction: column;
   border: 3px solid rgb(44, 44, 64);
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-  width: 85vw;
+  width: 95vw;
   height: 75vh;
   margin: 2vh 5vw;
   border-radius: 20px;
@@ -402,7 +402,7 @@ abbr {
 }
 
 .widthResult {
-  width: 65vw;
+  width: 75vw;
 }
 
 .heightResult {

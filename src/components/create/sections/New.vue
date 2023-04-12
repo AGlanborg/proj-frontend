@@ -13,7 +13,10 @@
             v-model="rst"
             @input="check"
           />
-          <div class="selectButton" @click="chosen = true">
+          <div class="selectButton" @click="() => {
+            chosen = true
+            check()
+            }">
             <span class="material-icons check" v-if="chosen"> check </span>
           </div>
         </div>
@@ -31,7 +34,10 @@
             v-model="cop"
             @input="check"
           />
-          <div class="selectButton" @click="chosen = false">
+          <div class="selectButton" @click="() => {
+            chosen = false
+            check()
+            }">
             <span class="material-icons check" v-if="!chosen"> check </span>
           </div>
         </div>

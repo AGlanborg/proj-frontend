@@ -25,22 +25,37 @@
     :kopare="kopare"
     :arbetstyp="arbetstyp"
     @toggleCreate="create = !create"
-    @handleClear="handleClear"
+    @handleClear="shell = {...empty}"
     @onSaljare="onSaljare"
     @onKopare="onKopare"
     @onArb="onArb"
     @onTyp="onTyp"
-    @onLeve="onLeve"
-    @onText="onText"
-    @onInfo="onInfo"
-    @onValuta="onValuta"
-    @onMangd="onMangd"
-    @onInprisex="onInprisex"
-    @onProcent="onProcent"
-    @onFakturanum="onFakturanum"
-    @onKommentar="onKommentar"
-    @onStart="onStart"
-    @onSlut="onSlut"
+    @onLeve="(value) => shell.leverantor = value"
+    @onText="(value) => shell.text = value"
+    @onInfo="(value) => shell.info = value"
+    @onValuta="(value) => shell.valuta = value"
+    @onMangd="(value) => {
+      shell.mangd = value
+      updContent()
+    }"
+    @onInprisex="(value) => {
+      shell.inprisex = value
+      updContent()
+    }"
+    @onProcent="(value) => {
+      shell.procent = value
+      updContent()
+    }"
+    @onFakturanum="(value) => shell.fakturanum = value"
+    @onKommentar="(value) => shell.kommentar = value"
+    @onStart="(value) => {
+      shell.start = value
+      updContent()
+    }"
+    @onSlut="(value) => {
+      shell.slut = value
+      updContent()
+    }"
     @reload="reload"
   />
 </template>
@@ -129,9 +144,6 @@ export default {
         this.instances.find((item) => item.main_id == id)
       );
       this.create = true;
-    },
-    handleClear() {
-      this.shell = this.empty;
     },
     handleForeign() {
       this.instances.forEach((inst) => {
@@ -267,44 +279,6 @@ export default {
       } else {
         this.shell.text = this.shell.typ + "kostnad " + this.shell.text;
       }
-    },
-    onLeve(value) {
-      this.shell.leverantor = value;
-    },
-    onText(value) {
-      this.shell.text = value;
-    },
-    onInfo(value) {
-      this.shell.info = value;
-    },
-    onValuta(value) {
-      this.shell.valuta = value;
-    },
-    onMangd(value) {
-      this.shell.mangd = value;
-      this.updContent();
-    },
-    onInprisex(value) {
-      this.shell.inprisex = value;
-      this.updContent();
-    },
-    onProcent(value) {
-      this.shell.procent = value;
-      this.updContent();
-    },
-    onFakturanum(value) {
-      this.shell.fakturanum = value;
-    },
-    onKommentar(value) {
-      this.shell.kommentar = value;
-    },
-    onStart(value) {
-      this.shell.start = value;
-      this.updPerioder();
-    },
-    onSlut(value) {
-      this.shell.slut = value;
-      this.updPerioder();
     },
   },
   async mounted() {

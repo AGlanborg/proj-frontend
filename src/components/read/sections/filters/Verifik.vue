@@ -218,6 +218,7 @@ export default {
 
 <style scoped>
 @import "@/assets/css/create.css";
+@import "@/assets/css/filter.css";
 
 input[type="number"] {
   width: 0;
@@ -236,6 +237,6 @@ input[type="number"] {
 }
 
 .container {
-  padding: 0 5vw;
+  padding: 0 2.5vw;
 }
 </style>

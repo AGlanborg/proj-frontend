@@ -92,7 +92,7 @@ export default {
 .categoryContainer {
   position: relative;
   box-shadow: inset -10px 0 15px rgba(0, 0, 0, 0.5);
-  width: 25vw;
+  width: 15vw;
   height: 100vh;
   transition: 0.5s;
   left: 0;

@@ -1,0 +1,54 @@
+label {
+    font-size: 20px;
+    margin: 10px 8px;
+  }
+  
+  input[type="text"],
+  input[type="month"],
+  input[type="number"],
+  select,
+  textarea {
+    display: block;
+    border: none;
+    outline: none;
+    outline: 2px solid rgb(220, 220, 220);
+    background-color: rgb(44, 44, 64);
+    height: 50px;
+    padding: 0 0.75vw;
+    margin: 10px 0 45px 0;
+    border-radius: 10px;
+    font-size: 20px;
+    min-width: 8.5vw;
+  }
+  
+  select {
+    cursor: pointer;
+    appearance: none;
+    width: 10vw;
+  }
+  
+  input[type="text"] {
+    width: 10vw;
+  }
+  
+  input[type="button"] {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: rgb(55, 55, 80);
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 1vh 1vw;
+  }
+  
+  input[disabled] {
+    outline: 3px solid rgb(100, 100, 200);
+  }
+  
+  textarea {
+    padding: 1vw 1vh;
+    flex-wrap: wrap;
+    height: 18vh;
+    width: 18vw;
+    overflow-wrap: break-word;
+  }

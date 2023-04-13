@@ -212,7 +212,7 @@ export default {
       const start = this.shell.start.split("-");
       const now = this.shell.now.split("-");
 
-      this.upfront =
+      this.shell.upfront =
         12 * (parseInt(now[0]) - parseInt(start[0])) +
         parseInt(now[1]) -
         parseInt(start[1]) +

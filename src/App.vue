@@ -142,18 +142,24 @@ export default {
   },
   methods: {
     handleCopy(id) {
-      this.shell = Object.assign(
-        {},
-        this.instances.find((item) => item.main_id == id)
-      );
+      const obj = this.instances.find((item) => item.main_id == id)
+
+      this.shell = {...obj}
+      this.shell.saljare = {...obj.saljare}
+      this.shell.kopare = {...obj.kopare}
+      this.shell.arbetstyp = {...obj.arbetstyp}
       this.shell.main_id = "";
+
       this.create = true;
     },
     handleEdit(id) {
-      this.shell = Object.assign(
-        {},
-        this.instances.find((item) => item.main_id == id)
-      );
+      const obj = this.instances.find((item) => item.main_id == id)
+
+      this.shell = {...obj}
+      this.shell.saljare = {...obj.saljare}
+      this.shell.kopare = {...obj.kopare}
+      this.shell.arbetstyp = {...obj.arbetstyp}
+
       this.create = true;
     },
     handleForeign() {

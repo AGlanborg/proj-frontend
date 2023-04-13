@@ -148,8 +148,7 @@ export default {
 
       let shellArr = Object.entries(shell);
       let emptyArr = Object.entries(empty);
-      console.log(shellArr)
-      console.log(emptyArr)
+
       for (let i = 0; i < shellArr.length; i += 1) {
         if (
           shellArr[i][0] != emptyArr[i][0] ||

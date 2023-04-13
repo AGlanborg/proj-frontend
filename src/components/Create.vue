@@ -172,7 +172,7 @@ export default {
   user-select: none;
   margin: 0;
   margin-left: 5px;
-  font-size: 40px;
+  font-size: 2vh;
   line-height: 0;
   transition: 0.5s;
 }

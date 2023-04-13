@@ -37,7 +37,7 @@
       <p>Text På Internfaktura</p>
     </div>
     <div class="valueContainer">
-      <p>Inpris, kr</p>
+      <p>Internpris, kr</p>
     </div>
     <div class="valueContainer">
       <p>Internfaktura per period, kr</p>
@@ -278,164 +278,22 @@ export default {
 </script>
 
 <style scoped>
-abbr {
-  text-decoration: none;
-}
-
-.inctanceContainer {
-  display: flex;
-  flex-direction: column;
-}
+@import "@/assets/css/rapporter.css";
 
 .maxResultContainer {
   width: 85vw;
 }
 
-.resultContent {
-  height: 70vh;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  transition: 0.5s;
-}
-
-.minResults {
-  height: 60vh;
-}
-
-.instance {
-  display: flex;
-  flex-direction: row;
-  min-height: 5vh;
-}
-
-.instance:nth-child(even) > .checkboxContainer,
-.instance:nth-child(even) > .buttonContainer,
-.instance:nth-child(even) > .valueContainer {
-  background-color: rgb(60, 60, 100);
-}
-
-.instance:nth-child(even) > .textContainer {
-  background-color: rgb(57, 57, 95);
-}
-
-.header > .checkboxContainer,
-.header > .buttonContainer,
-.header > .valueContainer,
-.header > .headerTextContainer {
-  border-bottom: 5px solid rgb(44, 44, 64);
-}
-
-.checkboxContainer,
-.buttonContainer {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  min-height: 5vh;
-}
-
 .checkboxContainer {
   border-right: 5px solid rgb(44, 44, 64);
-  height: 5vh;
+  min-height: 5vh;
   min-width: 5vh;
 }
 
-.checkbox,
-.button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  background-color: rgb(44, 44, 64);
-  width: 2.5vh;
-  height: 2.5vh;
-  min-width: 25px;
-  min-height: 25px;
-  border-radius: 5px;
-}
-
-.check {
-  user-select: none;
-  font-size: 2vh;
-}
-
 .valueContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 5vh;
-  min-width: 10vw;
-  font-size: 18px;
-  flex-shrink: -5;
-}
-
-.noWrap {
-  white-space: nowrap;
-}
-
-.valueContainer p {
-  text-align: center;
-  margin: 0;
-  line-height: 20px;
-}
-
-.textContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.1);
-  flex-grow: 1;
-  min-height: 5vh;
-  min-width: 20vw;
-  padding: 0 10px;
-}
-
-.text {
-  display: flex;
-  flex-direction: row;
-  height: 4vh;
-}
-
-.text > p {
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  display: inline-block;
-  white-space: pre-line;
-  overflow-wrap: break-all;
-  width: 100%;
-  height: 100%;
-  line-height: 15px;
-  margin: 0;
-}
-
-.text > p::-webkit-scrollbar {
-  display: none;
-}
-
-.buttonContainer {
-  min-width: 8vw;
-}
-
-.button {
-  width: 3vh;
-  height: 3vh;
-}
-
-.headerTextContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  flex-grow: 1;
-  min-height: 5vh;
-  min-width: 20vw;
-  padding: 0 10px;
-}
-
-.headerTextContainer > p {
-  display: inline;
-  margin: 0;
+  min-width: 6vw;
+  font-size: 14px;
 }
 
 .idContainer {

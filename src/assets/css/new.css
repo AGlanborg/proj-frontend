@@ -59,11 +59,6 @@
     margin-left: 20px;
 }
 
-span.check {
-    user-select: none;
-    font-size: 30px;
-}
-
 .disabeled {
     cursor: default;
     color: rgb(100, 100, 100);

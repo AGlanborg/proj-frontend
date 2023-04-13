@@ -63,11 +63,6 @@ abbr {
   border-radius: 5px;
 }
 
-.check {
-  user-select: none;
-  font-size: 2vh;
-}
-
 .valueContainer {
   display: flex;
   justify-content: center;

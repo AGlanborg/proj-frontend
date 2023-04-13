@@ -139,7 +139,7 @@
         </div>
         <div class="valueContainer" v-for="month in months" v-bind:key="month">
           <p v-if="checkMonth(inst.start, inst.slut, month)">
-            {{ inst.internfakt }}
+            {{ Math.round((inst.inpris / inst.perioder)) }}
           </p>
         </div>
       </div>

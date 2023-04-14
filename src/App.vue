@@ -142,23 +142,23 @@ export default {
   },
   methods: {
     handleCopy(id) {
-      const obj = this.instances.find((item) => item.main_id == id)
+      const obj = this.instances.find((item) => item.main_id == id);
 
-      this.shell = {...obj}
-      this.shell.saljare = {...obj.saljare}
-      this.shell.kopare = {...obj.kopare}
-      this.shell.arbetstyp = {...obj.arbetstyp}
+      this.shell = { ...obj };
+      this.shell.saljare = { ...obj.saljare };
+      this.shell.kopare = { ...obj.kopare };
+      this.shell.arbetstyp = { ...obj.arbetstyp };
       this.shell.main_id = "";
 
       this.create = true;
     },
     handleEdit(id) {
-      const obj = this.instances.find((item) => item.main_id == id)
+      const obj = this.instances.find((item) => item.main_id == id);
 
-      this.shell = {...obj}
-      this.shell.saljare = {...obj.saljare}
-      this.shell.kopare = {...obj.kopare}
-      this.shell.arbetstyp = {...obj.arbetstyp}
+      this.shell = { ...obj };
+      this.shell.saljare = { ...obj.saljare };
+      this.shell.kopare = { ...obj.kopare };
+      this.shell.arbetstyp = { ...obj.arbetstyp };
 
       this.create = true;
     },
@@ -172,12 +172,19 @@ export default {
       });
     },
     async reload() {
-      this.instances = (await get("main")) || [];
-      this.saljare = (await get("saljare")) || [];
-      this.kopare = (await get("kopare")) || [];
-      this.arbetstyp = (await get("arbetstyp")) || [];
+      var isChrome = navigator.userAgent.indexOf("Chrome") != -1;
+      var isEdgeChromium = navigator.userAgent.indexOf("Edg") != -1;
 
-      this.handleForeign();
+      if (isChrome || isEdgeChromium) {
+        setTimeout(() => window.location.reload(true), 750);
+      } else {
+        this.instances = (await get("main")) || [];
+        this.saljare = (await get("saljare")) || [];
+        this.kopare = (await get("kopare")) || [];
+        this.arbetstyp = (await get("arbetstyp")) || [];
+
+        this.handleForeign();
+      }
     },
     updContent() {
       this.shell.inprisin = parseFloat(

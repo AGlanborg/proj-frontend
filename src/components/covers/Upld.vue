@@ -34,7 +34,7 @@
           </textarea>
         </div>
       </div>
-      <div>
+      <div class="buttonareaContainer">
         <div>
           <label for="file" class="fileText"> Välj fil nedan </label>
           <input
@@ -45,25 +45,6 @@
           />
         </div>
         <div class="downloadContainer">
-          <div>
-            <p class="explainText">Ladda ner Mall</p>
-            <button class="button" @click="handleMall">Download</button>
-            <div class="redText">
-              <p v-if="red">Innehållet följer inte mallen</p>
-            </div>
-          </div>
-          <div>
-            <p class="explainText">Ladda ner Exempel</p>
-            <button class="button" @click="handleExample">Download</button>
-          </div>
-          <div>
-            <p class="explainText">Öppna Instruktioner</p>
-            <a href="./Instruktioner.pdf" target="_blank">
-              <button class="button">Open</button>
-            </a>
-          </div>
-        </div>
-        <div class="instanceContainer">
           <div class="buttonContainer">
             <button
               class="button upload"
@@ -72,7 +53,32 @@
             >
               UPLOAD
             </button>
-            <button class="button" @click="$emit('toggleUpload')">BACK</button>
+          </div>
+          <div>
+            <p class="explainText">Ladda ner Mall</p>
+            <div class="center">
+              <button class="button" @click="handleMall">Download</button>
+            </div>
+            <div class="redText">
+              <p v-if="red">Innehållet följer inte mallen</p>
+            </div>
+          </div>
+          <div>
+            <p class="explainText">Ladda ner Exempel</p>
+            <div class="center">
+              <button class="button" @click="handleExample">Download</button>
+            </div>
+          </div>
+          <div>
+            <p class="explainText">Öppna Instruktioner</p>
+            <div class="center">
+              <a href="./Instruktioner.pdf" target="_blank">
+                <button class="button">Open</button>
+              </a>
+            </div>
+          </div>
+          <div class="buttonContainer">
+            <button class="button back" @click="$emit('toggleUpload')">BACK</button>
           </div>
         </div>
       </div>
@@ -188,29 +194,22 @@ textarea {
   width: 80vw;
 }
 
-.buttonContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  padding: 20px 0;
-}
-
 .button {
-  background-color: rgb(55, 55, 75);
-  padding: 20px;
-  border-radius: 5px;
   cursor: pointer;
   user-select: none;
+  background-color: rgb(55, 55, 75);
+  outline: 2px solid rgb(220, 220, 220);
+  padding: 20px;
+  border-radius: 5px;
+  width: 70px;
+}
+
+.button.disabled {
+  outline: none;
 }
 
 .upload {
   background-color: rgb(50, 200, 50);
-}
-
-.instanceContainer {
-  width: 70vw;
-  margin: 0 5vw;
-  border-radius: 20px;
 }
 
 .fileText {
@@ -221,7 +220,7 @@ textarea {
 .textareaContainer {
   display: flex;
   justify-content: center;
-  height: 35vh;
+  height: 45vh;
   width: 100%;
 }
 
@@ -276,5 +275,28 @@ textarea {
   flex-direction: row;
   justify-content: center;
   margin-top: 2.5vh;
+}
+
+.center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 14px 20px 0 20px;
+}
+
+.buttonareaContainer {
+  display: flex;
+  flex-direction: column;
+  height: 35vh;
+}
+
+.back {
+  outline: 2px solid rgb(200, 50, 50);
 }
 </style>

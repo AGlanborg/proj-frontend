@@ -36,14 +36,16 @@ export default function createMonths(data, now) {
         } else {
             content.push(`${min[0]}-0${min[1]}`);
         }
+
+        if (min[0] == max[0] && min[1] == max[1]) {
+            loop = false;
+        }
+
         if (min[1] == 12) {
             min[1] = 1;
             min[0] += 1;
         } else {
             min[1] += 1;
-        }
-        if (min[0] == max[0] && min[1] > max[1]) {
-            loop = false;
         }
     }
 

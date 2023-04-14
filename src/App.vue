@@ -68,6 +68,7 @@
       }
     "
     @reload="reload"
+    @softReload="softReload"
   />
 </template>
 
@@ -176,15 +177,18 @@ export default {
       var isEdgeChromium = navigator.userAgent.indexOf("Edg") != -1;
 
       if (isChrome || isEdgeChromium) {
-        setTimeout(() => window.location.reload(true), 750);
+        setTimeout(() => window.location.reload(true), 1000);
       } else {
-        this.instances = (await get("main")) || [];
-        this.saljare = (await get("saljare")) || [];
-        this.kopare = (await get("kopare")) || [];
-        this.arbetstyp = (await get("arbetstyp")) || [];
-
-        this.handleForeign();
+        this.softReload()
       }
+    },
+    async softReload() {
+      this.instances = (await get("main")) || [];
+      this.saljare = (await get("saljare")) || [];
+      this.kopare = (await get("kopare")) || [];
+      this.arbetstyp = (await get("arbetstyp")) || [];
+
+      this.handleForeign();
     },
     updContent() {
       this.shell.inprisin = parseFloat(

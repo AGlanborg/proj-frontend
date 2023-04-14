@@ -36,7 +36,7 @@
         @onLeve="(value) => $emit('onLeve', value)"
         @onText="(value) => $emit('onText', value)"
         @onInfo="(value) => $emit('onInfo', value)"
-        @reload="$emit('reload')"
+        @softReload="$emit('softReload')"
       />
       <Oh
         :shell="shell"

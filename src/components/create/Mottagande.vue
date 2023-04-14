@@ -213,15 +213,15 @@ export default {
       this.$emit("onArb", value);
     },
     createSaljare() {
-      this.$emit("reload");
+      this.$emit("softReload");
       this.sal = false;
     },
     createKopare() {
-      this.$emit("reload");
+      this.$emit("softReload");
       this.kop = false;
     },
     createArbetstyp() {
-      this.$emit("reload");
+      this.$emit("softReload");
       this.arb = false;
     },
   },

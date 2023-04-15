@@ -158,6 +158,11 @@ export default {
 </script>
 
 <style scoped>
+label {
+  width: 100%;
+  text-align: center;
+}
+
 input[type="file"] {
   background-color: rgb(55, 55, 75);
   margin-top: 2vh;

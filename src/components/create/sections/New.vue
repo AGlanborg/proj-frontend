@@ -121,4 +121,8 @@ export default {
 
 <style scoped>
 @import "@/assets/css/new.css";
+
+.newText {
+  width: 80%;
+}
 </style>

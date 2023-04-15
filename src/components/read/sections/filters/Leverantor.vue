@@ -149,7 +149,6 @@ export default {
 </script>
 
 <style scoped>
-@import "@/assets/css/create.css";
 @import "@/assets/css/filter.css";
 
 input[type="number"] {
@@ -169,6 +168,7 @@ input[type="number"] {
 }
 
 .container {
-  padding: 0 2.5vw;
+  width: 11vw;
+  padding: 0 2vw;
 }
 </style>

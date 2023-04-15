@@ -237,6 +237,7 @@ input[type="number"] {
 }
 
 .container {
-  padding: 0 2.5vw;
+  width: 11vw;
+  padding: 0 2vw;
 }
 </style>

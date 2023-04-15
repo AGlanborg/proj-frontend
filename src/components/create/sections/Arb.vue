@@ -4,45 +4,41 @@
     <div class="container">
       <div class="newText">
         <label for="rst"> Tillverkare </label>
-          <input
-            type="text"
-            lang="sv"
-            id="rst"
-            v-model="tillverkare"
-            @input="check"
-          />
+        <input
+          type="text"
+          lang="sv"
+          id="rst"
+          v-model="tillverkare"
+          @input="check"
+        />
       </div>
     </div>
     <div class="container">
       <div class="newText">
         <label for="rst"> Förkortning arbetstyp </label>
-          <input
-            type="text"
-            lang="sv"
-            id="rst"
-            v-model="forkortning"
-            @input="check"
-          />
+        <input
+          type="text"
+          lang="sv"
+          id="rst"
+          v-model="forkortning"
+          @input="check"
+        />
       </div>
     </div>
     <div class="newButton">
       <input
         type="button"
         :value="'Skapa ' + forkortning"
-        :class="{disabeled: !filled}"
+        :class="{ disabeled: !filled }"
         @click="create"
       />
-      <input
-        type="button"
-        value="Avbryt"
-        @click="$emit('cancel')"
-      />
+      <input type="button" value="Avbryt" @click="$emit('cancel')" />
     </div>
   </div>
 </template>
 
 <script>
-import { form } from "@/assets/scripts/requests/post"
+import { form } from "@/assets/scripts/requests/post";
 
 export default {
   name: "Create-new",
@@ -62,18 +58,22 @@ export default {
       }
     },
     async create() {
-      if(this.filled) {
-        const data = {data: `'${this.tillverkare}','${this.forkortning}'`}
+      if (this.filled) {
+        const data = { data: `'${this.tillverkare}','${this.forkortning}'` };
 
-        await form(data, 'arbetstyp')
+        await form(data, "arbetstyp");
 
-        this.$emit("createArbetstyp")
+        this.$emit("createArbetstyp");
       }
-    }
+    },
   },
 };
 </script>
 
 <style scoped>
 @import "@/assets/css/new.css";
+
+.newText {
+  width: 80%;
+}
 </style>

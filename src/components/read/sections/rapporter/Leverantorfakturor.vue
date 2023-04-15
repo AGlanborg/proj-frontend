@@ -56,6 +56,7 @@
     </div>
   </div>
   <div class="resultContent" :class="title ? 'minResults' : ''">
+    <div class="instance"></div>
     <div v-for="inst in instances" v-bind:key="inst.main_id">
       <div class="instance" v-if="checkFilters(inst)">
         <div class="buttonContainer">
@@ -139,7 +140,7 @@
         </div>
         <div class="valueContainer" v-for="month in months" v-bind:key="month">
           <p v-if="checkMonth(inst.start, inst.slut, month)">
-            {{ Math.round((inst.inpris / inst.perioder)) }}
+            {{ Math.round(inst.inpris / inst.perioder) }}
           </p>
         </div>
       </div>

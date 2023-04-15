@@ -416,7 +416,9 @@ abbr {
 }
 
 .resultScroll {
-  overflow: scroll;
+  position: absolute;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 .button {

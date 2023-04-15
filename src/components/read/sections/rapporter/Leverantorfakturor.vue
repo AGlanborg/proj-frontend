@@ -6,14 +6,14 @@
           <span class="material-icons check">add</span>
         </button>
       </abbr> -->
-      <abbr title="Download seleced items">
-        <button class="button" @click="handleDownload">
-          <span class="material-icons check">download</span>
-        </button>
-      </abbr>
       <abbr title="Upload a new row">
         <button class="button" @click="$emit('toggleUpload')">
           <span class="material-icons check">upload</span>
+        </button>
+      </abbr>
+      <abbr title="Download seleced items">
+        <button class="button" @click="handleDownload">
+          <span class="material-icons check">download</span>
         </button>
       </abbr>
     </div>

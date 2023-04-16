@@ -82,6 +82,7 @@ abbr {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-y: hidden;
   min-height: 5vh;
   min-width: 10vw;
   font-size: 18px;
@@ -148,7 +149,6 @@ abbr {
   flex-grow: 1;
   min-height: 5vh;
   min-width: 20vw;
-  padding: 0 10px;
 }
 
 .headerTextContainer>p {
@@ -158,8 +158,4 @@ abbr {
 
 .idContainer {
   min-width: 5vw;
-}
-
-.textContainer:nth-child(even) {
-  border-left: 5px solid rgb(44, 44, 64);
 }

@@ -46,6 +46,7 @@ export default function createRows(content) {
         obj.header.intakt = row[data.header.intakt] || null
         obj.header.scan = row[data.header.scan] || null
         obj.header.now = row[data.header.now] || null
+        obj.id = index
 
         rows[index] = obj
     }

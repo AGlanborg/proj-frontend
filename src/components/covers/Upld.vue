@@ -24,14 +24,10 @@
     <div class="remove">
       <div class="textareaContainer">
         <div>
-          <label for="text" class="textareaLabel"> {{ title }} </label>
-          <textarea
-            id="text"
-            :class="red ? 'redTextarea' : ''"
-            v-model="text"
-            @input="red = false"
-          >
-          </textarea>
+          <label for="text" class="textareaLabel"> {{ title ? "Följande är innehållet av filen " + title : "" }} </label>
+          <div class="fileContentContainer" :class="{redTextarea: red}">
+            <File v-if="text && rows" :rows="rows" />
+          </div>
         </div>
       </div>
       <div class="buttonareaContainer">
@@ -87,6 +83,8 @@
 </template>
 
 <script>
+import File from "./File.vue"
+
 import upload from "@/assets/scripts/transform/csv";
 import mall from "@/assets/scripts/csv/mall";
 import exmaple from "@/assets/scripts/csv/example";
@@ -96,6 +94,9 @@ import createRows from "@/assets/scripts/transform/createRows"
 
 export default {
   name: "Read-upload",
+  components: {
+    File,
+  },
   emits: ["toggleUpload", "reload"],
   data() {
     return {
@@ -116,14 +117,15 @@ export default {
       if (checkHeader(rows[0])) {
         this.red = false
 
+        this.text = await content.text();
         this.rows = createRows(rows)
-        console.log(this.rows)
+        this.title = event.target.files.item(0).name;
       } else {
         this.red = true
       }
     },
     async handleUpload() {
-      if (this.text && !this.red) {
+      if (this.text && this.rows.length && !this.red) {
         try {
           const content = await upload(this.text);
           if (content.title.toUpperCase() == "INVALID CONTENT") {
@@ -166,7 +168,7 @@ export default {
 
 <style scoped>
 label {
-  width: 100%;
+  width: 30vw;
   text-align: center;
 }
 
@@ -175,11 +177,15 @@ input[type="file"] {
   margin-top: 2vh;
 }
 
-textarea {
+.fileContentContainer {
+  position: absolute;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  outline: 3px solid rgb(220, 220, 220);
   background-color: rgba(0, 0, 0, 0.4);
   height: 30vh;
   width: 75vw;
-  margin: 10px 0 0;
+  border-radius: 20px;
 }
 
 .removeContainer {
@@ -226,14 +232,14 @@ textarea {
 
 .fileText {
   display: block;
+  width: 100%;
   font-size: 25px;
 }
 
 .textareaContainer {
-  display: flex;
-  justify-content: center;
-  height: 45vh;
-  width: 100%;
+  height: 35vh;
+  padding: 5vh 2.5vw;
+  width: 75vw;
 }
 
 .textareaLabel {

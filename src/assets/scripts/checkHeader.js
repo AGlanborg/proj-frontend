@@ -1,30 +1,7 @@
+import csvHeader from "@/assets/templates/csvHeaderArray.json"
+
 export default function checkHeader(head) {
-    let template = [
-        "RST nummer för säljare",
-        "Copernicus nummer för säljare",
-        "Kontaktperson för säljare",
-        "Namn för säljare",
-        "RST nummer för köpare",
-        "Copernicus nummer för köpare",
-        "Kontaktperson för köpare",
-        "Namn för köpare",
-        "Tillverkare",
-        "Förkortning för arbetstyp",
-        "Antal Poster",
-        "Typ",
-        "Leverantör",
-        "Text på internfaktura",
-        "Kontaktinfo",
-        "Valuta",
-        "Antal licenser",
-        "Inpris ex. moms",
-        "Procent (%)",
-        "Fakturanummer",
-        "Kommentar",
-        "Periodisering Start",
-        "Periodisering Slut",
-        "Faktureringsperiod"
-    ]
+    let template = csvHeader
     let content = head.split(',')
     let result = true
 

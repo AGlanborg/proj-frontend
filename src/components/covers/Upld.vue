@@ -90,6 +90,9 @@
 import upload from "@/assets/scripts/transform/csv";
 import mall from "@/assets/scripts/csv/mall";
 import exmaple from "@/assets/scripts/csv/example";
+import checkHeader from "@/assets/scripts/checkHeader";
+import hone from "@/assets/scripts/transform/hone";
+import createRows from "@/assets/scripts/transform/createRows"
 
 export default {
   name: "Read-upload",
@@ -102,18 +105,22 @@ export default {
       error: false,
       success: false,
       idk: false,
+      rows: []
     };
   },
   methods: {
     async handleFile(event) {
-      const txt = event.target.files.item(0);
+      const content = event.target.files.item(0);
+      const rows = hone(await content.text()).split("\n")
 
-      this.text = await txt.text();
+      if (checkHeader(rows[0])) {
+        this.red = false
 
-      this.title =
-        "Följande är innehållet av filen " + event.target.files.item(0).name;
-
-      this.red = false;
+        this.rows = createRows(rows)
+        console.log(this.rows)
+      } else {
+        this.red = true
+      }
     },
     async handleUpload() {
       if (this.text && !this.red) {

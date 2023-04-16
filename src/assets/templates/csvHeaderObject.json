@@ -1,0 +1,47 @@
+{
+    "saljare": {
+        "rst": "RST nummer för säljare",
+        "cop": "Copernicus nummer för säljare",
+        "kontakt": "Kontaktperson för säljare",
+        "namn": "Namn för säljare"
+    },
+    "kopare": {
+        "rst": "RST nummer för köpare",
+        "cop": "Copernicus nummer för köpare",
+        "kontakt": "Kontaktperson för köpare",
+        "namn": "Namn för köpare"
+    },
+    "arbetstyp": {
+        "tillverkare": "Tillverkare",
+        "arbetstyp": "Förkortning för arbetstyp"
+    },
+    "header": {
+        "saljare": null,
+        "kopare": null,
+        "arbetstyp": null,
+        "antal": "Antal poster",
+        "typ": "Typ",
+        "leverantor": "Leverantör",
+        "text": "Text på internfaktura",
+        "info": "Kontaktinfo",
+        "valuta": "Valuta",
+        "mangd": "Antal licenser",
+        "inprisex": "Inpris ex. moms",
+        "inprisin": null,
+        "procent": "Procent (%)",
+        "oh": null,
+        "totalt": null,
+        "fakturanum": "Fakturanummer",
+        "kommentar": "Kommentar",
+        "inpris": null,
+        "start": "Periodisering Start",
+        "slut": "Periodisering Slut",
+        "perioder": null,
+        "upfront": null,
+        "rest": null,
+        "internfakt": null,
+        "intakt": null,
+        "scan": null,
+        "now": "Faktureringsperiod"
+    }
+}

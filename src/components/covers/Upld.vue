@@ -183,8 +183,8 @@ input[type="file"] {
   overflow-y: hidden;
   outline: 3px solid rgb(220, 220, 220);
   background-color: rgba(0, 0, 0, 0.4);
-  height: 30vh;
-  width: 75vw;
+  height: 40vh;
+  width: 90vw;
   border-radius: 20px;
 }
 
@@ -208,8 +208,8 @@ input[type="file"] {
   text-align: center;
   background-color: rgba(44, 44, 64);
   border-radius: 5px;
-  height: 80vh;
-  width: 80vw;
+  height: 100vh;
+  width: 100vw;
 }
 
 .button {
@@ -237,16 +237,15 @@ input[type="file"] {
 }
 
 .textareaContainer {
-  height: 35vh;
-  padding: 5vh 2.5vw;
-  width: 75vw;
+  height: 40vh;
+  padding: 5vh 5vw;
+  width: 90vw;
 }
 
 .textareaLabel {
   display: block;
   text-align: left;
   height: 25px;
-  margin-top: 25px;
 }
 
 .explainText {

@@ -287,6 +287,7 @@ export default {
 
 .valueContainer {
   min-height: 5vh;
+  max-height: 5vh;
   min-width: 6vw;
   font-size: 14px;
 }

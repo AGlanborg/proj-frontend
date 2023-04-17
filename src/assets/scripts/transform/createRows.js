@@ -1,4 +1,5 @@
 import numbers from "./rows/numbers"
+import decimals from "./decimals"
 
 export default function createRows(content) {
     const data = numbers(content[0])
@@ -6,7 +7,7 @@ export default function createRows(content) {
 
     for (let i = 1; i < content.length; i += 1) {
         let index = rows.length
-        let row = content[i].split(",")
+        let row = decimals(content[i]).split(",")
         let obj = { header: {}, saljare: {}, kopare: {}, arbetstyp: {} }
 
         obj.saljare.rst = row[data.saljare.rst] || null

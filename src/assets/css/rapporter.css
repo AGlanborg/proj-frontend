@@ -14,16 +14,10 @@ abbr {
 .resultContent {
   position: absolute;
   overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
   height: 75vh;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   transition: 0.5s;
-}
-
-.resultContent::-webkit-scrollbar {
-  display: none;
 }
 
 .minResults {

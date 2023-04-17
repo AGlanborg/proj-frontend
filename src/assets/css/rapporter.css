@@ -14,10 +14,11 @@ abbr {
 .resultContent {
   position: absolute;
   overflow-y: scroll;
-  height: 75vh;
+  height: 70vh;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   transition: 0.5s;
+  padding-top: 5vh;
 }
 
 .minResults {

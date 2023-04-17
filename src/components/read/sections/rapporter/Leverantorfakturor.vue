@@ -56,7 +56,6 @@
     </div>
   </div>
   <div class="resultContent" :class="title ? 'minResults' : ''">
-    <div class="instance"></div>
     <div v-for="inst in instances" v-bind:key="inst.main_id">
       <div class="instance" v-if="checkFilters(inst)">
         <div class="buttonContainer">

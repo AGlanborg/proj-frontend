@@ -76,7 +76,7 @@ abbr {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow-y: hidden;
+  overflow: hidden;
   min-height: 5vh;
   min-width: 10vw;
   font-size: 18px;
